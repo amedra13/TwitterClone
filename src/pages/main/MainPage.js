@@ -1,7 +1,7 @@
 import React from 'react';
-import SideBar from '../../components/Sidebar';
-import Feed from '../../components/Feed';
-import Trend from '../../components/Trend';
+import SideBar from '../../components/mainPage/Sidebar';
+import Feed from '../../components/mainPage/Feed';
+import Trend from '../../components/mainPage/Trend';
 
 const MainPage = () => {
 	return (
