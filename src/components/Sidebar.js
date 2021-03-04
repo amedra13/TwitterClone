@@ -15,30 +15,32 @@ import SendIcon from '@material-ui/icons/Send';
 
 const useStyles = makeStyles((theme) => ({
 	button: {
-		color: 'white',
-		backgroundColor: '#00b4d8',
+		fontStyle: 'italic',
+		color: 'black',
+		backgroundColor: 'white',
 		'&:hover': {
-			color: 'white',
-			backgroundColor: '#00b4d8',
+			color: '#00b4d8',
+			backgroundColor: 'rgba(243, 241, 241, 0.836)',
 			boxShadow: 'none',
 		},
-		margin: '15px',
+		margin: '10px 0',
 		boxShadow: 'none',
 		width: '75%',
 		borderRadius: '28px',
-		transition: 'all 200ms ease-in-out',
+		transition: 'all 250ms ease-in-out',
+		justifyContent: 'flex-start',
 	},
 	tweet: {
 		color: 'white',
 		backgroundColor: '#00b4d8',
 		'&:hover': {
-			backgroundColor: '#04758b',
+			backgroundColor: '#0accf3c4',
 			boxShadow: 'none',
 		},
 		boxShadow: 'none',
-		height: '50px',
 		width: '75%',
 		borderRadius: '28px',
+		margin: '15px 0',
 	},
 	twitterIcon: {
 		color: '#00b4d8',
@@ -49,17 +51,17 @@ const Sidebar = () => {
 	const classes = useStyles();
 	return (
 		<div className="sidebar">
-			{/* <div className="sidebar__logo"> */}
-			<IconButton className={classes.twitterIcon}>
-				<TwitterIcon fontSize="large" />
-			</IconButton>
-			{/* </div> */}
+			<div className="sidebar__logo">
+				<IconButton className={classes.twitterIcon}>
+					<TwitterIcon fontSize="large" />
+				</IconButton>
+			</div>
 			<div className="sidebar__list">
 				<Button
 					className={classes.button}
 					variant="contained"
 					color="primary"
-					startIcon={<HomeIcon fontSize="large" />}
+					startIcon={<HomeIcon />}
 				>
 					Home
 				</Button>
@@ -67,7 +69,7 @@ const Sidebar = () => {
 					className={classes.button}
 					variant="contained"
 					color="primary"
-					startIcon={<PublicIcon fontSize="large" />}
+					startIcon={<PublicIcon />}
 				>
 					Explore
 				</Button>
@@ -75,7 +77,7 @@ const Sidebar = () => {
 					className={classes.button}
 					variant="contained"
 					color="primary"
-					startIcon={<NotificationsNoneOutlinedIcon fontSize="large" />}
+					startIcon={<NotificationsNoneOutlinedIcon />}
 				>
 					Notifications
 				</Button>
@@ -83,7 +85,7 @@ const Sidebar = () => {
 					className={classes.button}
 					variant="contained"
 					color="primary"
-					startIcon={<MailOutlinedIcon fontSize="large" />}
+					startIcon={<MailOutlinedIcon />}
 				>
 					Messages
 				</Button>
@@ -91,7 +93,7 @@ const Sidebar = () => {
 					className={classes.button}
 					variant="contained"
 					color="primary"
-					startIcon={<BookmarkBorderOutlinedIcon fontSize="large" />}
+					startIcon={<BookmarkBorderOutlinedIcon />}
 				>
 					BookMarks
 				</Button>
@@ -107,7 +109,7 @@ const Sidebar = () => {
 					className={classes.button}
 					variant="contained"
 					color="primary"
-					startIcon={<AccountCircleOutlinedIcon fontSize="large" />}
+					startIcon={<AccountCircleOutlinedIcon />}
 				>
 					Profile
 				</Button>
@@ -115,7 +117,7 @@ const Sidebar = () => {
 					className={classes.button}
 					variant="contained"
 					color="primary"
-					startIcon={<MoreHorizOutlinedIcon fontSize="large" />}
+					startIcon={<MoreHorizOutlinedIcon />}
 				>
 					More
 				</Button>
@@ -125,7 +127,8 @@ const Sidebar = () => {
 					className={classes.tweet}
 					variant="contained"
 					color="primary"
-					startIcon={<SendIcon fontSize="large" />}
+					size="large"
+					startIcon={<SendIcon />}
 				>
 					Tweet
 				</Button>
