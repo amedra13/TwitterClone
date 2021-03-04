@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import ListButton from '../Buttons/ListButton';
 import TweetButton from '../Buttons/TweetButton';
@@ -14,18 +13,11 @@ import ListAltOutlinedIcon from '@material-ui/icons/ListAltOutlined';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 
-const useStyles = makeStyles((theme) => ({
-	twitterIcon: {
-		color: '#00b4d8',
-	},
-}));
-
 const Sidebar = () => {
-	const classes = useStyles();
 	return (
 		<div className="sidebar">
 			<div className="sidebar__logo">
-				<IconButton className={classes.twitterIcon}>
+				<IconButton style={{ color: '#00b4d8' }}>
 					<TwitterIcon fontSize="large" />
 				</IconButton>
 				@am_sportscards5
@@ -50,7 +42,7 @@ const Sidebar = () => {
 				<ListButton listItem="More" IconComponent={MoreHorizOutlinedIcon} />
 			</div>
 			<div className="sidebar__tweetButton">
-				<TweetButton />
+				<TweetButton withIcon />
 			</div>
 		</div>
 	);

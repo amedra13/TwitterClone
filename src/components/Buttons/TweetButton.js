@@ -15,10 +15,11 @@ const useStyles = makeStyles((theme) => ({
 		width: '75%',
 		borderRadius: '28px',
 		margin: '15px 0',
+		fontSize: '12px',
 	},
 }));
 
-const TweetButton = ({ IconComponent }) => {
+const TweetButton = ({ IconComponent, withIcon }) => {
 	const classes = useStyles();
 
 	return (
@@ -27,7 +28,7 @@ const TweetButton = ({ IconComponent }) => {
 			variant="contained"
 			color="primary"
 			size="large"
-			startIcon={<SendIcon />}
+			startIcon={withIcon && <SendIcon />}
 		>
 			Tweet
 		</Button>

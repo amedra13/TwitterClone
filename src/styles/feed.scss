@@ -13,3 +13,37 @@
 	color: black;
 	font-weight: 600;
 }
+.feedHeader__form {
+	display: flex;
+	height: 130px;
+	border-bottom: 10px solid $main-borderColor;
+	// div {
+	// 	border: 1px solid red;
+	// }
+	.avatarContainer {
+		padding: 10px;
+	}
+	.formContainer {
+		flex-grow: 1;
+		input {
+			border: none;
+			height: 50%;
+			width: 100%;
+			padding-left: 5px;
+			&:focus {
+				outline: none;
+				border-bottom: 1px solid $main-borderColor;
+			}
+		}
+		div {
+			height: 50%;
+			display: flex;
+			align-items: center;
+		}
+	}
+	.tweetContainer {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+	}
+}
