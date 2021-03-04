@@ -1,9 +1,10 @@
 import React from 'react';
+import FeedHeader from '../Feed/FeedHeader';
 
 const Feed = () => {
 	return (
 		<div className="feed">
-			<h1>Feed Component</h1>
+			<FeedHeader />
 		</div>
 	);
 };

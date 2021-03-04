@@ -28,6 +28,7 @@ const Sidebar = () => {
 				<IconButton className={classes.twitterIcon}>
 					<TwitterIcon fontSize="large" />
 				</IconButton>
+				@am_sportscards5
 			</div>
 			<div className="sidebar__list">
 				<ListButton listItem="Home" IconComponent={HomeIcon} />

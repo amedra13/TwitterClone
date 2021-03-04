@@ -1,0 +1,15 @@
+.feed {
+	flex: 0.5;
+	border-right: 2px solid rgb(224, 219, 219);
+	border-left: 2px solid rgb(224, 219, 219);
+}
+.feedHeader__title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 10px;
+	border-bottom: 1px solid $main-borderColor;
+	font-size: 20px;
+	color: black;
+	font-weight: 600;
+}
