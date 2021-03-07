@@ -1,3 +1,35 @@
 .trend {
 	flex: 0.25;
+	// background-color: rgba(167, 190, 212, 0.445);
+	.trend__searchbar {
+		margin: 10px 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.trend__sections {
+		width: 90%;
+		margin: 0 auto;
+		background-color: $main-borderColor;
+		border-radius: 15px;
+	}
+}
+
+.trend__title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid gray;
+	padding: 10px;
+}
+.singleTrend {
+	border: 1px solid red;
+	padding: 10px;
+}
+
+.trend__showMore {
+	padding: 10px;
+	color: #00b4d8;
+	font-family: $post-textFont;
+	font-size: 16px;
 }

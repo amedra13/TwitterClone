@@ -1,9 +1,9 @@
 .feed {
 	flex: 0.5;
-	border-right: 2px solid rgb(224, 219, 219);
-	border-left: 2px solid rgb(224, 219, 219);
+	border-right: 2px solid $main-borderColor;
+	border-left: 2px solid $main-borderColor;
 }
-.feedHeader{
+.feedHeader {
 	position: sticky;
 	top: 0;
 	background-color: white;
