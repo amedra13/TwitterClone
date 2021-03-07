@@ -25,6 +25,18 @@ const Trend = () => {
 		numberOfTweets: '125k',
 		numberOfPeople: 5123,
 	};
+	const fakeTrend2 = {
+		section: 'pets',
+		hashTag: '#CatAttack',
+		numberOfTweets: '233k',
+		numberOfPeople: 3462,
+	};
+	const fakeTrend3 = {
+		section: 'sport',
+		hashTag: '#SportsCards',
+		numberOfTweets: '55k',
+		numberOfPeople: 53245,
+	};
 	return (
 		<div className="trend">
 			<div className="trendContainer">
@@ -49,8 +61,11 @@ const Trend = () => {
 					</div>
 
 					<SingleTrend trend={fakeTrend} />
+					<SingleTrend trend={fakeTrend3} />
+					<SingleTrend trend={fakeTrend2} />
 					<SingleTrend trend={fakeTrend} />
-					<SingleTrend trend={fakeTrend} />
+					<SingleTrend trend={fakeTrend3} />
+
 					<div className="trend__showMore">
 						<h5>Show More</h5>
 					</div>
