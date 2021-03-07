@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import TweetButton from '../Buttons/TweetButton';
@@ -21,9 +22,16 @@ const FeedHeader = () => {
 	const classes = useStyles();
 	const [newTweet, setNewTweet] = useState('');
 
-	const onSubmitHandler = (e) => {
+	const onSubmitHandler = async (e) => {
 		e.preventDefault();
-		console.log(newTweet);
+		try {
+			await axios.post('http://localhost:8080/tweet', {
+				message: newTweet,
+			});
+			setNewTweet('');
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	return (
@@ -42,6 +50,7 @@ const FeedHeader = () => {
 					<input
 						type="text"
 						placeholder="What's Happening?"
+						value={newTweet}
 						onChange={(e) => setNewTweet(e.target.value)}
 					/>
 					<div>

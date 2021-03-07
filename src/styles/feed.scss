@@ -2,6 +2,7 @@
 	flex: 0.5;
 	border-right: 2px solid $main-borderColor;
 	border-left: 2px solid $main-borderColor;
+	min-height: 100vh;
 }
 .feedHeader {
 	position: sticky;
@@ -106,4 +107,17 @@
 	font-family: $post-textFont;
 	font-size: 14px;
 	color: $post-textColor;
+}
+
+.loadingPosts {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 78%;
+	h2 {
+		font-family: $post-textFont;
+		color: $post-textColor;
+		margin-bottom: 30px;
+	}
 }

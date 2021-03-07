@@ -13,8 +13,8 @@ const SinglePost = ({ post }) => {
 			</div>
 			<div className="singlePost__content">
 				<div className="singlePost__userInfo">
-					<h4>{post.twitterName}</h4>
-					<h4 className="textColor">{post.twitterHandle}</h4> *
+					<h4>{post.user.name}</h4>
+					<h4 className="textColor">{post.user.username}</h4> *
 					<h4 className="textColor">{post.timePosted}</h4>
 				</div>
 				<div className="singlePost__message">
