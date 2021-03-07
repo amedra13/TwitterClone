@@ -1,6 +1,9 @@
 .trend {
 	flex: 0.25;
-	// background-color: rgba(167, 190, 212, 0.445);
+	.trendContainer {
+		position: sticky;
+		top: 10px;
+	}
 	.trend__searchbar {
 		margin: 10px 0;
 		display: flex;
@@ -19,12 +22,16 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	border-bottom: 1px solid gray;
+	border-bottom: 2px solid $main-borderColor;
 	padding: 10px;
 }
 .singleTrend {
-	border: 1px solid red;
+	border-bottom: 2px solid $main-borderColor;
 	padding: 10px;
+	transition: all 250ms ease-in-out;
+	&:hover {
+		background-color: $main-borderColor;
+	}
 }
 
 .trend__showMore {
@@ -32,4 +39,11 @@
 	color: #00b4d8;
 	font-family: $post-textFont;
 	font-size: 16px;
+}
+
+.trendStyle {
+	color: rgba(124, 141, 167, 0.877);
+	font-size: 13px;
+	font-family: $post-textFont;
+	margin: 3px 0;
 }

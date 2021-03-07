@@ -3,10 +3,12 @@ import React from 'react';
 const SingleTrend = ({ trend }) => {
 	return (
 		<div className="singleTrend">
-			<h6>Trending {trend.section}</h6>
-			<h3>{trend.hashtag}</h3>
-			<h2>{trend.numberOfTweets}</h2>
-			<h6>{trend.numberOfPeople} people are Tweeting about this</h6>
+			<h6 className="trendStyle">Trending {trend.section}</h6>
+			<h4>{trend.hashTag}</h4>
+			<h2 className="trendStyle">{trend.numberOfTweets} Tweets</h2>
+			<h6 className="trendStyle">
+				{trend.numberOfPeople} people are Tweeting about this
+			</h6>
 		</div>
 	);
 };
