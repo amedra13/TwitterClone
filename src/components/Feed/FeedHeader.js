@@ -23,7 +23,7 @@ const FeedHeader = () => {
 	return (
 		<div className="feedHeader">
 			<div className="feedHeader__title">
-				Home
+				<h4>Home</h4>
 				<IconButton style={{ color: '#00b4d8' }}>
 					<FlareIcon fontSize="large" />
 				</IconButton>

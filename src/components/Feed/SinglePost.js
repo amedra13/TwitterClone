@@ -13,25 +13,41 @@ const SinglePost = ({ post }) => {
 			</div>
 			<div className="singlePost__content">
 				<div className="singlePost__userInfo">
-					<h3>
-						{post.twittername} {post.twitterHandle} * {post.timePosted}
-					</h3>
+					<h4>{post.twitterName}</h4>
+					<h4 className="textColor">{post.twitterHandle}</h4> *
+					<h4 className="textColor">{post.timePosted}</h4>
 				</div>
 				<div className="singlePost__message">
 					<h3>{post.message}</h3>
 				</div>
 				<div className="singlePost__icons">
 					<div>
-						<ModeCommentOutlinedIcon fontSize="small" /> {post.comments}
+						<ModeCommentOutlinedIcon
+							fontSize="small"
+							style={{ margin: ' 0 10px' }}
+						/>{' '}
+						{post.comments}
 					</div>
 					<div>
-						<RepeatOutlinedIcon fontSize="small" /> {post.retweets}
+						<RepeatOutlinedIcon
+							fontSize="small"
+							style={{ margin: ' 0 10px' }}
+						/>{' '}
+						{post.retweets}
 					</div>
 					<div>
-						<FavoriteBorderOutlinedIcon fontSize="small" /> {post.favorite}
+						<FavoriteBorderOutlinedIcon
+							fontSize="small"
+							style={{ margin: ' 0 10px' }}
+						/>{' '}
+						{post.favorite}
 					</div>
 					<div>
-						<PublishOutlinedIcon fontSize="small" /> {post.forwarded}
+						<PublishOutlinedIcon
+							fontSize="small"
+							style={{ margin: ' 0 10px' }}
+						/>{' '}
+						{post.forwarded}
 					</div>
 				</div>
 			</div>

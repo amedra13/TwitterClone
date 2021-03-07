@@ -16,7 +16,8 @@ import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 const Sidebar = () => {
 	return (
 		<div className="sidebar">
-			<div className="sidebar__logo">
+			<div className='sidebarContainer'>
+				<div className="sidebar__logo">
 				<IconButton style={{ color: '#00b4d8' }}>
 					<TwitterIcon fontSize="large" />
 				</IconButton>
@@ -43,6 +44,7 @@ const Sidebar = () => {
 			</div>
 			<div className="sidebar__tweetButton">
 				<TweetButton withIcon />
+			</div>
 			</div>
 		</div>
 	);

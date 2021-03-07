@@ -4,8 +4,8 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
 	button: {
-		fontStyle: 'italic',
-		color: 'gray',
+		fontFamily: "'Raleway', sans-serif",
+		color: 'rgba(26, 26, 26, 0.795)',
 		backgroundColor: 'white',
 		'&:hover': {
 			color: '#00b4d8',

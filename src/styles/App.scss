@@ -1,13 +1,14 @@
 $main-borderColor: rgb(224, 219, 219);
+$post-textColor: rgba(136, 145, 150, 0.658);
+$post-textFont: 'Noto Sans JP', sans-serif;
 
 .App {
-	height: 100vh;
+	height: 100%;
 	width: 100vw;
 	padding: 0;
 }
 
 .mainPage {
-	color: green;
 	height: 100%;
 	display: flex;
 	padding: 0;

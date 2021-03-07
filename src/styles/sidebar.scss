@@ -2,6 +2,10 @@ $sidebar-leftPadding: 60px;
 
 .sidebar {
 	flex: 0.25;
+	.sidebarContainer{
+		position: sticky;
+		top: 0;
+	}
 
 	.sidebar__list {
 		display: flex;

@@ -3,6 +3,12 @@
 	border-right: 2px solid rgb(224, 219, 219);
 	border-left: 2px solid rgb(224, 219, 219);
 }
+.feedHeader{
+	position: sticky;
+	top: 0;
+	background-color: white;
+	z-index: 10;
+}
 .feedHeader__title {
 	display: flex;
 	justify-content: space-between;
@@ -17,6 +23,7 @@
 	display: flex;
 	height: 130px;
 	border-bottom: 10px solid $main-borderColor;
+
 	// div {
 	// 	border: 1px solid red;
 	// }
@@ -50,8 +57,12 @@
 }
 
 .singlePost {
-	border: 1px solid red;
+	border-bottom: 1px solid $main-borderColor;
 	display: flex;
+	transition: all 250ms ease-in-out;
+	&:hover {
+		background-color: rgba(224, 224, 224, 0.3);
+	}
 }
 
 .singlePost__avatarContainer {
@@ -60,15 +71,39 @@
 .singlePost__content {
 	flex: 1;
 	padding: 10px 0;
+	.singlePost__userInfo {
+		display: flex;
+		align-items: center;
+		h4 {
+			margin: 0 5px;
+		}
+	}
 	.singlePost__message {
-		color: orange;
-		border: 1px solid green;
-		margin: 10px 0;
+		margin: 8px 0;
+		font-family: $post-textFont;
+		font-size: 12px;
+		padding-left: 5px;
+		color: rgba(26, 26, 26, 0.795);
 	}
 	.singlePost__icons {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		width: 80%;
+		color: $post-textColor;
+		font-family: $post-textFont;
+
+		div {
+			// border: 2px solid purple;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
 	}
+}
+
+.textColor {
+	font-family: $post-textFont;
+	font-size: 14px;
+	color: $post-textColor;
 }
