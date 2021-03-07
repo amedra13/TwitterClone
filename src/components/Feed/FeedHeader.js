@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import TweetButton from '../Buttons/TweetButton';
@@ -19,6 +19,12 @@ const useStyles = makeStyles((theme) => ({
 
 const FeedHeader = () => {
 	const classes = useStyles();
+	const [newTweet, setNewTweet] = useState('');
+
+	const onSubmitHandler = (e) => {
+		e.preventDefault();
+		console.log(newTweet);
+	};
 
 	return (
 		<div className="feedHeader">
@@ -33,7 +39,11 @@ const FeedHeader = () => {
 					<Avatar>AM</Avatar>
 				</div>
 				<div className="formContainer">
-					<input type="text" placeholder="What's Happening?" />
+					<input
+						type="text"
+						placeholder="What's Happening?"
+						onChange={(e) => setNewTweet(e.target.value)}
+					/>
 					<div>
 						<CropOriginalOutlinedIcon className={classes.feedIcon} />
 						<GifOutlinedIcon className={classes.feedIcon} />
@@ -42,7 +52,7 @@ const FeedHeader = () => {
 					</div>
 				</div>
 				<div className="tweetContainer">
-					<TweetButton />
+					<TweetButton click={onSubmitHandler} />
 				</div>
 			</div>
 		</div>

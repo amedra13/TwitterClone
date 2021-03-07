@@ -19,11 +19,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const TweetButton = ({ IconComponent, withIcon }) => {
+const TweetButton = ({ IconComponent, withIcon, click }) => {
 	const classes = useStyles();
 
 	return (
 		<Button
+			onClick={click}
 			className={classes.tweet}
 			variant="contained"
 			color="primary"

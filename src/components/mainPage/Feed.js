@@ -32,22 +32,6 @@ const Feed = () => {
 			<SinglePost post={fakeUser2} />
 			<SinglePost post={fakeUser} />
 			<SinglePost post={fakeUser2} />
-			<SinglePost post={fakeUser} />
-			<SinglePost post={fakeUser2} />
-			<SinglePost post={fakeUser} />
-			<SinglePost post={fakeUser2} />
-			<SinglePost post={fakeUser} />
-			<SinglePost post={fakeUser2} />
-			<SinglePost post={fakeUser} />
-			<SinglePost post={fakeUser} />
-			<SinglePost post={fakeUser2} />
-			<SinglePost post={fakeUser} />
-			<SinglePost post={fakeUser} />
-			<SinglePost post={fakeUser2} />
-			<SinglePost post={fakeUser} />
-			<SinglePost post={fakeUser} />
-			<SinglePost post={fakeUser2} />
-			<SinglePost post={fakeUser} />
 		</div>
 	);
 };
