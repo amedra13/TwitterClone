@@ -1,7 +1,6 @@
 .signup {
 	width: 100vw;
 	height: 100vh;
-	border: 2px solid green;
 	display: flex;
 }
 .signup__left {
@@ -12,8 +11,7 @@
 	background: linear-gradient(#00b4d8b4, #00b4d8b4),
 		url('../images/twitterLogo.png');
 	background-repeat: no-repeat;
-	background-position: left;
-	background-size: cover;
+	background-position: 10% 20%;
 
 	.signup__leftContainer {
 		height: 50%;
@@ -34,4 +32,26 @@
 
 .signup__right {
 	flex: 0.5;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.signup__rightContainer {
+	width: 50%;
+}
+.signup__rightHeader {
+	h5 {
+		margin: 15px 0;
+	}
+}
+.signup__rightForm {
+	form {
+		display: flex;
+		flex-direction: column;
+		.formBottom {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+	}
 }
