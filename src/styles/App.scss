@@ -16,6 +16,7 @@ $post-textFont: 'Noto Sans JP', sans-serif;
 ::-webkit-scrollbar {
 	display: none;
 }
+@import './singup.scss';
 @import './sidebar.scss';
 @import './feed.scss';
 @import './trend.scss';
