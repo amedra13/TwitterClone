@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
+import axios from 'axios';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -30,17 +32,29 @@ const CssTextField = withStyles({
 })(TextField);
 
 const CreateAccount = () => {
+	const { userId } = useParams();
+	const history = useHistory();
 	const [name, setName] = useState('');
 	const [username, setUsername] = useState('');
 	const [aboutMe, setAboutMe] = useState('');
 	const [location, setLocation] = useState('');
 	const classes = useStyles();
 
-	const addUserInfo = (e) => {
+	const createAccount = (e) => {
 		e.preventDefault();
-		console.log(name, username, aboutMe, location);
+		axios
+			.post(`http://localhost:8080/createAccount/${userId}`, {
+				name: name,
+				username: username,
+				aboutMe: aboutMe,
+				location: location,
+			})
+			.then((result) => {
+				console.log(result.data.message);
+				history.push('/home');
+			})
+			.catch((err) => console.log(err));
 	};
-
 	return (
 		<div className="createAccount">
 			<div className="createAccount__container">
@@ -48,7 +62,7 @@ const CreateAccount = () => {
 					<TwitterIcon className={classes.icon} />
 					<h2>Create Account</h2>
 				</div>
-				<form onSubmit={addUserInfo}>
+				<form onSubmit={createAccount}>
 					<div className="formDiv">
 						<h5>Tell us who you are</h5>
 						<CssTextField

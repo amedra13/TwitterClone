@@ -11,7 +11,11 @@ function App() {
 			<Router>
 				<Switch>
 					<Route exact path="/" component={Signup} />
-					<Route exact path="/createAccount" component={CreateAccount} />
+					<Route
+						exact
+						path="/createAccount/:userId"
+						component={CreateAccount}
+					/>
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/home" component={MainPage} />
 				</Switch>
