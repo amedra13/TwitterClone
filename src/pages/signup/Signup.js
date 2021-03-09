@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
@@ -9,8 +11,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
 	inputField: {
-		margin: '5px 0',
-		color: '#00b4d8 !important',
+		margin: '10px 0',
+		borderColor: '#00b4d8 ',
 	},
 	button: {
 		backgroundColor: '#00b4d8',
@@ -19,7 +21,27 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Signup = () => {
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	let history = useHistory();
 	const classes = useStyles();
+
+	const submitHandler = (e) => {
+		e.preventDefault();
+		axios
+			.post('http://localhost:8080/signup', {
+				email: email,
+				password: password,
+			})
+			.then((res) => {
+				console.log(res.data.message);
+				history.push('/createAccount');
+			})
+			.catch((err) => console.log(err));
+
+		setEmail('');
+		setPassword('');
+	};
 
 	return (
 		<div className="signup">
@@ -47,22 +69,34 @@ const Signup = () => {
 						<h5>Join Twitter today.</h5>
 					</div>
 					<div className="signup__rightForm">
-						<form action="">
+						<form onSubmit={submitHandler}>
 							<TextField
 								className={classes.inputField}
 								variant="outlined"
 								placeholder="Email"
+								size="small"
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
 							/>
 							<TextField
 								className={classes.inputField}
 								variant="outlined"
 								placeholder="Password"
+								size="small"
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
 							/>
 							<div className="formBottom">
-								<Button className={classes.button} variant="contained">
+								<Button
+									className={classes.button}
+									variant="contained"
+									type="submit"
+								>
 									Get Started
 								</Button>
-								<p>Have an Account?</p>
+								<p>
+									Have an Account? <a href="/login">Log in</a>
+								</p>
 							</div>
 						</form>
 					</div>
