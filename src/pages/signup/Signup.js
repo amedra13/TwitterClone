@@ -23,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
 const Signup = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [errorMsg, setErrorMsg] = useState(null);
+	const [errors, setErrors] = useState(false);
+
 	let history = useHistory();
 	const classes = useStyles();
 
@@ -34,7 +37,13 @@ const Signup = () => {
 				password: password,
 			})
 			.then((res) => {
-				history.push(`/createAccount/${res.data.userId}`);
+				const { errors } = res.data;
+				if (errors) {
+					setErrorMsg(errors);
+					setErrors(true);
+				} else {
+					history.push(`/createAccount/${res.data.userId}`);
+				}
 			})
 			.catch((err) => console.log(err));
 
@@ -69,10 +78,12 @@ const Signup = () => {
 					</div>
 					<div className="signup__rightForm">
 						<form onSubmit={submitHandler}>
+							{errorMsg && <h4 className="error"> {errorMsg}</h4>}
 							<TextField
 								className={classes.inputField}
 								variant="outlined"
 								placeholder="Email"
+								error={errors}
 								size="small"
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
@@ -82,6 +93,7 @@ const Signup = () => {
 								variant="outlined"
 								placeholder="Password"
 								size="small"
+								error={errors}
 								value={password}
 								onChange={(e) => setPassword(e.target.value)}
 							/>

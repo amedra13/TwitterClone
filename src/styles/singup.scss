@@ -3,6 +3,10 @@
 	height: 100vh;
 	display: flex;
 }
+.error {
+	color: rgb(248, 101, 101);
+	font-family: $post-textFont;
+}
 .signup__left {
 	flex: 0.5;
 	display: flex;
