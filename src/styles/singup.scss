@@ -62,7 +62,8 @@
 	}
 }
 
-.createAccount {
+.createAccount,
+.login {
 	background-color: #00b4d888;
 	display: flex;
 	justify-content: center;
@@ -93,5 +94,21 @@
 		.formDiv {
 			width: 100%;
 		}
+	}
+}
+
+.login__container {
+	background-color: white;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	border-radius: 15px;
+	padding: 30px;
+	height: 45%;
+	width: 50%;
+	form {
+		height: 85%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+		align-items: flex-start;
 	}
 }
