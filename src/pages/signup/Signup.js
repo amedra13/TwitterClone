@@ -34,7 +34,6 @@ const Signup = () => {
 				password: password,
 			})
 			.then((res) => {
-				console.log(res.data);
 				history.push(`/createAccount/${res.data.userId}`);
 			})
 			.catch((err) => console.log(err));

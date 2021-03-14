@@ -51,7 +51,7 @@ const CreateAccount = () => {
 			})
 			.then((result) => {
 				console.log(result.data.message);
-				history.push('/home');
+				history.push(`/home/${userId}`);
 			})
 			.catch((err) => console.log(err));
 	};

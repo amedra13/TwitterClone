@@ -17,7 +17,7 @@ function App() {
 						component={CreateAccount}
 					/>
 					<Route exact path="/login" component={Login} />
-					<Route exact path="/home" component={MainPage} />
+					<Route exact path="/home/:userId" component={MainPage} />
 				</Switch>
 			</Router>
 		</div>

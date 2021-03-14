@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const FeedHeader = () => {
+const FeedHeader = ({ userId }) => {
 	const classes = useStyles();
 	const [newTweet, setNewTweet] = useState('');
 
@@ -27,6 +27,7 @@ const FeedHeader = () => {
 		try {
 			await axios.post('http://localhost:8080/tweet', {
 				message: newTweet,
+				userId: userId,
 			});
 			setNewTweet('');
 		} catch (err) {

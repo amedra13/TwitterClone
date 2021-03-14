@@ -4,7 +4,7 @@ import FeedHeader from '../Feed/FeedHeader';
 import SinglePost from '../Feed/SinglePost';
 import LoadingPost from '../Feed/LoadingPosts';
 import axios from 'axios';
-const Feed = ({ posts }) => {
+const Feed = ({ posts, userId }) => {
 	const getTime = (date) => {
 		const datePosted = new Date(date);
 		const dateNow = new Date();
@@ -25,7 +25,7 @@ const Feed = ({ posts }) => {
 
 	return (
 		<div className="feed">
-			<FeedHeader />
+			<FeedHeader userId={userId} />
 			{posts ? (
 				posts.map((singlePost) => {
 					return (

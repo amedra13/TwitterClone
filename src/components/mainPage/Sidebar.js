@@ -13,38 +13,38 @@ import ListAltOutlinedIcon from '@material-ui/icons/ListAltOutlined';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 
-const Sidebar = () => {
+const Sidebar = ({ username }) => {
 	return (
 		<div className="sidebar">
-			<div className='sidebarContainer'>
+			<div className="sidebarContainer">
 				<div className="sidebar__logo">
-				<IconButton style={{ color: '#00b4d8' }}>
-					<TwitterIcon fontSize="large" />
-				</IconButton>
-				@am_sportscards5
-			</div>
-			<div className="sidebar__list">
-				<ListButton listItem="Home" IconComponent={HomeIcon} />
-				<ListButton listItem="Explore" IconComponent={PublicIcon} />
-				<ListButton
-					listItem="Notifications"
-					IconComponent={NotificationsNoneOutlinedIcon}
-				/>
-				<ListButton listItem="Messages" IconComponent={MailOutlinedIcon} />
-				<ListButton
-					listItem="BookMarks"
-					IconComponent={BookmarkBorderOutlinedIcon}
-				/>
-				<ListButton listItem="Lists" IconComponent={ListAltOutlinedIcon} />
-				<ListButton
-					listItem="Profile"
-					IconComponent={AccountCircleOutlinedIcon}
-				/>
-				<ListButton listItem="More" IconComponent={MoreHorizOutlinedIcon} />
-			</div>
-			<div className="sidebar__tweetButton">
-				<TweetButton withIcon />
-			</div>
+					<IconButton style={{ color: '#00b4d8' }}>
+						<TwitterIcon fontSize="large" />
+					</IconButton>
+					{username}
+				</div>
+				<div className="sidebar__list">
+					<ListButton listItem="Home" IconComponent={HomeIcon} />
+					<ListButton listItem="Explore" IconComponent={PublicIcon} />
+					<ListButton
+						listItem="Notifications"
+						IconComponent={NotificationsNoneOutlinedIcon}
+					/>
+					<ListButton listItem="Messages" IconComponent={MailOutlinedIcon} />
+					<ListButton
+						listItem="BookMarks"
+						IconComponent={BookmarkBorderOutlinedIcon}
+					/>
+					<ListButton listItem="Lists" IconComponent={ListAltOutlinedIcon} />
+					<ListButton
+						listItem="Profile"
+						IconComponent={AccountCircleOutlinedIcon}
+					/>
+					<ListButton listItem="More" IconComponent={MoreHorizOutlinedIcon} />
+				</div>
+				<div className="sidebar__tweetButton">
+					<TweetButton withIcon />
+				</div>
 			</div>
 		</div>
 	);
