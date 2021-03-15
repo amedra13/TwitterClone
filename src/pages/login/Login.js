@@ -34,7 +34,7 @@ const Login = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [errorMsg, setErrorMsg] = useState(null);
-	const [errors, setErrors] = useState(false);
+	const [errField, setErrField] = useState(null);
 	const classes = useStyles();
 	const history = useHistory();
 
@@ -46,10 +46,10 @@ const Login = () => {
 				password: password,
 			})
 			.then((res) => {
-				const { errors } = res.data;
+				const { errors, errField } = res.data;
 				if (errors) {
 					setErrorMsg(errors);
-					setErrors(true);
+					setErrField(errField);
 				} else {
 					history.push(`/home/${res.data.user._id}`);
 				}
@@ -64,21 +64,22 @@ const Login = () => {
 					<h2>Login to Twitter</h2>
 				</div>
 				<form onSubmit={submitHandler}>
-					{errors && <h4 className="error">{errorMsg}</h4>}
+					{errField === 'email' && <h4 className="error">{errorMsg}</h4>}
 					<CssTextField
 						variant="outlined"
 						placeholder="Email"
 						value={email}
-						error={errors}
+						error={errField === 'email'}
 						fullWidth
 						onChange={(e) => setEmail(e.target.value)}
 					/>
+					{errField === 'password' && <h4 className="error">{errorMsg}</h4>}
 					<CssTextField
 						variant="outlined"
 						placeholder="Password"
 						type="password"
 						value={password}
-						error={errors}
+						error={errField === 'password'}
 						fullWidth
 						onChange={(e) => setPassword(e.target.value)}
 					/>

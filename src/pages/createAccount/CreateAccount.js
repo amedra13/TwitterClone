@@ -32,12 +32,14 @@ const CssTextField = withStyles({
 })(TextField);
 
 const CreateAccount = () => {
-	const { userId } = useParams();
-	const history = useHistory();
 	const [name, setName] = useState('');
 	const [username, setUsername] = useState('');
 	const [aboutMe, setAboutMe] = useState('');
 	const [location, setLocation] = useState('');
+	const [errorMsg, setErrorMsg] = useState(null);
+	const [errorField, setErrorField] = useState(null);
+	const { userId } = useParams();
+	const history = useHistory();
 	const classes = useStyles();
 
 	const createAccount = (e) => {
@@ -50,8 +52,14 @@ const CreateAccount = () => {
 				location: location,
 			})
 			.then((result) => {
-				console.log(result.data.message);
-				history.push(`/home/${userId}`);
+				const { errors, errField } = result.data;
+				if (errors) {
+					setErrorMsg(errors);
+					setErrorField(errField);
+				} else {
+					history.push(`/home/${userId}`);
+				}
+				console.log(result.data);
 			})
 			.catch((err) => console.log(err));
 	};
@@ -64,23 +72,32 @@ const CreateAccount = () => {
 				</div>
 				<form onSubmit={createAccount}>
 					<div className="formDiv">
+						{errorField === 'name' && (
+							<h4 style={{ color: 'red' }}>{errorMsg}</h4>
+						)}
 						<h5>Tell us who you are</h5>
 						<CssTextField
 							variant="outlined"
 							placeholder="Name"
 							size="small"
 							value={name}
+							error={errorField === 'name'}
 							fullWidth
 							onChange={(e) => setName(e.target.value)}
 						/>
 					</div>
 					<div className="formDiv">
+						{errorField === 'username' && (
+							<h4 style={{ color: 'red' }}>{errorMsg}</h4>
+						)}
+
 						<h5>Pick your unique username. This is how people can find you</h5>
 						<CssTextField
 							variant="outlined"
 							placeholder="Username"
 							size="small"
 							value={username}
+							error={errorField === 'username'}
 							InputProps={{
 								startAdornment: (
 									<InputAdornment position="start">
@@ -94,24 +111,32 @@ const CreateAccount = () => {
 					</div>
 
 					<div className="formDiv">
+						{errorField === 'aboutMe' && (
+							<h4 style={{ color: 'red' }}>{errorMsg}</h4>
+						)}
 						<h5>Show the world who you are </h5>
 						<CssTextField
 							variant="outlined"
 							placeholder="About Me"
 							size="small"
 							value={aboutMe}
+							error={errorField === 'aboutMe'}
 							fullWidth
 							onChange={(e) => setAboutMe(e.target.value)}
 						/>
 					</div>
 
 					<div className="formDiv">
+						{errorField === 'location' && (
+							<h4 style={{ color: 'red' }}>{errorMsg}</h4>
+						)}
 						<h5>Twitter community is all over the world!</h5>
 						<CssTextField
 							variant="outlined"
 							placeholder="Location"
 							size="small"
 							value={location}
+							error={errorField === 'location'}
 							fullWidth
 							onChange={(e) => setLocation(e.target.value)}
 						/>
