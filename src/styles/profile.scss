@@ -1,0 +1,24 @@
+.profilePage {
+	display: flex;
+}
+.profile {
+	flex: 0.4;
+}
+.profile__info {
+	border: 2px solid purple;
+	height: 500px;
+	padding: 15px;
+}
+.profile__img,
+.profile__user,
+.profile__content {
+	height: 33%;
+}
+.profile__user {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.profile__content {
+	border: 2px solid green;
+}

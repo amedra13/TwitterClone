@@ -4,6 +4,7 @@ import MainPage from './pages/main/MainPage';
 import Signup from './pages/signup/Signup';
 import CreateAccount from './pages/createAccount/CreateAccount';
 import Login from './pages/login/Login';
+import ProfilePage from './pages/profile/ProfilePage';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
 					<Route exact path="/home/:userId">
 						<MainPage isLoggedIn={isLoggedIn} login={loginHandler} />
 					</Route>
+					<Route exact path="/profile/:userId" component={ProfilePage} />
 				</Switch>
 			</Router>
 		</div>

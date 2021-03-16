@@ -24,7 +24,7 @@ const MainPage = ({ login, isLoggedIn }) => {
 
 	return (
 		<div className="mainPage">
-			<SideBar username={user?.userName} />
+			<SideBar username={user?.userName} userId={userId} />
 			<Feed userId={user?._id} posts={feedPosts} />
 			<Trend />
 		</div>

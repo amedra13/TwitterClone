@@ -13,7 +13,7 @@ import ListAltOutlinedIcon from '@material-ui/icons/ListAltOutlined';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 
-const Sidebar = ({ username }) => {
+const Sidebar = ({ username, userId }) => {
 	return (
 		<div className="sidebar">
 			<div className="sidebarContainer">
@@ -39,6 +39,7 @@ const Sidebar = ({ username }) => {
 					<ListButton
 						listItem="Profile"
 						IconComponent={AccountCircleOutlinedIcon}
+						userId={userId}
 					/>
 					<ListButton listItem="More" IconComponent={MoreHorizOutlinedIcon} />
 				</div>
