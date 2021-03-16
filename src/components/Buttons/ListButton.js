@@ -31,7 +31,7 @@ const ListButton = ({ IconComponent, listItem, userId }) => {
 			variant="contained"
 			color="primary"
 			component={Link}
-			to={`/profile/${userId}`}
+			to={`/${listItem.toLowerCase()}/${userId}`}
 			startIcon={<IconComponent />}
 		>
 			{listItem}

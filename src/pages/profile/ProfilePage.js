@@ -9,15 +9,31 @@ import { makeStyles } from '@material-ui/core/styles';
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import LinkOutlinedIcon from '@material-ui/icons/LinkOutlined';
 import EventNoteOutlinedIcon from '@material-ui/icons/EventNoteOutlined';
+import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 
 const useStyles = makeStyles((theme) => ({
 	avatar: {
-		width: '150px',
-		height: '100%',
+		width: '140px',
+		height: '140px',
+		position: 'absolute',
+		top: '-75px',
+		left: '0',
+		border: '5px solid white',
 	},
 	button: {
-		color: 'purple',
-		border: '1px solid purple',
+		color: '#00b4d8',
+		margin: '10px',
+		fontWeight: 'bold',
+		border: '1px solid #00b4d8',
+		borderRadius: '30px',
+		padding: '10px',
+		'&:hover': {
+			backgroundColor: '#b0f1ff77',
+		},
+	},
+	icon: {
+		color: '#00b4d8',
+		margin: '0 5px',
 	},
 }));
 
@@ -41,23 +57,38 @@ const ProfilePage = () => {
 			<div className="profile">
 				<div className="profile__info">
 					<div className="profile__img">
-						<h5>image background</h5>
+						<img src={user?.profileImage} alt="" />
 					</div>
-					<div className="profile__user">
-						<Avatar className={classes.avatar}>AM</Avatar>
-						<Button className={classes.button}>Follow</Button>
-					</div>
-					<div className="profile__content">
-						<h2>{user?.name}</h2>
-						<p>{user?.userName}</p>
-						<p>{user?.aboutMe}</p>
-						<div className="profile__links">
-							<LocationOnOutlinedIcon />
-							{user?.location}
-							<LinkOutlinedIcon />
-							{'location'}
-							<EventNoteOutlinedIcon />
-							{'10/10/20'}
+					<div className="profile__bottom">
+						<div className="profile__user">
+							<Avatar className={classes.avatar}>AM</Avatar>
+							<Button className={classes.button}>Follow</Button>
+						</div>
+						<div className="profile__content">
+							<div>
+								<div className="flex">
+									<h2>{user?.name}</h2>
+									<VerifiedUserIcon className={classes.icon} />
+								</div>
+								<p className="gray">{user?.userName}</p>
+							</div>
+							<div>
+								<p>{user?.aboutMe}</p>
+							</div>
+							<div className="profile__links gray">
+								<div>
+									<LocationOnOutlinedIcon />
+									<p>{user?.location}</p>
+								</div>
+								<div>
+									<LinkOutlinedIcon />
+									<p>{'location'}</p>
+								</div>
+								<div>
+									<EventNoteOutlinedIcon />
+									<p>{'10/10/20'}</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -24,7 +24,11 @@ const Sidebar = ({ username, userId }) => {
 					{username}
 				</div>
 				<div className="sidebar__list">
-					<ListButton listItem="Home" IconComponent={HomeIcon} />
+					<ListButton
+						listItem="Home"
+						IconComponent={HomeIcon}
+						userId={userId}
+					/>
 					<ListButton listItem="Explore" IconComponent={PublicIcon} />
 					<ListButton
 						listItem="Notifications"
