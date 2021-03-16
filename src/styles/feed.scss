@@ -81,6 +81,15 @@
 		span {
 			color: $post-textColor;
 		}
+		.link {
+			text-decoration: none;
+			color: $post-textColor;
+			transition: all 100ms ease-in-out;
+			&:hover {
+				color: $main-blueColor;
+				text-decoration: underline;
+			}
+		}
 	}
 	.singlePost__message {
 		margin: 8px 0;

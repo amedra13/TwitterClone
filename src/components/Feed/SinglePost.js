@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import ModeCommentOutlinedIcon from '@material-ui/icons/ModeCommentOutlined';
 import RepeatOutlinedIcon from '@material-ui/icons/RepeatOutlined';
@@ -18,7 +19,10 @@ const SinglePost = ({ post, timePosted, increaseLike }) => {
 			<div className="singlePost__content">
 				<div className="singlePost__userInfo">
 					<h4>{post.user.name}</h4>
-					<h4 className="textColor">{post.user.username}</h4>{' '}
+					<Link className="link" to={`/profile/604ff3328e380f15d8d61837`}>
+						{post.user.username}
+					</Link>
+					{/* <h4 className="textColor">{post.user.username}</h4>{' '} */}
 					<span>&#183;</span>
 					<h4 className="textColor">{timePosted + 'm'}</h4>
 				</div>

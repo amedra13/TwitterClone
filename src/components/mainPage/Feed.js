@@ -1,5 +1,4 @@
 import React from 'react';
-// import axios from 'axios'
 import FeedHeader from '../Feed/FeedHeader';
 import SinglePost from '../Feed/SinglePost';
 import LoadingPost from '../Feed/LoadingPosts';
