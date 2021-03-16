@@ -11,18 +11,20 @@ const MainPage = () => {
 	const { userId } = useParams();
 
 	useEffect(() => {
-		const getUser = async () => {
+		const getUserAndFeed = async () => {
 			const user = await axios.get(`http://localhost:8080/home/${userId}`);
-			console.log(user.data.user);
+			const userFollowing = user.data.user.following;
+			const username = user.data.user.userName;
+			const posts = await axios.post('http://localhost:8080/feed', {
+				following: userFollowing,
+				user: username,
+			});
+
 			setUser(user.data.user);
-		};
-		const getPosts = async () => {
-			const posts = await axios.get('http://localhost:8080/feed');
 			setFeedPosts(posts.data.allPosts);
 		};
 
-		getUser();
-		getPosts();
+		getUserAndFeed();
 	}, [userId]);
 
 	return (
