@@ -12,16 +12,9 @@ const MainPage = () => {
 
 	useEffect(() => {
 		const getUserAndFeed = async () => {
-			const user = await axios.get(`http://localhost:8080/home/${userId}`);
-			const userFollowing = user.data.user.following;
-			const username = user.data.user.userName;
-			const posts = await axios.post('http://localhost:8080/feed', {
-				following: userFollowing,
-				user: username,
-			});
-
-			setUser(user.data.user);
-			setFeedPosts(posts.data.allPosts);
+			const profile = await axios.get(`http://localhost:8080/home/${userId}`);
+			setUser(profile.data.user);
+			setFeedPosts(profile.data.allPosts);
 		};
 
 		getUserAndFeed();
