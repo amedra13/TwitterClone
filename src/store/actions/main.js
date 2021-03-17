@@ -13,3 +13,10 @@ export const profilePosts = (user, posts) => {
 		profilePosts: posts,
 	};
 };
+
+export const updateFollow = (list) => {
+	return {
+		type: 'UPDATE_FOLLOW',
+		updatedList: list,
+	};
+};

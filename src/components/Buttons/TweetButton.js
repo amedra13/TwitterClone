@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
 
@@ -19,12 +20,17 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const TweetButton = ({ IconComponent, withIcon, click }) => {
+const TweetButton = ({ withIcon }) => {
 	const classes = useStyles();
+	const history = useHistory();
+
+	const clickHandler = () => {
+		history.push(`/profile/amsportscards5`);
+	};
 
 	return (
 		<Button
-			onClick={click}
+			onClick={clickHandler}
 			className={classes.tweet}
 			variant="contained"
 			color="primary"

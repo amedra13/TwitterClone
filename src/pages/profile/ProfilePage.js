@@ -6,7 +6,6 @@ import Sidebar from '../../components/mainPage/Sidebar';
 import Trend from '../../components/mainPage/Trend';
 import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import LinkOutlinedIcon from '@material-ui/icons/LinkOutlined';
@@ -14,6 +13,7 @@ import EventNoteOutlinedIcon from '@material-ui/icons/EventNoteOutlined';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
+import FollowButton from '../../components/Buttons/FollowButton';
 
 const useStyles = makeStyles((theme) => ({
 	avatar: {
@@ -34,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
 		'&:hover': {
 			backgroundColor: '#b0f1ff77',
 		},
+	},
+	hidden: {
+		visibility: 'hidden',
 	},
 	icon: {
 		color: '#00b4d8',
@@ -63,6 +66,9 @@ const ProfilePage = ({ user, profileUser, profilePosts, onProfilePosts }) => {
 		return Math.floor(diffInMilliSeconds / 60) % 60;
 	};
 
+	const isUser = user?.userName === profileUser?.userName;
+	const isFollowing = user?.following.includes(profileUser?.userName);
+
 	return (
 		<div className="profilePage">
 			<Sidebar username={user?.userName} userId={user?._id} />
@@ -74,7 +80,12 @@ const ProfilePage = ({ user, profileUser, profilePosts, onProfilePosts }) => {
 					<div className="profile__bottom">
 						<div className="profile__user">
 							<Avatar className={classes.avatar}>AM</Avatar>
-							<Button className={classes.button}>Follow</Button>
+							<FollowButton
+								isUser={isUser}
+								isFollowing={isFollowing}
+								profileUser={profileUser?.userName}
+								currentUser={user?._id}
+							/>
 						</div>
 						<div className="profile__content">
 							<div>

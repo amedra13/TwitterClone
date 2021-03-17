@@ -16,6 +16,13 @@ const rootReducer = (state = initialState, action) => {
 				profileUser: action.profileUser,
 				profilePosts: action.profilePosts,
 			};
+		case 'UPDATE_FOLLOW':
+			const updatedUser = { ...state.user };
+			updatedUser.following = action.updatedList;
+			return {
+				...state,
+				user: updatedUser,
+			};
 		default:
 			return state;
 	}
