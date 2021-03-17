@@ -44,7 +44,13 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const ProfilePage = ({ user, profileUser, profilePosts, onProfilePosts }) => {
+const ProfilePage = ({
+	user,
+	profileUser,
+	profilePosts,
+	onProfilePosts,
+	onUpdateFollow,
+}) => {
 	const { username } = useParams();
 	const classes = useStyles();
 
@@ -69,6 +75,20 @@ const ProfilePage = ({ user, profileUser, profilePosts, onProfilePosts }) => {
 	const isUser = user?.userName === profileUser?.userName;
 	const isFollowing = user?.following.includes(profileUser?.userName);
 
+	const toggleFollow = async () => {
+		try {
+			const followingList = await axios.post('http://localhost:8080/follow', {
+				isFollowing: isFollowing,
+				username: profileUser?.userName,
+				currentUserId: user._id,
+			});
+			console.log(followingList.data);
+			onUpdateFollow(followingList.data);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
 	return (
 		<div className="profilePage">
 			<Sidebar username={user?.userName} userId={user?._id} />
@@ -83,8 +103,7 @@ const ProfilePage = ({ user, profileUser, profilePosts, onProfilePosts }) => {
 							<FollowButton
 								isUser={isUser}
 								isFollowing={isFollowing}
-								profileUser={profileUser?.userName}
-								currentUser={user?._id}
+								toggleFollow={toggleFollow}
 							/>
 						</div>
 						<div className="profile__content">
@@ -148,6 +167,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		onProfilePosts: (user, posts) =>
 			dispatch(actions.profilePosts(user, posts)),
+		onUpdateFollow: (list) => dispatch(actions.updateFollow(list)),
 	};
 };
 
