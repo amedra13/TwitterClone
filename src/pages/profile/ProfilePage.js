@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import SinglePost from '../../components/Feed/SinglePost';
 import LoadingPost from '../../components/Feed/LoadingPosts';
 import { useParams } from 'react-router-dom';
@@ -12,6 +12,8 @@ import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import LinkOutlinedIcon from '@material-ui/icons/LinkOutlined';
 import EventNoteOutlinedIcon from '@material-ui/icons/EventNoteOutlined';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions/index';
 
 const useStyles = makeStyles((theme) => ({
 	avatar: {
@@ -39,10 +41,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const ProfilePage = () => {
+const ProfilePage = ({ user, profileUser, profilePosts, onProfilePosts }) => {
 	const { username } = useParams();
-	const [user, setUser] = useState(null);
-	const [userPosts, setUserPosts] = useState(null);
 	const classes = useStyles();
 
 	useEffect(() => {
@@ -51,11 +51,10 @@ const ProfilePage = () => {
 				`http://localhost:8080/profile/${username}`
 			);
 			console.log(result.data.profile);
-			setUser(result.data.profile);
-			setUserPosts(result.data.posts);
+			onProfilePosts(result.data.profile, result.data.posts);
 		};
 		getUser();
-	}, [username]);
+	}, [username, onProfilePosts]);
 
 	const getTime = (date) => {
 		const datePosted = new Date(date);
@@ -70,7 +69,7 @@ const ProfilePage = () => {
 			<div className="profile">
 				<div className="profile__info">
 					<div className="profile__img">
-						<img src={user?.profileImage} alt="" />
+						<img src={profileUser?.profileImage} alt="" />
 					</div>
 					<div className="profile__bottom">
 						<div className="profile__user">
@@ -80,18 +79,18 @@ const ProfilePage = () => {
 						<div className="profile__content">
 							<div>
 								<div className="flex">
-									<h2>{user?.name}</h2>
+									<h2>{profileUser?.name}</h2>
 									<VerifiedUserIcon className={classes.icon} />
 								</div>
-								<p className="gray">{user?.userName}</p>
+								<p className="gray">{profileUser?.userName}</p>
 							</div>
 							<div>
-								<p>{user?.aboutMe}</p>
+								<p>{profileUser?.aboutMe}</p>
 							</div>
 							<div className="profile__links gray">
 								<div>
 									<LocationOnOutlinedIcon />
-									<p>{user?.location}</p>
+									<p>{profileUser?.location}</p>
 								</div>
 								<div>
 									<LinkOutlinedIcon />
@@ -106,8 +105,8 @@ const ProfilePage = () => {
 					</div>
 				</div>
 				<div className="profile__feed">
-					{userPosts ? (
-						userPosts.map((singlePost) => {
+					{profilePosts ? (
+						profilePosts.map((singlePost) => {
 							return (
 								<SinglePost
 									key={singlePost._id}
@@ -126,4 +125,19 @@ const ProfilePage = () => {
 	);
 };
 
-export default ProfilePage;
+const mapStateToProps = (state) => {
+	return {
+		user: state.user,
+		profileUser: state.profileUser,
+		profilePosts: state.profilePosts,
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onProfilePosts: (user, posts) =>
+			dispatch(actions.profilePosts(user, posts)),
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);

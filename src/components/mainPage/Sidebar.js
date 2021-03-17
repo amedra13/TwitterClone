@@ -2,7 +2,6 @@ import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import ListButton from '../Buttons/ListButton';
 import TweetButton from '../Buttons/TweetButton';
-
 import TwitterIcon from '@material-ui/icons/Twitter';
 import HomeIcon from '@material-ui/icons/Home';
 import PublicIcon from '@material-ui/icons/Public';
@@ -13,7 +12,7 @@ import ListAltOutlinedIcon from '@material-ui/icons/ListAltOutlined';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 
-const Sidebar = ({ username, userId }) => {
+const Sidebar = ({ username, userId, user }) => {
 	return (
 		<div className="sidebar">
 			<div className="sidebarContainer">

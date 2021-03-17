@@ -1,26 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import SideBar from '../../components/mainPage/Sidebar';
 import Feed from '../../components/mainPage/Feed';
 import Trend from '../../components/mainPage/Trend';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions/index';
 
-const MainPage = ({ login, isLoggedIn }) => {
-	const [feedPosts, setFeedPosts] = useState(null);
-	const [user, setUser] = useState(null);
+const MainPage = ({ onLoadUser, user, feedPosts }) => {
 	const { userId } = useParams();
 
 	useEffect(() => {
 		const getUserAndFeed = async () => {
-			console.log(isLoggedIn);
 			const profile = await axios.get(`http://localhost:8080/home/${userId}`);
-			login(true);
-			setUser(profile.data.user);
-			setFeedPosts(profile.data.allPosts);
+			onLoadUser(profile.data.user, profile.data.allPosts);
 		};
 
 		getUserAndFeed();
-	}, [userId, login, isLoggedIn]);
+	}, [userId, onLoadUser]);
 
 	return (
 		<div className="mainPage">
@@ -31,4 +28,17 @@ const MainPage = ({ login, isLoggedIn }) => {
 	);
 };
 
-export default MainPage;
+const mapStateToProps = (state) => {
+	return {
+		user: state.user,
+		feedPosts: state.feedPosts,
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onLoadUser: (user, posts) => dispatch(actions.loadUser(user, posts)),
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
