@@ -22,8 +22,10 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const ListButton = ({ IconComponent, listItem, userId }) => {
+const ListButton = ({ IconComponent, listItem, username, userId }) => {
 	const classes = useStyles();
+
+	const id = userId ? userId : username?.slice(1);
 
 	return (
 		<Button
@@ -31,7 +33,7 @@ const ListButton = ({ IconComponent, listItem, userId }) => {
 			variant="contained"
 			color="primary"
 			component={Link}
-			to={`/${listItem.toLowerCase()}/${userId}`}
+			to={`/${listItem.toLowerCase()}/${id}`}
 			startIcon={<IconComponent />}
 		>
 			{listItem}

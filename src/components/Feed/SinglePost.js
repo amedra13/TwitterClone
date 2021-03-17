@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import StockPhoto from '../../images/avatarStock.jpg';
+import Dora from '../../images/Dora.jpg';
 import { Link } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import ModeCommentOutlinedIcon from '@material-ui/icons/ModeCommentOutlined';
@@ -11,15 +13,18 @@ const SinglePost = ({ post, timePosted, increaseLike }) => {
 	const [retweets, setRetweets] = useState(post.retweets);
 	const [favorite, setFavorite] = useState(post.favorite);
 	const [forwarded, setForwarded] = useState(post.forwarded);
+
+	const srcImage = post.user.username === '@doradadestroya' ? Dora : StockPhoto;
+
 	return (
 		<div className="singlePost">
 			<div className="singlePost__avatarContainer">
-				<Avatar>F</Avatar>
+				<Avatar src={srcImage} />
 			</div>
 			<div className="singlePost__content">
 				<div className="singlePost__userInfo">
 					<h4>{post.user.name}</h4>
-					<Link className="link" to={`/profile/604ff3328e380f15d8d61837`}>
+					<Link className="link" to={`/profile/${post.user.username.slice(1)}`}>
 						{post.user.username}
 					</Link>
 					{/* <h4 className="textColor">{post.user.username}</h4>{' '} */}

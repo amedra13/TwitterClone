@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import SinglePost from '../../components/Feed/SinglePost';
+import LoadingPost from '../../components/Feed/LoadingPosts';
 import { useParams } from 'react-router-dom';
 import Sidebar from '../../components/mainPage/Sidebar';
 import Trend from '../../components/mainPage/Trend';
@@ -38,18 +40,29 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ProfilePage = () => {
-	const { userId } = useParams();
+	const { username } = useParams();
 	const [user, setUser] = useState(null);
+	const [userPosts, setUserPosts] = useState(null);
 	const classes = useStyles();
 
 	useEffect(() => {
 		const getUser = async () => {
-			const result = await axios.get(`http://localhost:8080/profile/${userId}`);
+			const result = await axios.get(
+				`http://localhost:8080/profile/${username}`
+			);
 			console.log(result.data.profile);
 			setUser(result.data.profile);
+			setUserPosts(result.data.posts);
 		};
 		getUser();
-	}, [userId]);
+	}, [username]);
+
+	const getTime = (date) => {
+		const datePosted = new Date(date);
+		const dateNow = new Date();
+		const diffInMilliSeconds = Math.abs(dateNow - datePosted) / 1000;
+		return Math.floor(diffInMilliSeconds / 60) % 60;
+	};
 
 	return (
 		<div className="profilePage">
@@ -93,7 +106,19 @@ const ProfilePage = () => {
 					</div>
 				</div>
 				<div className="profile__feed">
-					<h1>Profile posts</h1>
+					{userPosts ? (
+						userPosts.map((singlePost) => {
+							return (
+								<SinglePost
+									key={singlePost._id}
+									post={singlePost}
+									timePosted={getTime(singlePost.createdAt)}
+								/>
+							);
+						})
+					) : (
+						<LoadingPost />
+					)}
 				</div>
 			</div>
 			<Trend />

@@ -27,7 +27,7 @@ function App() {
 					<Route exact path="/home/:userId">
 						<MainPage isLoggedIn={isLoggedIn} login={loginHandler} />
 					</Route>
-					<Route exact path="/profile/:userId" component={ProfilePage} />
+					<Route exact path="/profile/:username" component={ProfilePage} />
 				</Switch>
 			</Router>
 		</div>
