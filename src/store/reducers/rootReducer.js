@@ -4,13 +4,15 @@ const initialState = {
 	profilePosts: null,
 	feedPosts: null,
 	isLoggedIn: false,
+	isUser: false,
+	isFollowing: false,
 };
 
 const rootReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case 'LOAD_USER':
 			return { ...state, user: action.user, feedPosts: action.feedPosts };
-		case 'USER_POSTS':
+		case 'SET_PROFILE':
 			return {
 				...state,
 				profileUser: action.profileUser,
@@ -22,6 +24,12 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				user: updatedUser,
+			};
+		case 'FOLLOW_STATUS':
+			return {
+				...state,
+				isUser: action.isUser,
+				isFollowing: action.isFollowing,
 			};
 		default:
 			return state;

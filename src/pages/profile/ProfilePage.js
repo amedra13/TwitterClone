@@ -44,49 +44,27 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const ProfilePage = ({
-	user,
-	profileUser,
-	profilePosts,
-	onProfilePosts,
-	onUpdateFollow,
-}) => {
+const ProfilePage = ({ user, profileUser, profilePosts, onSetProfile }) => {
 	const { username } = useParams();
 	const classes = useStyles();
 
 	useEffect(() => {
-		const getUser = async () => {
+		const getProfileUser = async () => {
 			const result = await axios.get(
 				`http://localhost:8080/profile/${username}`
 			);
-			console.log(result.data.profile);
-			onProfilePosts(result.data.profile, result.data.posts);
+
+			onSetProfile(result.data.profile, result.data.posts);
 		};
-		getUser();
-	}, [username, onProfilePosts]);
+
+		getProfileUser();
+	}, [username, onSetProfile]);
 
 	const getTime = (date) => {
 		const datePosted = new Date(date);
 		const dateNow = new Date();
 		const diffInMilliSeconds = Math.abs(dateNow - datePosted) / 1000;
 		return Math.floor(diffInMilliSeconds / 60) % 60;
-	};
-
-	const isUser = user?.userName === profileUser?.userName;
-	const isFollowing = user?.following.includes(profileUser?.userName);
-
-	const toggleFollow = async () => {
-		try {
-			const followingList = await axios.post('http://localhost:8080/follow', {
-				isFollowing: isFollowing,
-				username: profileUser?.userName,
-				currentUserId: user._id,
-			});
-			console.log(followingList.data);
-			onUpdateFollow(followingList.data);
-		} catch (err) {
-			console.log(err);
-		}
 	};
 
 	return (
@@ -100,11 +78,7 @@ const ProfilePage = ({
 					<div className="profile__bottom">
 						<div className="profile__user">
 							<Avatar className={classes.avatar}>AM</Avatar>
-							<FollowButton
-								isUser={isUser}
-								isFollowing={isFollowing}
-								toggleFollow={toggleFollow}
-							/>
+							<FollowButton />
 						</div>
 						<div className="profile__content">
 							<div>
@@ -165,9 +139,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onProfilePosts: (user, posts) =>
-			dispatch(actions.profilePosts(user, posts)),
-		onUpdateFollow: (list) => dispatch(actions.updateFollow(list)),
+		onSetProfile: (user, posts) => dispatch(actions.setProfile(user, posts)),
 	};
 };
 
