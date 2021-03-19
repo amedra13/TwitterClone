@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import SinglePost from '../../components/Feed/SinglePost';
-import LoadingPost from '../../components/Feed/LoadingPosts';
+import SinglePost from '../components/Feed/SinglePost';
+import LoadingPost from '../components/Feed/LoadingPosts';
 import { useParams } from 'react-router-dom';
-import Sidebar from '../../components/mainPage/Sidebar';
-import Trend from '../../components/mainPage/Trend';
+import Sidebar from '../components/mainPage/Sidebar';
+import Trend from '../components/mainPage/Trend';
 import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,8 +12,8 @@ import LinkOutlinedIcon from '@material-ui/icons/LinkOutlined';
 import EventNoteOutlinedIcon from '@material-ui/icons/EventNoteOutlined';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions/index';
-import FollowButton from '../../components/Buttons/FollowButton';
+import * as actions from '../store/actions/index';
+import FollowButton from '../components/Buttons/FollowButton';
 
 const useStyles = makeStyles((theme) => ({
 	avatar: {

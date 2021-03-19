@@ -62,7 +62,7 @@ const FeedHeader = ({ userId }) => {
 					</div>
 				</div>
 				<div className="tweetContainer">
-					<TweetButton click={onSubmitHandler} />
+					<TweetButton clickFunction={onSubmitHandler} />
 				</div>
 			</div>
 		</div>

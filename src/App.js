@@ -1,10 +1,10 @@
 import React from 'react';
 import './styles/App.scss';
-import MainPage from './pages/main/MainPage';
-import Signup from './pages/signup/Signup';
-import CreateAccount from './pages/createAccount/CreateAccount';
-import Login from './pages/login/Login';
-import ProfilePage from './pages/profile/ProfilePage';
+import MainPage from './pages/MainPage';
+import Signup from './pages/Signup';
+import CreateAccount from './pages/CreateAccount';
+import Login from './pages/Login';
+import ProfilePage from './pages/ProfilePage';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {

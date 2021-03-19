@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import SideBar from '../../components/mainPage/Sidebar';
-import Feed from '../../components/mainPage/Feed';
-import Trend from '../../components/mainPage/Trend';
+import SideBar from '../components/mainPage/Sidebar';
+import Feed from '../components/mainPage/Feed';
+import Trend from '../components/mainPage/Trend';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions/index';
+import * as actions from '../store/actions/index';
 
 const MainPage = ({ onLoadUser, user, feedPosts }) => {
 	const { userId } = useParams();
