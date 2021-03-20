@@ -78,33 +78,34 @@ const TweetModal = ({ isOpen, modalHandler, username, userId }) => {
 							<HighlightOffOutlinedIcon fontSize="large" />
 						</IconButton>
 					</div>
-					{loading ? (
-						<div className="tweetLoader__container">
+
+					<div className="tweetModal__body">
+						{loading ? (
 							<TweetLoader />
-						</div>
-					) : (
-						<div className="tweetModal__body">
-							<input
-								type="text"
-								placeholder="What's Happening?"
-								value={newTweet}
-								onChange={(e) => setNewTweet(e.target.value)}
-							/>
-							<div className="tweetModal__bottomContainer">
-								<div>
-									<CropOriginalOutlinedIcon className={classes.feedIcon} />
-									<GifOutlinedIcon className={classes.feedIcon} />
-									<InsertChartOutlinedIcon className={classes.feedIcon} />
-									<SentimentSatisfiedOutlinedIcon
-										className={classes.feedIcon}
-									/>
+						) : (
+							<>
+								<input
+									type="text"
+									placeholder="What's Happening?"
+									value={newTweet}
+									onChange={(e) => setNewTweet(e.target.value)}
+								/>
+								<div className="tweetModal__bottomContainer">
+									<div>
+										<CropOriginalOutlinedIcon className={classes.feedIcon} />
+										<GifOutlinedIcon className={classes.feedIcon} />
+										<InsertChartOutlinedIcon className={classes.feedIcon} />
+										<SentimentSatisfiedOutlinedIcon
+											className={classes.feedIcon}
+										/>
+									</div>
+									<div className="tweetModal__button">
+										<TweetButton clickFunction={tweetButton} />
+									</div>
 								</div>
-								<div className="tweetModal__button">
-									<TweetButton clickFunction={tweetButton} />
-								</div>
-							</div>
-						</div>
-					)}
+							</>
+						)}
+					</div>
 				</div>
 			</Zoom>
 		</Modal>
