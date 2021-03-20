@@ -5,6 +5,9 @@
 	border-bottom: 2px solid $main-borderColor;
 	color: $main-blueColor;
 }
+.tweetLoader__container {
+	height: 150px;
+}
 
 .tweetModal__body {
 	input {
@@ -21,7 +24,8 @@
 	}
 }
 .tweetLoader {
-	height: 60%;
+	height: 100%;
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;

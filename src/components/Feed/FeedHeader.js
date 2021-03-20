@@ -3,6 +3,7 @@ import axios from 'axios';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import TweetButton from '../Buttons/TweetButton';
+import TweetLoader from '../Modals/TweetLoader';
 
 import FlareIcon from '@material-ui/icons/Flare';
 import Avatar from '@material-ui/core/Avatar';
@@ -21,15 +22,18 @@ const useStyles = makeStyles((theme) => ({
 const FeedHeader = ({ userId }) => {
 	const classes = useStyles();
 	const [newTweet, setNewTweet] = useState('');
+	const [loading, setIsLoading] = useState(false);
 
 	const onSubmitHandler = async (e) => {
 		e.preventDefault();
+		setIsLoading(true);
 		try {
 			await axios.post('http://localhost:8080/tweet', {
 				message: newTweet,
 				userId: userId,
 			});
 			setNewTweet('');
+			setIsLoading(false);
 		} catch (err) {
 			console.log(err);
 		}
@@ -47,23 +51,29 @@ const FeedHeader = ({ userId }) => {
 				<div className="avatarContainer">
 					<Avatar>AM</Avatar>
 				</div>
-				<div className="formContainer">
-					<input
-						type="text"
-						placeholder="What's Happening?"
-						value={newTweet}
-						onChange={(e) => setNewTweet(e.target.value)}
-					/>
-					<div>
-						<CropOriginalOutlinedIcon className={classes.feedIcon} />
-						<GifOutlinedIcon className={classes.feedIcon} />
-						<InsertChartOutlinedIcon className={classes.feedIcon} />
-						<SentimentSatisfiedOutlinedIcon className={classes.feedIcon} />
-					</div>
-				</div>
-				<div className="tweetContainer">
-					<TweetButton clickFunction={onSubmitHandler} />
-				</div>
+				{loading ? (
+					<TweetLoader />
+				) : (
+					<>
+						<div className="formContainer">
+							<input
+								type="text"
+								placeholder="What's Happening?"
+								value={newTweet}
+								onChange={(e) => setNewTweet(e.target.value)}
+							/>
+							<div>
+								<CropOriginalOutlinedIcon className={classes.feedIcon} />
+								<GifOutlinedIcon className={classes.feedIcon} />
+								<InsertChartOutlinedIcon className={classes.feedIcon} />
+								<SentimentSatisfiedOutlinedIcon className={classes.feedIcon} />
+							</div>
+						</div>
+						<div className="tweetContainer">
+							<TweetButton clickFunction={onSubmitHandler} />
+						</div>
+					</>
+				)}
 			</div>
 		</div>
 	);

@@ -21,8 +21,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 	paper: {
 		backgroundColor: theme.palette.background.paper,
-		height: '25%',
-		width: '50%',
+		height: '250px',
+		width: '600px',
 		outline: 'none',
 		borderRadius: '10px',
 		padding: theme.spacing(2, 4, 3),
@@ -79,7 +79,9 @@ const TweetModal = ({ isOpen, modalHandler, username, userId }) => {
 						</IconButton>
 					</div>
 					{loading ? (
-						<TweetLoader />
+						<div className="tweetLoader__container">
+							<TweetLoader />
+						</div>
 					) : (
 						<div className="tweetModal__body">
 							<input
