@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import ListButton from '../Buttons/ListButton';
 import TweetButton from '../Buttons/TweetButton';
@@ -11,8 +11,14 @@ import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutline
 import ListAltOutlinedIcon from '@material-ui/icons/ListAltOutlined';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
+import TweetModal from '../Modals/TweetModal';
 
 const Sidebar = ({ username, userId, user }) => {
+	const [isOpen, setIsOpen] = useState(false);
+
+	const modalHandler = () => {
+		setIsOpen(!isOpen);
+	};
 	return (
 		<div className="sidebar">
 			<div className="sidebarContainer">
@@ -47,8 +53,14 @@ const Sidebar = ({ username, userId, user }) => {
 					<ListButton listItem="More" IconComponent={MoreHorizOutlinedIcon} />
 				</div>
 				<div className="sidebar__tweetButton">
-					<TweetButton withIcon />
+					<TweetButton withIcon clickFunction={modalHandler} />
 				</div>
+				<TweetModal
+					isOpen={isOpen}
+					modalHandler={modalHandler}
+					username={username}
+					userId={userId}
+				/>
 			</div>
 		</div>
 	);

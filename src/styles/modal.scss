@@ -1,0 +1,28 @@
+.tweetModal__header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 2px solid $main-borderColor;
+	color: $main-blueColor;
+}
+
+.tweetModal__body {
+	input {
+		outline: none;
+		margin-top: 10px;
+		width: 100%;
+		border: none;
+		height: 50px;
+	}
+	.tweetModal__bottomContainer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
+.tweetLoader {
+	height: 60%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
