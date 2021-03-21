@@ -1,0 +1,43 @@
+.comments {
+	border-left: 6px solid $main-borderColor;
+	padding: 0 10px;
+}
+.comment__container {
+	display: flex;
+	align-items: center;
+	margin: 15px 0;
+	.username {
+		color: $main-blueColor;
+		margin-right: 10px;
+		text-decoration: none;
+	}
+}
+.comments__input {
+	display: flex;
+	align-items: center;
+	margin: 10px 0;
+	input {
+		flex: 1;
+		border-radius: 20px;
+		outline: none;
+		border: none;
+		height: 40px;
+		padding-left: 15px;
+	}
+	button {
+		margin-left: 10px;
+		border-radius: 20px;
+		background-color: white;
+		padding: 10px;
+		border: 1px solid $main-blueColor;
+		color: $main-blueColor;
+		transition: all 150ms ease-in;
+		&:hover {
+			background-color: $main-blueColor;
+			color: white;
+		}
+		&:focus {
+			outline: none;
+		}
+	}
+}

@@ -7,9 +7,11 @@ import ModeCommentOutlinedIcon from '@material-ui/icons/ModeCommentOutlined';
 import RepeatOutlinedIcon from '@material-ui/icons/RepeatOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import PublishOutlinedIcon from '@material-ui/icons/PublishOutlined';
+import Comments from '../Comments';
 
 const SinglePost = ({ post, timePosted, increaseLike, delay }) => {
 	const [comments, setComments] = useState(post.comments);
+	const [showComments, setShowComments] = useState(false);
 	const [retweets, setRetweets] = useState(post.retweets);
 	const [favorite, setFavorite] = useState(post.favorite);
 	const [forwarded, setForwarded] = useState(post.forwarded);
@@ -45,11 +47,11 @@ const SinglePost = ({ post, timePosted, increaseLike, delay }) => {
 							fontSize="small"
 							style={{ margin: ' 0 10px' }}
 							onClick={() => {
-								setComments((prevState) => prevState + 1);
-								increaseLike(post._id, 'comments');
+								setShowComments(!showComments);
+								console.log(showComments);
+								console.log(post.comments);
 							}}
 						/>{' '}
-						{comments}
 					</div>
 					<div>
 						<RepeatOutlinedIcon
@@ -85,6 +87,7 @@ const SinglePost = ({ post, timePosted, increaseLike, delay }) => {
 						{forwarded}
 					</div>
 				</div>
+				{showComments && <Comments comments={post.comments} />}
 			</div>
 		</div>
 	);
