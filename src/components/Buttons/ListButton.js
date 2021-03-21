@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
 	button: {
@@ -28,16 +28,12 @@ const ListButton = ({ IconComponent, listItem, username, userId }) => {
 	const id = userId ? userId : username?.slice(1);
 
 	return (
-		<Button
-			className={classes.button}
-			variant="contained"
-			color="primary"
-			component={Link}
-			to={`/${listItem.toLowerCase()}/${id}`}
-			startIcon={<IconComponent />}
-		>
-			{listItem}
-		</Button>
+		<div className="listButton">
+			<NavLink to={`/${listItem.toLowerCase()}/${id}`} activeClassName="active">
+				<IconComponent style={{ color: 'inherit', margin: '0 10px' }} />
+				{listItem}
+			</NavLink>
+		</div>
 	);
 };
 
