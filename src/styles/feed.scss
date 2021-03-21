@@ -1,3 +1,14 @@
+@keyframes slideIn {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
 .feed {
 	flex: 0.5;
 	border-right: 2px solid $main-borderColor;
@@ -58,8 +69,10 @@
 }
 
 .singlePost {
+	opacity: 0;
 	border-bottom: 1px solid $main-borderColor;
 	display: flex;
+	animation: slideIn 500ms ease-in-out forwards;
 	transition: all 250ms ease-in-out;
 	&:hover {
 		background-color: rgba(224, 224, 224, 0.3);

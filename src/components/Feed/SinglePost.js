@@ -8,7 +8,7 @@ import RepeatOutlinedIcon from '@material-ui/icons/RepeatOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import PublishOutlinedIcon from '@material-ui/icons/PublishOutlined';
 
-const SinglePost = ({ post, timePosted, increaseLike }) => {
+const SinglePost = ({ post, timePosted, increaseLike, delay }) => {
 	const [comments, setComments] = useState(post.comments);
 	const [retweets, setRetweets] = useState(post.retweets);
 	const [favorite, setFavorite] = useState(post.favorite);
@@ -17,7 +17,7 @@ const SinglePost = ({ post, timePosted, increaseLike }) => {
 	const srcImage = post.user.username === '@doradadestroya' ? Dora : StockPhoto;
 
 	return (
-		<div className="singlePost">
+		<div className="singlePost" style={{ animationDelay: `${delay * 100}ms` }}>
 			<div className="singlePost__avatarContainer">
 				<Avatar src={srcImage} />
 			</div>

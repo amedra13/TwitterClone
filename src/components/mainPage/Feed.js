@@ -26,13 +26,14 @@ const Feed = ({ posts, userId }) => {
 		<div className="feed">
 			<FeedHeader userId={userId} />
 			{posts ? (
-				posts.map((singlePost) => {
+				posts.map((singlePost, i) => {
 					return (
 						<SinglePost
 							key={singlePost._id}
 							post={singlePost}
 							timePosted={getTime(singlePost.createdAt)}
 							increaseLike={incrementIcon}
+							delay={i}
 						/>
 					);
 				})
