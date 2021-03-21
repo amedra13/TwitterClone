@@ -3,6 +3,15 @@ $main-blueColor: #00b4d8;
 $post-textColor: rgba(136, 145, 150, 0.658);
 $post-textFont: 'Noto Sans JP', sans-serif;
 
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
 .App {
 	height: 100%;
 	width: 100vw;
@@ -17,10 +26,14 @@ $post-textFont: 'Noto Sans JP', sans-serif;
 ::-webkit-scrollbar {
 	display: none;
 }
+.mainPage {
+	opacity: 0;
+	animation: fadeIn 400ms 200ms ease-in-out forwards;
+}
 @import './singup.scss';
 @import './sidebar.scss';
 @import './feed.scss';
 @import './trend.scss';
 @import './profile.scss';
 @import './modal.scss';
-@import './tweet.scss'
+@import './tweet.scss';
