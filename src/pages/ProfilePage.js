@@ -110,12 +110,13 @@ const ProfilePage = ({ user, profileUser, profilePosts, onSetProfile }) => {
 				</div>
 				<div className="profile__feed">
 					{profilePosts ? (
-						profilePosts.map((singlePost) => {
+						profilePosts.map((singlePost, i) => {
 							return (
 								<SinglePost
 									key={singlePost._id}
 									post={singlePost}
 									timePosted={getTime(singlePost.createdAt)}
+									delay={i}
 								/>
 							);
 						})

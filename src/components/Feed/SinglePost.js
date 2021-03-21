@@ -17,7 +17,7 @@ const SinglePost = ({ post, timePosted, increaseLike, delay }) => {
 	const srcImage = post.user.username === '@doradadestroya' ? Dora : StockPhoto;
 
 	return (
-		<div className="singlePost" style={{ animationDelay: `${delay * 100}ms` }}>
+		<div className="singlePost" style={{ animationDelay: `${delay * 75}ms` }}>
 			<div className="singlePost__avatarContainer">
 				<Avatar src={srcImage} />
 			</div>
