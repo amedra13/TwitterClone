@@ -5,7 +5,12 @@ import Signup from './pages/Signup';
 import CreateAccount from './pages/CreateAccount';
 import Login from './pages/Login';
 import ProfilePage from './pages/ProfilePage';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Redirect,
+} from 'react-router-dom';
 
 function App() {
 	return (
@@ -23,6 +28,7 @@ function App() {
 						<MainPage />
 					</Route>
 					<Route exact path="/profile/:username" component={ProfilePage} />
+					<Redirect to="/" />
 				</Switch>
 			</Router>
 		</div>
