@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import StockPhoto from '../../images/avatarStock.jpg';
 import Dora from '../../images/Dora.jpg';
-import { Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import ModeCommentOutlinedIcon from '@material-ui/icons/ModeCommentOutlined';
 import RepeatOutlinedIcon from '@material-ui/icons/RepeatOutlined';
@@ -13,11 +13,16 @@ const SinglePost = ({ post, timePosted, increaseLike, delay }) => {
 	const [retweets, setRetweets] = useState(post.retweets);
 	const [favorite, setFavorite] = useState(post.favorite);
 	const [forwarded, setForwarded] = useState(post.forwarded);
+	const history = useHistory();
 
 	const srcImage = post.user.username === '@doradadestroya' ? Dora : StockPhoto;
 
 	return (
-		<div className="singlePost" style={{ animationDelay: `${delay * 75}ms` }}>
+		<div
+			className="singlePost"
+			style={{ animationDelay: `${delay * 75}ms` }}
+			onClick={() => history.push(`/status/${post._id}`)}
+		>
 			<div className="singlePost__avatarContainer">
 				<Avatar src={srcImage} />
 			</div>

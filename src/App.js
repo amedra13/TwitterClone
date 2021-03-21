@@ -5,6 +5,7 @@ import Signup from './pages/Signup';
 import CreateAccount from './pages/CreateAccount';
 import Login from './pages/Login';
 import ProfilePage from './pages/ProfilePage';
+import TweetStatus from './pages/TweetStatus';
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -28,6 +29,7 @@ function App() {
 						<MainPage />
 					</Route>
 					<Route exact path="/profile/:username" component={ProfilePage} />
+					<Route exact path="/status/:postId" component={TweetStatus} />
 					<Redirect to="/" />
 				</Switch>
 			</Router>
