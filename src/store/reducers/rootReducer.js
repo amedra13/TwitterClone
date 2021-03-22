@@ -31,6 +31,11 @@ const rootReducer = (state = initialState, action) => {
 				isUser: action.isUser,
 				isFollowing: action.isFollowing,
 			};
+		case 'UPDATED_POSTS':
+			return {
+				...state,
+				feedPosts: action.updatedPosts,
+			};
 		default:
 			return state;
 	}

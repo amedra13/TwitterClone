@@ -1,1 +1,7 @@
-export { loadUser, setProfile, updateFollow, followStatus } from './main';
+export {
+	loadUser,
+	setProfile,
+	updateFollow,
+	followStatus,
+	updateFeedPosts,
+} from './main';

@@ -28,3 +28,10 @@ export const followStatus = (isUser, following) => {
 		isFollowing: following,
 	};
 };
+
+export const updateFeedPosts = (updatedPosts) => {
+	return {
+		type: 'UPDATED_POSTS',
+		updatedPosts: updatedPosts,
+	};
+};

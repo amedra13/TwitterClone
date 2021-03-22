@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
+import * as actions from '../store/actions/index';
 
-const Comments = ({ user, comments, postId }) => {
+const Comments = ({ user, comments, postId, onUpdateFeedPosts }) => {
 	const [message, setMessage] = useState('');
 
 	const submitComment = async (e) => {
@@ -13,6 +14,11 @@ const Comments = ({ user, comments, postId }) => {
 			comment: message,
 			username: user.userName,
 		});
+		const feedResponse = await axios.get(
+			`http://localhost:8080/updateFeed/${user?._id}`
+		);
+
+		onUpdateFeedPosts(feedResponse.data.allPosts);
 		setMessage('');
 	};
 	return (
@@ -50,5 +56,10 @@ const mapStateToProps = (state) => {
 		user: state.user,
 	};
 };
-
-export default connect(mapStateToProps)(Comments);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onUpdateFeedPosts: (updatedPosts) =>
+			dispatch(actions.updateFeedPosts(updatedPosts)),
+	};
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Comments);

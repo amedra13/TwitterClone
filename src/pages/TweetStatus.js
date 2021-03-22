@@ -23,7 +23,7 @@ const TweetStatus = ({ user }) => {
 			setTweet(response.data.tweet);
 		};
 		getTweet();
-	}, [postId, tweet]);
+	}, []);
 	return (
 		<div className="tweetStatus">
 			<Sidebar username={user?.userName} userId={user?._id} />
