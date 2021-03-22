@@ -4,4 +4,5 @@ export {
 	updateFollow,
 	followStatus,
 	updateFeedPosts,
+	setStatus,
 } from './main';

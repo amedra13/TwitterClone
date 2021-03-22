@@ -6,6 +6,7 @@ const initialState = {
 	isLoggedIn: false,
 	isUser: false,
 	isFollowing: false,
+	statusTweet: null,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -35,6 +36,11 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				feedPosts: action.updatedPosts,
+			};
+		case 'SET_STATUS':
+			return {
+				...state,
+				statusTweet: action.status,
 			};
 		default:
 			return state;

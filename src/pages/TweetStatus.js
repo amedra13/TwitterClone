@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Sidebar from '../components/mainPage/Sidebar';
 import Trends from '../components/mainPage/Trend';
@@ -10,20 +10,21 @@ import ModeCommentOutlinedIcon from '@material-ui/icons/ModeCommentOutlined';
 import RepeatOutlinedIcon from '@material-ui/icons/RepeatOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import PublishOutlinedIcon from '@material-ui/icons/PublishOutlined';
+import * as actions from '../store/actions/index';
 
-const TweetStatus = ({ user }) => {
+const TweetStatus = ({ user, tweet, onSetStatus }) => {
 	const { postId } = useParams();
-	const [tweet, setTweet] = useState(null);
 
 	useEffect(() => {
 		const getTweet = async () => {
 			const response = await axios.get(
 				`http://localhost:8080/status/${postId}`
 			);
-			setTweet(response.data.tweet);
+			onSetStatus(response.data.tweet);
 		};
 		getTweet();
-	}, []);
+	});
+
 	return (
 		<div className="tweetStatus">
 			<Sidebar username={user?.userName} userId={user?._id} />
@@ -68,12 +69,13 @@ const TweetStatus = ({ user }) => {
 const mapStateToProps = (state) => {
 	return {
 		user: state.user,
+		tweet: state.statusTweet,
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		// onSetProfile: (user, posts) => dispatch(actions.setProfile(user, posts)),
+		onSetStatus: (tweet) => dispatch(actions.setStatus(tweet)),
 	};
 };
 export default connect(mapStateToProps, mapDispatchToProps)(TweetStatus);

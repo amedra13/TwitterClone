@@ -4,13 +4,14 @@ import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import TweetButton from '../Buttons/TweetButton';
 import TweetLoader from '../Modals/TweetLoader';
-
+import { connect } from 'react-redux';
 import FlareIcon from '@material-ui/icons/Flare';
 import Avatar from '@material-ui/core/Avatar';
 import CropOriginalOutlinedIcon from '@material-ui/icons/CropOriginalOutlined';
 import GifOutlinedIcon from '@material-ui/icons/GifOutlined';
 import InsertChartOutlinedIcon from '@material-ui/icons/InsertChartOutlined';
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
+import * as actions from '../../store/actions/index';
 
 const useStyles = makeStyles((theme) => ({
 	feedIcon: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const FeedHeader = ({ userId }) => {
+const FeedHeader = ({ userId, onUpdateFeedPosts }) => {
 	const classes = useStyles();
 	const [newTweet, setNewTweet] = useState('');
 	const [loading, setIsLoading] = useState(false);
@@ -35,6 +36,11 @@ const FeedHeader = ({ userId }) => {
 				message: newTweet,
 				userId: userId,
 			});
+			const feedResponse = await axios.get(
+				`http://localhost:8080/updateFeed/${userId}`
+			);
+
+			onUpdateFeedPosts(feedResponse.data.allPosts);
 			setNewTweet('');
 			setIsLoading(false);
 		} catch (err) {
@@ -82,4 +88,11 @@ const FeedHeader = ({ userId }) => {
 	);
 };
 
-export default FeedHeader;
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onUpdateFeedPosts: (updatedPosts) =>
+			dispatch(actions.updateFeedPosts(updatedPosts)),
+	};
+};
+
+export default connect(null, mapDispatchToProps)(FeedHeader);

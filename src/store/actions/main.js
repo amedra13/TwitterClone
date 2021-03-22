@@ -35,3 +35,10 @@ export const updateFeedPosts = (updatedPosts) => {
 		updatedPosts: updatedPosts,
 	};
 };
+
+export const setStatus = (tweet) => {
+	return {
+		type: 'SET_STATUS',
+		status: tweet,
+	};
+};
