@@ -11,7 +11,7 @@ const Feed = ({ posts, userId }) => {
 				icon: icon,
 			})
 			.then((res) => {
-				console.log(res.data.message);
+				// console.log(res.data.message);
 			})
 			.catch((err) => console.log(err));
 	};

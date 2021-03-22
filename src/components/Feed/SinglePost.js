@@ -8,15 +8,24 @@ import RepeatOutlinedIcon from '@material-ui/icons/RepeatOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import PublishOutlinedIcon from '@material-ui/icons/PublishOutlined';
 import Comments from '../Comments';
+import axios from 'axios';
+import { connect } from 'react-redux';
 
-const SinglePost = ({ post, timePosted, increaseLike, delay }) => {
+const SinglePost = ({ user, post, timePosted, increaseLike, delay }) => {
 	const [showComments, setShowComments] = useState(false);
 	const [retweets, setRetweets] = useState(post.retweets);
-	const [favorite, setFavorite] = useState(post.favorite);
 	const [forwarded, setForwarded] = useState(post.forwarded);
 	const history = useHistory();
 
 	const srcImage = post.user.username === '@doradadestroya' ? Dora : StockPhoto;
+
+	const likeHandler = async (postId, username) => {
+		console.log('inside like function');
+		const response = await axios.post(`http://localhost:8080/like/${postId}`, {
+			username: username,
+		});
+		console.log(response.data.favorite);
+	};
 
 	return (
 		<div className="singlePost" style={{ animationDelay: `${delay * 75}ms` }}>
@@ -66,11 +75,11 @@ const SinglePost = ({ post, timePosted, increaseLike, delay }) => {
 							fontSize="small"
 							style={{ margin: ' 0 10px' }}
 							onClick={() => {
-								setFavorite((prevState) => prevState + 1);
-								increaseLike(post._id, 'favorite');
+								// increaseLike(post._id, 'favorite');
+								likeHandler(post._id, user?.userName);
 							}}
 						/>{' '}
-						{favorite}
+						{post?.favorite.length}
 					</div>
 					<div>
 						<PublishOutlinedIcon
@@ -92,4 +101,10 @@ const SinglePost = ({ post, timePosted, increaseLike, delay }) => {
 	);
 };
 
-export default SinglePost;
+const mapStateToProps = (state) => {
+	return {
+		user: state.user,
+	};
+};
+
+export default connect(mapStateToProps)(SinglePost);

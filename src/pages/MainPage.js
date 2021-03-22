@@ -17,7 +17,7 @@ const MainPage = ({ onLoadUser, user, feedPosts }) => {
 		};
 
 		getUserAndFeed();
-	}, [userId, feedPosts, onLoadUser]);
+	}, [userId, onLoadUser]);
 
 	return (
 		<div className="mainPage">
