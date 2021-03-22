@@ -28,3 +28,5 @@ export const followStatus = (isUser, following) => {
 		isFollowing: following,
 	};
 };
+
+// export const postComment = ()

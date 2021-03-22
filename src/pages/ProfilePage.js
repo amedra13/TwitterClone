@@ -58,7 +58,7 @@ const ProfilePage = ({ user, profileUser, profilePosts, onSetProfile }) => {
 		};
 
 		getProfileUser();
-	}, [username, onSetProfile]);
+	}, [username, profilePosts, onSetProfile]);
 
 	const getTime = (date) => {
 		const datePosted = new Date(date);

@@ -10,7 +10,6 @@ import PublishOutlinedIcon from '@material-ui/icons/PublishOutlined';
 import Comments from '../Comments';
 
 const SinglePost = ({ post, timePosted, increaseLike, delay }) => {
-	const [comments, setComments] = useState(post.comments);
 	const [showComments, setShowComments] = useState(false);
 	const [retweets, setRetweets] = useState(post.retweets);
 	const [favorite, setFavorite] = useState(post.favorite);
@@ -23,7 +22,7 @@ const SinglePost = ({ post, timePosted, increaseLike, delay }) => {
 		<div
 			className="singlePost"
 			style={{ animationDelay: `${delay * 75}ms` }}
-			onClick={() => history.push(`/status/${post._id}`)}
+			// onClick={() => history.push(`/status/${post._id}`)}
 		>
 			<div className="singlePost__avatarContainer">
 				<Avatar src={srcImage} />
@@ -48,10 +47,9 @@ const SinglePost = ({ post, timePosted, increaseLike, delay }) => {
 							style={{ margin: ' 0 10px' }}
 							onClick={() => {
 								setShowComments(!showComments);
-								console.log(showComments);
-								console.log(post.comments);
 							}}
 						/>{' '}
+						{post?.comments.length}
 					</div>
 					<div>
 						<RepeatOutlinedIcon
@@ -87,7 +85,9 @@ const SinglePost = ({ post, timePosted, increaseLike, delay }) => {
 						{forwarded}
 					</div>
 				</div>
-				{showComments && <Comments comments={post.comments} />}
+				{showComments && (
+					<Comments comments={post.comments} postId={post._id} />
+				)}
 			</div>
 		</div>
 	);

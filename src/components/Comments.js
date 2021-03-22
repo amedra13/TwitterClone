@@ -1,9 +1,20 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
+import { connect } from 'react-redux';
+import axios from 'axios';
 
-const Comments = ({ comments }) => {
+const Comments = ({ user, comments, postId }) => {
 	const [message, setMessage] = useState('');
+
+	const submitComment = async (e) => {
+		e.preventDefault();
+		await axios.post(`http://localhost:8080/comment/${postId}`, {
+			comment: message,
+			username: user.userName,
+		});
+		setMessage('');
+	};
 	return (
 		<div className="comments">
 			{comments &&
@@ -29,10 +40,15 @@ const Comments = ({ comments }) => {
 					value={message}
 					onChange={(e) => setMessage(e.target.value)}
 				/>
-				<button>Send</button>
+				<button onClick={(e) => submitComment(e)}>Send</button>
 			</div>
 		</div>
 	);
 };
+const mapStateToProps = (state) => {
+	return {
+		user: state.user,
+	};
+};
 
-export default Comments;
+export default connect(mapStateToProps)(Comments);
