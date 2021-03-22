@@ -73,10 +73,6 @@
 	border-bottom: 1px solid $main-borderColor;
 	display: flex;
 	animation: topIn 400ms ease-in-out forwards;
-	transition: all 500ms ease-in-out;
-	&:hover {
-		background-color: rgba(224, 224, 224, 0.3);
-	}
 }
 
 .singlePost__avatarContainer {
