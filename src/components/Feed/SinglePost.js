@@ -19,11 +19,7 @@ const SinglePost = ({ post, timePosted, increaseLike, delay }) => {
 	const srcImage = post.user.username === '@doradadestroya' ? Dora : StockPhoto;
 
 	return (
-		<div
-			className="singlePost"
-			style={{ animationDelay: `${delay * 75}ms` }}
-			// onClick={() => history.push(`/status/${post._id}`)}
-		>
+		<div className="singlePost" style={{ animationDelay: `${delay * 75}ms` }}>
 			<div className="singlePost__avatarContainer">
 				<Avatar src={srcImage} />
 			</div>
@@ -37,7 +33,10 @@ const SinglePost = ({ post, timePosted, increaseLike, delay }) => {
 					<span>&#183;</span>
 					<h4 className="textColor">{timePosted + 'm'}</h4>
 				</div>
-				<div className="singlePost__message">
+				<div
+					className="singlePost__message"
+					onClick={() => history.push(`/status/${post._id}`)}
+				>
 					<h3>{post.message}</h3>
 				</div>
 				<div className="singlePost__icons">

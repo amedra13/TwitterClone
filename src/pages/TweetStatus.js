@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Sidebar from '../components/mainPage/Sidebar';
 import Trends from '../components/mainPage/Trend';
 import { connect } from 'react-redux';
+import Comments from '../components/Comments';
 import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
 import ModeCommentOutlinedIcon from '@material-ui/icons/ModeCommentOutlined';
@@ -22,7 +23,7 @@ const TweetStatus = ({ user }) => {
 			setTweet(response.data.tweet);
 		};
 		getTweet();
-	}, [postId]);
+	}, [postId, tweet]);
 	return (
 		<div className="tweetStatus">
 			<Sidebar username={user?.userName} userId={user?._id} />
@@ -58,7 +59,7 @@ const TweetStatus = ({ user }) => {
 						/>
 					</div>
 				</div>
-				<div className="tweet__comments">{tweet?.comments}</div>
+				<Comments comments={tweet?.comments} postId={postId} />
 			</div>
 			<Trends />
 		</div>

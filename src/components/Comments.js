@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Avatar from '@material-ui/core/Avatar';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import Avatar from '@material-ui/core/Avatar';
 
 const Comments = ({ user, comments, postId }) => {
 	const [message, setMessage] = useState('');
