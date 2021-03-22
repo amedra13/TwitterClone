@@ -43,8 +43,10 @@ const TweetModal = ({ isOpen, modalHandler, username, userId }) => {
 
 	const tweetButton = async (e) => {
 		e.preventDefault();
+		if (newTweet.length === 0) {
+			return;
+		}
 		setLoading(true);
-
 		try {
 			await axios.post('http://localhost:8080/tweet', {
 				message: newTweet,

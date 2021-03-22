@@ -26,6 +26,9 @@ const FeedHeader = ({ userId }) => {
 
 	const onSubmitHandler = async (e) => {
 		e.preventDefault();
+		if (newTweet.length === 0) {
+			return;
+		}
 		setIsLoading(true);
 		try {
 			await axios.post('http://localhost:8080/tweet', {
