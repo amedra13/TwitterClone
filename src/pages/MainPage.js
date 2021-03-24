@@ -30,8 +30,8 @@ const MainPage = ({ onLoadUser, user, feedPosts }) => {
 
 const mapStateToProps = (state) => {
 	return {
-		user: state.user,
-		feedPosts: state.feedPosts,
+		user: state.main.user,
+		feedPosts: state.main.feedPosts,
 	};
 };
 

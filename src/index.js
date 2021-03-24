@@ -2,9 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import rootReducer from './store/reducers/rootReducer';
+import { createStore, combineReducers } from 'redux';
+import mainReducer from './store/reducers/mainReducer';
+import tweetReducer from './store/reducers/tweetReducer';
 import App from './App';
+
+const rootReducer = combineReducers({ main: mainReducer, tweet: tweetReducer });
 
 const store = createStore(rootReducer);
 

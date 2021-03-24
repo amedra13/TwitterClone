@@ -58,7 +58,7 @@ const ProfilePage = ({ user, profileUser, profilePosts, onSetProfile }) => {
 		};
 
 		getProfileUser();
-	}, [username, profilePosts, onSetProfile]);
+	}, [username, onSetProfile]);
 
 	const getTime = (date) => {
 		const datePosted = new Date(date);
@@ -132,9 +132,9 @@ const ProfilePage = ({ user, profileUser, profilePosts, onSetProfile }) => {
 
 const mapStateToProps = (state) => {
 	return {
-		user: state.user,
-		profileUser: state.profileUser,
-		profilePosts: state.profilePosts,
+		user: state.main.user,
+		profileUser: state.main.profileUser,
+		profilePosts: state.main.profilePosts,
 	};
 };
 

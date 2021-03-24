@@ -53,7 +53,7 @@ const Comments = ({ user, comments, postId, onUpdateFeedPosts }) => {
 };
 const mapStateToProps = (state) => {
 	return {
-		user: state.user,
+		user: state.main.user,
 	};
 };
 const mapDispatchToProps = (dispatch) => {

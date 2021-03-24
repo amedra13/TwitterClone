@@ -4,5 +4,5 @@ export {
 	updateFollow,
 	followStatus,
 	updateFeedPosts,
-	setStatus,
 } from './main';
+export { setStatus, tweetComments } from './tweet';

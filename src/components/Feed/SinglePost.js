@@ -94,7 +94,7 @@ const SinglePost = ({ user, post, timePosted, delay, increaseLike }) => {
 
 const mapStateToProps = (state) => {
 	return {
-		user: state.user,
+		user: state.main.user,
 	};
 };
 

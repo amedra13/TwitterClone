@@ -70,10 +70,10 @@ const FollowButton = ({
 
 const mapStateToProps = (state) => {
 	return {
-		user: state.user,
-		profileUser: state.profileUser,
-		isUser: state.isUser,
-		isFollowing: state.isFollowing,
+		user: state.main.user,
+		profileUser: state.main.profileUser,
+		isUser: state.main.isUser,
+		isFollowing: state.main.isFollowing,
 	};
 };
 

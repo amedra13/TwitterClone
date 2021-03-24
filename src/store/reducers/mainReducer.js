@@ -9,7 +9,7 @@ const initialState = {
 	statusTweet: null,
 };
 
-const rootReducer = (state = initialState, action) => {
+const mainReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case 'LOAD_USER':
 			return { ...state, user: action.user, feedPosts: action.feedPosts };
@@ -37,14 +37,9 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				feedPosts: action.updatedPosts,
 			};
-		case 'SET_STATUS':
-			return {
-				...state,
-				statusTweet: action.status,
-			};
 		default:
 			return state;
 	}
 };
 
-export default rootReducer;
+export default mainReducer;
