@@ -6,14 +6,6 @@ export const loadUser = (user, feedPosts) => {
 	};
 };
 
-export const setProfile = (user, posts) => {
-	return {
-		type: 'SET_PROFILE',
-		profileUser: user,
-		profilePosts: posts,
-	};
-};
-
 export const updateFollow = (list) => {
 	console.log('updated List ==>>', list);
 	return {

@@ -12,6 +12,7 @@ import LinkOutlinedIcon from '@material-ui/icons/LinkOutlined';
 import EventNoteOutlinedIcon from '@material-ui/icons/EventNoteOutlined';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import { connect } from 'react-redux';
+import { getTime } from '../util/helperFunctions';
 import * as actions from '../store/actions/index';
 import FollowButton from '../components/Buttons/FollowButton';
 
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const ProfilePage = ({ user, profileUser, profilePosts, onSetProfile }) => {
+const ProfilePage = ({ user, profileUser, profilePosts, onSetProfile, onUpdateFeed }) => {
 	const { username } = useParams();
 	const classes = useStyles();
 
@@ -60,12 +61,12 @@ const ProfilePage = ({ user, profileUser, profilePosts, onSetProfile }) => {
 		getProfileUser();
 	}, [username, onSetProfile]);
 
-	const getTime = (date) => {
-		const datePosted = new Date(date);
-		const dateNow = new Date();
-		const diffInMilliSeconds = Math.abs(dateNow - datePosted) / 1000;
-		return Math.floor(diffInMilliSeconds / 60) % 60;
-	};
+	const updateFeed = async() => {
+		const response = await axios.get(`http://localhost:8080/profile/updateComments/${username}`)
+
+		onUpdateFeed(response.data.updatedPosts)
+	}
+
 
 	return (
 		<div className="profilePage">
@@ -117,6 +118,7 @@ const ProfilePage = ({ user, profileUser, profilePosts, onSetProfile }) => {
 									post={singlePost}
 									timePosted={getTime(singlePost.createdAt)}
 									delay={i}
+									updateFeed={updateFeed}
 								/>
 							);
 						})
@@ -133,14 +135,15 @@ const ProfilePage = ({ user, profileUser, profilePosts, onSetProfile }) => {
 const mapStateToProps = (state) => {
 	return {
 		user: state.main.user,
-		profileUser: state.main.profileUser,
-		profilePosts: state.main.profilePosts,
+		profileUser: state.profile.profileUser,
+		profilePosts: state.profile.profilePosts,
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onSetProfile: (user, posts) => dispatch(actions.setProfile(user, posts)),
+		onUpdateFeed: (posts) => dispatch(actions.updateProfilePosts(posts))
 	};
 };
 

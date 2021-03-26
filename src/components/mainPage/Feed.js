@@ -8,25 +8,19 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 
 const Feed = ({ posts, userId, onUpdateFeedPosts }) => {
-	// const incrementIcon = (id, icon) => {
-	// 	axios
-	// 		.post(`http://localhost:8080/post/${id}`, {
-	// 			icon: icon,
-	// 		})
-	// 		.then((res) => {
-	// 			// console.log(res.data.message);
-	// 		})
-	// 		.catch((err) => console.log(err));
-	// };
-	const likeHandler = async (postId, username) => {
-		await axios.post(`http://localhost:8080/like/${postId}`, {
-			username: username,
-		});
+	const updateFeed = async () => {
 		const feedResponse = await axios.get(
 			`http://localhost:8080/updateFeed/${userId}`
 		);
 
 		onUpdateFeedPosts(feedResponse.data.allPosts);
+	};
+
+	const likeHandler = async (postId, username) => {
+		await axios.post(`http://localhost:8080/like/${postId}`, {
+			username: username,
+		});
+		updateFeed();
 	};
 
 	return (
@@ -41,6 +35,7 @@ const Feed = ({ posts, userId, onUpdateFeedPosts }) => {
 							timePosted={getTime(singlePost.createdAt)}
 							increaseLike={likeHandler}
 							delay={i}
+							updateFeed={updateFeed}
 						/>
 					);
 				})

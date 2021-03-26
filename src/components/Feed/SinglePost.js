@@ -6,11 +6,18 @@ import Avatar from '@material-ui/core/Avatar';
 import ModeCommentOutlinedIcon from '@material-ui/icons/ModeCommentOutlined';
 import RepeatOutlinedIcon from '@material-ui/icons/RepeatOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
-import PublishOutlinedIcon from '@material-ui/icons/PublishOutlined';
+import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
 import Comments from '../Comments';
 import { connect } from 'react-redux';
 
-const SinglePost = ({ user, post, timePosted, delay, increaseLike }) => {
+const SinglePost = ({
+	user,
+	post,
+	timePosted,
+	delay,
+	increaseLike,
+	updateFeed,
+}) => {
 	const [showComments, setShowComments] = useState(false);
 	const [retweets, setRetweets] = useState(post.retweets);
 	const [forwarded, setForwarded] = useState(post.forwarded);
@@ -73,7 +80,7 @@ const SinglePost = ({ user, post, timePosted, delay, increaseLike }) => {
 						{post?.favorite.length}
 					</div>
 					<div>
-						<PublishOutlinedIcon
+						<BookmarkBorderOutlinedIcon
 							fontSize="small"
 							style={{ margin: ' 0 10px' }}
 							onClick={() => {
@@ -85,7 +92,11 @@ const SinglePost = ({ user, post, timePosted, delay, increaseLike }) => {
 					</div>
 				</div>
 				{showComments && (
-					<Comments comments={post.comments} postId={post._id} />
+					<Comments
+						comments={post.comments}
+						postId={post._id}
+						updateComments={updateFeed}
+					/>
 				)}
 			</div>
 		</div>

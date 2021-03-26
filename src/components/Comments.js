@@ -5,7 +5,13 @@ import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
 import * as actions from '../store/actions/index';
 
-const Comments = ({ user, comments, postId, onUpdateFeedPosts }) => {
+const Comments = ({
+	user,
+	comments,
+	postId,
+	onUpdateFeedPosts,
+	updateComments,
+}) => {
 	const [message, setMessage] = useState('');
 
 	const submitComment = async (e) => {
@@ -14,11 +20,8 @@ const Comments = ({ user, comments, postId, onUpdateFeedPosts }) => {
 			comment: message,
 			username: user.userName,
 		});
-		const feedResponse = await axios.get(
-			`http://localhost:8080/updateFeed/${user?._id}`
-		);
 
-		onUpdateFeedPosts(feedResponse.data.allPosts);
+		updateComments();
 		setMessage('');
 	};
 	return (

@@ -11,9 +11,12 @@ const tweetReducer = (state = initialState, action) => {
 				statusTweet: action.status,
 				tweetComments: action.comments,
 			};
-		case 'TEST':
-			console.log('inside tweet reducer');
-			return state;
+		case 'SET_TWEET_COMMENTS':
+			return {
+				...state,
+				tweetComments: action.comments,
+			};
+
 		default:
 			return state;
 	}

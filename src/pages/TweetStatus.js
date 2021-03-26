@@ -12,7 +12,7 @@ import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutline
 import PublishOutlinedIcon from '@material-ui/icons/PublishOutlined';
 import * as actions from '../store/actions/index';
 
-const TweetStatus = ({ user, tweet, comments, onSetStatus }) => {
+const TweetStatus = ({ user, tweet, comments, onSetStatus, onSetComments }) => {
 	const { postId } = useParams();
 
 	useEffect(() => {
@@ -20,11 +20,17 @@ const TweetStatus = ({ user, tweet, comments, onSetStatus }) => {
 			const response = await axios.get(
 				`http://localhost:8080/status/${postId}`
 			);
-			console.log(response.data.tweet);
 			onSetStatus(response.data.tweet);
 		};
 		getTweet();
 	}, [onSetStatus, postId]);
+
+	const updateComments = async () => {
+		const response = await axios.get(
+			`http://localhost:8080/tweetComments/${postId}`
+		);
+		onSetComments(response.data.tweetComments);
+	};
 
 	return (
 		<div className="tweetStatus">
@@ -62,7 +68,11 @@ const TweetStatus = ({ user, tweet, comments, onSetStatus }) => {
 						/>
 					</div>
 				</div>
-				<Comments comments={comments} postId={postId} />
+				<Comments
+					comments={comments}
+					postId={postId}
+					updateComments={updateComments}
+				/>
 			</div>
 			<Trends />
 		</div>
@@ -79,6 +89,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onSetStatus: (tweet) => dispatch(actions.setStatus(tweet)),
+		onSetComments: (comments) => dispatch(actions.setTweetComments(comments)),
 	};
 };
 export default connect(mapStateToProps, mapDispatchToProps)(TweetStatus);

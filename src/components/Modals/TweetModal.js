@@ -4,6 +4,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Modal from '@material-ui/core/Modal';
 import TweetButton from '../Buttons/TweetButton';
 import IconButton from '@material-ui/core/IconButton';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import HighlightOffOutlinedIcon from '@material-ui/icons/HighlightOffOutlined';
 import CropOriginalOutlinedIcon from '@material-ui/icons/CropOriginalOutlined';
@@ -12,6 +13,7 @@ import InsertChartOutlinedIcon from '@material-ui/icons/InsertChartOutlined';
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
 import axios from 'axios';
 import TweetLoader from './TweetLoader';
+import * as actions from '../../store/actions/index';
 
 const useStyles = makeStyles((theme) => ({
 	modal: {
@@ -36,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const TweetModal = ({ isOpen, modalHandler, username, userId }) => {
+const TweetModal = ({ isOpen, modalHandler, username, userId, onUpdateFeed }) => {
 	const [newTweet, setNewTweet] = useState('');
 	const [loading, setLoading] = useState(false);
 	const classes = useStyles();
@@ -52,6 +54,11 @@ const TweetModal = ({ isOpen, modalHandler, username, userId }) => {
 				message: newTweet,
 				userId: userId,
 			});
+			const feedResponse = await axios.get(
+				`http://localhost:8080/updateFeed/${userId}`
+			);
+
+			onUpdateFeed(feedResponse.data.allPosts);
 			setNewTweet('');
 			setLoading(false);
 			modalHandler();
@@ -114,4 +121,12 @@ const TweetModal = ({ isOpen, modalHandler, username, userId }) => {
 	);
 };
 
-export default TweetModal;
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onUpdateFeed: (updatedPosts) =>
+			dispatch(actions.updateFeedPosts(updatedPosts)),
+	};
+};
+
+
+export default connect(null, mapDispatchToProps)(TweetModal);

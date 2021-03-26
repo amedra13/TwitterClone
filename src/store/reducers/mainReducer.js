@@ -6,7 +6,6 @@ const initialState = {
 	isLoggedIn: false,
 	isUser: false,
 	isFollowing: false,
-	statusTweet: null,
 };
 
 const mainReducer = (state = initialState, action) => {

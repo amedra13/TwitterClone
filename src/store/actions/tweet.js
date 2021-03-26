@@ -1,7 +1,8 @@
-export const tweetComments = () => {
+export const setTweetComments = (comments) => {
 	console.log('inside tweet action function');
 	return {
-		type: 'TEST',
+		type: 'SET_TWEET_COMMENTS',
+		comments: comments,
 	};
 };
 
