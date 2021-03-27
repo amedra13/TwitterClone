@@ -17,10 +17,10 @@ const SinglePost = ({
 	delay,
 	increaseLike,
 	updateFeed,
+	bookmarkHandler,
 }) => {
 	const [showComments, setShowComments] = useState(false);
 	const [retweets, setRetweets] = useState(post.retweets);
-	const [forwarded, setForwarded] = useState(post.forwarded);
 	const history = useHistory();
 
 	const srcImage = post.user.username === '@doradadestroya' ? Dora : StockPhoto;
@@ -89,11 +89,10 @@ const SinglePost = ({
 							fontSize="small"
 							style={{ margin: ' 0 10px' }}
 							onClick={() => {
-								setForwarded((prevState) => prevState + 1);
-								// increaseLike(post._id, 'forwarded');
+								bookmarkHandler(post._id, user?._id);
 							}}
 						/>{' '}
-						{forwarded}
+						{post?.saved.length}
 					</div>
 				</div>
 				{showComments && (

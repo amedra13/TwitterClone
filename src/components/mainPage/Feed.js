@@ -23,6 +23,17 @@ const Feed = ({ posts, userId, onUpdateFeedPosts }) => {
 		updateFeed();
 	};
 
+	const bookmarkHandler = async (postId, id) => {
+		const response = await axios.post(
+			`http://localhost:8080/bookmarks/${postId}`,
+			{
+				userId: id,
+			}
+		);
+		console.log(response.data.message);
+		updateFeed();
+	};
+
 	return (
 		<div className="feed">
 			<FeedHeader userId={userId} />
@@ -36,6 +47,7 @@ const Feed = ({ posts, userId, onUpdateFeedPosts }) => {
 							increaseLike={likeHandler}
 							delay={i}
 							updateFeed={updateFeed}
+							bookmarkHandler={bookmarkHandler}
 						/>
 					);
 				})

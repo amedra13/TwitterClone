@@ -6,14 +6,15 @@ import { createStore, combineReducers } from 'redux';
 import mainReducer from './store/reducers/mainReducer';
 import tweetReducer from './store/reducers/tweetReducer';
 import profileReducer from './store/reducers/profileReducer';
+import bookmarkReducer from './store/reducers/bookmarkReducer';
 import App from './App';
 
-const rootReducer = combineReducers(
-	{
-		main: mainReducer,
-	 	tweet: tweetReducer, 
-	 	profile:profileReducer 
-	});
+const rootReducer = combineReducers({
+	main: mainReducer,
+	tweet: tweetReducer,
+	profile: profileReducer,
+	bookmarks: bookmarkReducer,
+});
 
 const store = createStore(rootReducer);
 
