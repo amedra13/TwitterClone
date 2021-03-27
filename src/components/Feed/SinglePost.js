@@ -5,7 +5,7 @@ import { useHistory, Link } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import ModeCommentOutlinedIcon from '@material-ui/icons/ModeCommentOutlined';
 import RepeatOutlinedIcon from '@material-ui/icons/RepeatOutlined';
-import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
 import Comments from '../Comments';
 import { connect } from 'react-redux';
@@ -24,6 +24,8 @@ const SinglePost = ({
 	const history = useHistory();
 
 	const srcImage = post.user.username === '@doradadestroya' ? Dora : StockPhoto;
+	const userLikes = post.favorite.includes(user.userName);
+	const favorited = userLikes ? 'pink' : 'rgba(136, 145, 150, 0.658)';
 
 	return (
 		<div className="singlePost" style={{ animationDelay: `${delay * 75}ms` }}>
@@ -69,9 +71,12 @@ const SinglePost = ({
 						{retweets}
 					</div>
 					<div>
-						<FavoriteBorderOutlinedIcon
+						<FavoriteIcon
 							fontSize="small"
-							style={{ margin: ' 0 10px' }}
+							style={{
+								margin: ' 0 10px',
+								color: `${favorited}`,
+							}}
 							onClick={() => {
 								// increaseLike(post._id, 'favorite');
 								increaseLike(post._id, user?.userName);

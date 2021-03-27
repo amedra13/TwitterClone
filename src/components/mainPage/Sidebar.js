@@ -43,6 +43,7 @@ const Sidebar = ({ username, userId, user }) => {
 					<ListButton
 						listItem="BookMarks"
 						IconComponent={BookmarkBorderOutlinedIcon}
+						userId={userId}
 					/>
 					<ListButton listItem="Lists" IconComponent={ListAltOutlinedIcon} />
 					<ListButton
