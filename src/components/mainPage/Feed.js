@@ -16,13 +16,6 @@ const Feed = ({ posts, userId, onUpdateFeedPosts }) => {
 		onUpdateFeedPosts(feedResponse.data.allPosts);
 	};
 
-	const likeHandler = async (postId, username) => {
-		await axios.post(`http://localhost:8080/like/${postId}`, {
-			username: username,
-		});
-		updateFeed();
-	};
-
 	const bookmarkHandler = async (postId, id) => {
 		const response = await axios.post(
 			`http://localhost:8080/bookmarks/${postId}`,
@@ -44,7 +37,6 @@ const Feed = ({ posts, userId, onUpdateFeedPosts }) => {
 							key={singlePost._id}
 							post={singlePost}
 							timePosted={getTime(singlePost.createdAt)}
-							increaseLike={likeHandler}
 							delay={i}
 							updateFeed={updateFeed}
 							bookmarkHandler={bookmarkHandler}

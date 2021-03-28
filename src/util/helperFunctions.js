@@ -13,3 +13,20 @@ export const getTest = async (postId, username) => {
 	});
 	console.log(response.data.message);
 };
+
+export const likeHandler = async (postId, username) => {
+	await axios.post(`http://localhost:8080/like/${postId}`, {
+		username: username,
+	});
+};
+
+
+
+export const bookmarkHandler = async (postId, id) => {
+	await axios.post(
+		`http://localhost:8080/bookmarks/${postId}`,
+		{
+			userId: id,
+		}
+	);
+};

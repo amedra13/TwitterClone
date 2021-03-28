@@ -4,7 +4,6 @@ import ListButton from '../Buttons/ListButton';
 import TweetButton from '../Buttons/TweetButton';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import HomeIcon from '@material-ui/icons/Home';
-import PublicIcon from '@material-ui/icons/Public';
 import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneOutlined';
 import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
 import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
@@ -34,7 +33,6 @@ const Sidebar = ({ username, userId, user }) => {
 						IconComponent={HomeIcon}
 						userId={userId}
 					/>
-					<ListButton listItem="Explore" IconComponent={PublicIcon} />
 					<ListButton
 						listItem="Notifications"
 						IconComponent={NotificationsNoneOutlinedIcon}

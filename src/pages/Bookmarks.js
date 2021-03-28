@@ -6,6 +6,7 @@ import { getTime } from '../util/helperFunctions';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import * as actions from '../store/actions/index';
+import LoadingPosts from '../components/Feed/LoadingPosts';
 
 const Bookmarks = ({ user, bookmarks, onLoadBookmarks, onUpdateBookmarks }) => {
 	useEffect(() => {
@@ -42,7 +43,7 @@ const Bookmarks = ({ user, bookmarks, onLoadBookmarks, onUpdateBookmarks }) => {
 			<SideBar username={user?.userName} userId={user?._id} />
 			<div className="bookmarks__posts">
 				<h1>Saved Posts from users</h1>
-				{bookmarks &&
+				{bookmarks ? (
 					bookmarks.map((post, i) => (
 						<SinglePost
 							key={post._id}
@@ -53,7 +54,10 @@ const Bookmarks = ({ user, bookmarks, onLoadBookmarks, onUpdateBookmarks }) => {
 							updateFeed={updateBookmarks}
 							bookmarkHandler={bookmarkHandler}
 						/>
-					))}
+					))
+				) : (
+					<LoadingPosts />
+				)}
 			</div>
 			<Trend />
 		</div>

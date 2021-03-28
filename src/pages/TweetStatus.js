@@ -50,7 +50,7 @@ const TweetStatus = ({ user, tweet, comments, onSetStatus, onSetComments }) => {
 					<p className="time">{tweet?.createdAt}</p>
 					<div className="tweet__headerActivity">
 						<p>{tweet?.retweets} Retweets</p>
-						<p>{tweet?.favorite} Likes</p>
+						<p>{tweet?.favorite.length} Likes</p>
 					</div>
 					<div className="tweet__headerIcons">
 						<ModeCommentOutlinedIcon
