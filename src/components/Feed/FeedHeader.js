@@ -63,7 +63,7 @@ const FeedHeader = ({ userId, onUpdateFeedPosts }) => {
 				{loading ? (
 					<TweetLoader />
 				) : (
-					<>
+					<form onSubmit={onSubmitHandler}>
 						<div className="formContainer">
 							<input
 								type="text"
@@ -79,9 +79,9 @@ const FeedHeader = ({ userId, onUpdateFeedPosts }) => {
 							</div>
 						</div>
 						<div className="tweetContainer">
-							<TweetButton clickFunction={onSubmitHandler} />
+							<TweetButton />
 						</div>
-					</>
+					</form>
 				)}
 			</div>
 		</div>

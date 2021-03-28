@@ -36,11 +36,12 @@
 	height: 130px;
 	border-bottom: 10px solid $main-borderColor;
 
-	// div {
-	// 	border: 1px solid red;
-	// }
 	.avatarContainer {
 		padding: 10px;
+	}
+	form {
+		flex: 1;
+		display: flex;
 	}
 	.formContainer {
 		flex-grow: 1;

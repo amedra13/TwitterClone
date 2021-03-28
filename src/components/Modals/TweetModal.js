@@ -38,7 +38,13 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const TweetModal = ({ isOpen, modalHandler, username, userId, onUpdateFeed }) => {
+const TweetModal = ({
+	isOpen,
+	modalHandler,
+	username,
+	userId,
+	onUpdateFeed,
+}) => {
 	const [newTweet, setNewTweet] = useState('');
 	const [loading, setLoading] = useState(false);
 	const classes = useStyles();
@@ -92,7 +98,7 @@ const TweetModal = ({ isOpen, modalHandler, username, userId, onUpdateFeed }) =>
 						{loading ? (
 							<TweetLoader />
 						) : (
-							<>
+							<form onSubmit={tweetButton}>
 								<input
 									type="text"
 									placeholder="What's Happening?"
@@ -112,7 +118,7 @@ const TweetModal = ({ isOpen, modalHandler, username, userId, onUpdateFeed }) =>
 										<TweetButton clickFunction={tweetButton} />
 									</div>
 								</div>
-							</>
+							</form>
 						)}
 					</div>
 				</div>
@@ -127,6 +133,5 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch(actions.updateFeedPosts(updatedPosts)),
 	};
 };
-
 
 export default connect(null, mapDispatchToProps)(TweetModal);

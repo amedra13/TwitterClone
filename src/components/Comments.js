@@ -43,13 +43,15 @@ const Comments = ({
 				))}
 			<div className="comments__input">
 				<Avatar style={{ width: '25px', height: '25px', margin: '0 10px' }} />
-				<input
-					type="text"
-					placeholder="Write a reply.."
-					value={message}
-					onChange={(e) => setMessage(e.target.value)}
-				/>
-				<button onClick={(e) => submitComment(e)}>Send</button>
+				<form onSubmit={submitComment}>
+					<input
+						type="text"
+						placeholder="Write a reply.."
+						value={message}
+						onChange={(e) => setMessage(e.target.value)}
+					/>
+					<button type="submit">Send</button>
+				</form>
 			</div>
 		</div>
 	);

@@ -30,6 +30,10 @@
 	display: flex;
 	align-items: center;
 	margin: 10px 0;
+	form {
+		display: flex;
+		width: 100%;
+	}
 	input {
 		flex: 1;
 		border-radius: 20px;

@@ -29,6 +29,7 @@ const TweetButton = ({ withIcon, clickFunction }) => {
 			variant="contained"
 			color="primary"
 			size="large"
+			type="submit"
 			startIcon={withIcon && <SendIcon />}
 		>
 			Tweet
