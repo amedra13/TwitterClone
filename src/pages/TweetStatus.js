@@ -9,7 +9,7 @@ import Avatar from '@material-ui/core/Avatar';
 import ModeCommentOutlinedIcon from '@material-ui/icons/ModeCommentOutlined';
 import RepeatOutlinedIcon from '@material-ui/icons/RepeatOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
-import PublishOutlinedIcon from '@material-ui/icons/PublishOutlined';
+import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
 import * as actions from '../store/actions/index';
 
 const TweetStatus = ({ user, tweet, comments, onSetStatus, onSetComments }) => {
@@ -31,6 +31,11 @@ const TweetStatus = ({ user, tweet, comments, onSetStatus, onSetComments }) => {
 		);
 		onSetComments(response.data.tweetComments);
 	};
+
+	const userLikes = tweet.favorite.includes(user.userName);
+	const userSaved = tweet.saved.includes(user._id);
+	const favorited = userLikes ? '#ff99ac' : 'rgba(136, 145, 150, 0.658)';
+	const saved = userSaved ? '#38b000' : 'rgba(136, 145, 150, 0.658)';
 
 	return (
 		<div className="tweetStatus">
@@ -60,12 +65,8 @@ const TweetStatus = ({ user, tweet, comments, onSetStatus, onSetComments }) => {
 						<RepeatOutlinedIcon
 							style={{ color: 'rgba(136, 145, 150, 0.658)' }}
 						/>
-						<FavoriteBorderOutlinedIcon
-							style={{ color: 'rgba(136, 145, 150, 0.658)' }}
-						/>
-						<PublishOutlinedIcon
-							style={{ color: 'rgba(136, 145, 150, 0.658)' }}
-						/>
+						<FavoriteBorderOutlinedIcon style={{ color: `${favorited}` }} />
+						<BookmarkBorderOutlinedIcon style={{ color: `${saved}` }} />
 					</div>
 				</div>
 				<Comments
