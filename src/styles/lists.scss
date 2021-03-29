@@ -15,8 +15,17 @@
 			line-height: 60px;
 			padding: 0 20px;
 			color: post-textColor;
-			border-bottom: 2px solid $main-blueColor;
-			color: $main-blueColor;
 		}
 	}
+	.lists__following {
+		border: 2px solid blue;
+	}
+	.lists__followers {
+		border: 2px solid orange;
+	}
+}
+
+.active {
+	border-bottom: 2px solid $main-blueColor;
+	color: $main-blueColor;
 }

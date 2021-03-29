@@ -7,6 +7,7 @@ import mainReducer from './store/reducers/mainReducer';
 import tweetReducer from './store/reducers/tweetReducer';
 import profileReducer from './store/reducers/profileReducer';
 import bookmarkReducer from './store/reducers/bookmarkReducer';
+import listsReducer from './store/reducers/listsReducer';
 import App from './App';
 
 const rootReducer = combineReducers({
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
 	tweet: tweetReducer,
 	profile: profileReducer,
 	bookmarks: bookmarkReducer,
+	lists: listsReducer,
 });
 
 const store = createStore(rootReducer);
