@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import ProfilePage from './pages/ProfilePage';
 import TweetStatus from './pages/TweetStatus';
 import Bookmarks from './pages/Bookmarks';
+import Lists from './pages/Lists';
 
 import {
 	BrowserRouter as Router,
@@ -33,6 +34,7 @@ function App() {
 					<Route exact path="/profile/:username" component={ProfilePage} />
 					<Route exact path="/status/:postId" component={TweetStatus} />
 					<Route exact path="/bookmarks/:userId" component={Bookmarks} />
+					<Route exact path="/lists/:userId" component={Lists} />
 					<Redirect to="/" />
 				</Switch>
 			</Router>

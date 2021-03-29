@@ -43,7 +43,11 @@ const Sidebar = ({ username, userId, user }) => {
 						IconComponent={BookmarkBorderOutlinedIcon}
 						userId={userId}
 					/>
-					<ListButton listItem="Lists" IconComponent={ListAltOutlinedIcon} />
+					<ListButton
+						listItem="Lists"
+						IconComponent={ListAltOutlinedIcon}
+						userId={userId}
+					/>
 					<ListButton
 						listItem="Profile"
 						IconComponent={AccountCircleOutlinedIcon}
