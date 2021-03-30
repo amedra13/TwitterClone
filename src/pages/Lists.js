@@ -39,33 +39,33 @@ const Lists = ({ user, following, followers, onLoadLists }) => {
 				</div>
 				<div
 					className="lists__following"
-					onClick={() => console.log(following)}
+					// onClick={() => console.log(following)}
 				>
 					{active === 'following' &&
 						following?.map((person, i) => (
 							<ListItem
 								key={person._id}
-								name={person.name}
-								username={person.userName}
-								aboutMe={person.aboutMe}
+								userId={user._id}
+								person={person}
 								delay={i}
 								animation="slideRight"
+								following={user.following.includes(person.userName)}
 							/>
 						))}
 				</div>
 				<div
 					className="lists__followers"
-					onClick={() => console.log(followers)}
+					// onClick={() => console.log(followers)}
 				>
 					{active === 'followers' &&
 						followers?.map((person, i) => (
 							<ListItem
 								key={person._id}
-								name={person.name}
-								username={person.userName}
-								aboutMe={person.aboutMe}
+								userId={user._id}
+								person={person}
 								delay={i}
 								animation="slideLeft"
+								following={user.following.includes(person.userName)}
 							/>
 						))}
 				</div>
