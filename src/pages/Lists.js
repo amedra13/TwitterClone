@@ -14,7 +14,6 @@ const Lists = ({ user, following, followers, onLoadLists }) => {
 			const response = await axios.get(
 				`http://localhost:8080/loadLists/${user?._id}`
 			);
-			console.log(response.data.followersList);
 			onLoadLists(response.data.followersList, response.data.followingList);
 		};
 		loadLists();
@@ -42,13 +41,33 @@ const Lists = ({ user, following, followers, onLoadLists }) => {
 					className="lists__following"
 					onClick={() => console.log(following)}
 				>
-					<ListItem />
+					{active === 'following' &&
+						following?.map((person, i) => (
+							<ListItem
+								key={person._id}
+								name={person.name}
+								username={person.userName}
+								aboutMe={person.aboutMe}
+								delay={i}
+								animation="slideRight"
+							/>
+						))}
 				</div>
 				<div
 					className="lists__followers"
 					onClick={() => console.log(followers)}
 				>
-					<h1>Followers Component</h1>
+					{active === 'followers' &&
+						followers?.map((person, i) => (
+							<ListItem
+								key={person._id}
+								name={person.name}
+								username={person.userName}
+								aboutMe={person.aboutMe}
+								delay={i}
+								animation="slideLeft"
+							/>
+						))}
 				</div>
 			</div>
 			<Trend />

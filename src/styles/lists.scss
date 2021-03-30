@@ -1,5 +1,37 @@
+@keyframes topIn {
+	from {
+		opacity: 0;
+		transform: translateY(-30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+@keyframes slideLeft {
+	from {
+		opacity: 0;
+		transform: translateX(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+@keyframes slideRight {
+	from {
+		opacity: 0;
+		transform: translateX(-30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
 .lists {
 	display: flex;
+	height: 100vh;
 }
 .lists__container {
 	flex: 0.5;
@@ -17,15 +49,72 @@
 			color: post-textColor;
 		}
 	}
-	.lists__following {
-		border: 2px solid blue;
-	}
-	.lists__followers {
-		border: 2px solid orange;
-	}
+	// .lists__following {
+	// 	border: 2px solid blue;
+	// }
+	// .lists__followers {
+	// 	border: 2px solid orange;
+	// }
 }
 
 .active {
 	border-bottom: 2px solid $main-blueColor;
 	color: $main-blueColor;
+}
+
+.listItem {
+	opacity: 0;
+	height: 75px;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid $main-borderColor;
+	transition: all 200ms ease-in;
+
+	&:hover {
+		background-color: rgba(230, 230, 230, 0.295);
+	}
+	.listItem__userInfo {
+		flex: 1;
+	}
+	.listItem__name {
+		display: flex;
+		align-items: center;
+		.link {
+			text-decoration: none;
+			color: $post-textColor;
+			transition: all 100ms ease-in-out;
+			margin: 0 7px;
+			&:hover {
+				color: $main-blueColor;
+				text-decoration: underline;
+			}
+		}
+	}
+	.listItem__buttonContainer {
+		button {
+			height: 30px;
+			width: 100px;
+			border-radius: 12px;
+			border: none;
+			margin: 0 10px;
+			background-color: $main-blueColor;
+			transition: all 150ms ease-in-out;
+			color: white;
+			&:focus {
+				outline: none;
+			}
+			&:hover {
+				background-color: lightblue;
+			}
+		}
+	}
+}
+.slidein {
+	animation: topIn 400ms ease-in-out forwards;
+}
+.slideRight {
+	animation: slideRight 400ms ease-in-out forwards;
+}
+.slideLeft {
+	animation: slideLeft 400ms ease-in-out forwards;
 }

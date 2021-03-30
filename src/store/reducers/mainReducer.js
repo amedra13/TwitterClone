@@ -1,7 +1,5 @@
 const initialState = {
 	user: 'THIS IS ANDRES DUUUUUU',
-	profileUser: null,
-	profilePosts: null,
 	feedPosts: null,
 	isLoggedIn: false,
 	isUser: false,
