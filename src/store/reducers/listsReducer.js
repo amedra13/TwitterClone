@@ -11,6 +11,16 @@ const listsReducer = (state = initialState, action) => {
 				following: action.followingList,
 				followers: action.followersList,
 			};
+		case 'RELOAD_FOLLOWING':
+			return {
+				...state,
+				following: action.followingList,
+			};
+		case 'RELOAD_FOLLOWERS':
+			return {
+				...state,
+				followers: action.followersList,
+			};
 		default:
 			return state;
 	}

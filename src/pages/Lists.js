@@ -6,18 +6,39 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import * as actions from '../store/actions/index';
 
-const Lists = ({ user, following, followers, onLoadLists }) => {
+const Lists = ({
+	user,
+	following,
+	followers,
+	onLoadLists,
+	onReloadFollowing,
+	onReloadFollowers,
+}) => {
 	const [active, setActive] = useState('following');
 
 	useEffect(() => {
 		const loadLists = async () => {
 			const response = await axios.get(
-				`http://localhost:8080/loadLists/${user?._id}`
+				`http://localhost:8080/reloadFollowing/${user?._id}`
 			);
-			onLoadLists(response.data.followersList, response.data.followingList);
+			onReloadFollowing(response.data.list);
 		};
 		loadLists();
-	}, [user, onLoadLists]);
+	}, [user, onReloadFollowing]);
+
+	const reloadFollowing = async () => {
+		const response = await axios.get(
+			`http://localhost:8080/reloadFollowing/${user?._id}`
+		);
+		onReloadFollowing(response.data.list);
+	};
+	const reloadFollowers = async () => {
+		const response = await axios.get(
+			`http://localhost:8080/reloadFollowers/${user?._id}`
+		);
+		console.log(response.data.list);
+		onReloadFollowers(response.data.list);
+	};
 
 	return (
 		<div className="lists">
@@ -26,21 +47,24 @@ const Lists = ({ user, following, followers, onLoadLists }) => {
 				<div className="lists__links">
 					<h3
 						className={`${active === 'following' && 'active'}`}
-						onClick={() => setActive('following')}
+						onClick={() => {
+							reloadFollowing();
+							setActive('following');
+						}}
 					>
 						Following
 					</h3>
 					<h3
 						className={`${active === 'followers' && 'active'}`}
-						onClick={() => setActive('followers')}
+						onClick={() => {
+							reloadFollowers();
+							setActive('followers');
+						}}
 					>
 						Followers
 					</h3>
 				</div>
-				<div
-					className="lists__following"
-					// onClick={() => console.log(following)}
-				>
+				<div className="lists__following">
 					{active === 'following' &&
 						following?.map((person, i) => (
 							<ListItem
@@ -49,13 +73,14 @@ const Lists = ({ user, following, followers, onLoadLists }) => {
 								person={person}
 								delay={i}
 								animation="slideRight"
-								following={user.following.includes(person.userName)}
+								following={true}
+								update={reloadFollowing}
 							/>
 						))}
 				</div>
 				<div
 					className="lists__followers"
-					// onClick={() => console.log(followers)}
+					onClick={() => console.log('Following List => ', following)}
 				>
 					{active === 'followers' &&
 						followers?.map((person, i) => (
@@ -65,7 +90,10 @@ const Lists = ({ user, following, followers, onLoadLists }) => {
 								person={person}
 								delay={i}
 								animation="slideLeft"
-								following={user.following.includes(person.userName)}
+								following={following.some(
+									(user) => user.userName === person?.userName
+								)}
+								update={reloadFollowing}
 							/>
 						))}
 				</div>
@@ -86,6 +114,8 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		onLoadLists: (followers, following) =>
 			dispatch(actions.loadLists(followers, following)),
+		onReloadFollowing: (list) => dispatch(actions.reloadFollowing(list)),
+		onReloadFollowers: (list) => dispatch(actions.reloadFollowers(list)),
 	};
 };
 
