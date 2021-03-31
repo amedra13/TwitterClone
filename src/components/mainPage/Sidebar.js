@@ -53,7 +53,11 @@ const Sidebar = ({ username, userId, user }) => {
 						IconComponent={AccountCircleOutlinedIcon}
 						username={username}
 					/>
-					<ListButton listItem="More" IconComponent={MoreHorizOutlinedIcon} />
+					<ListButton
+						listItem="More"
+						IconComponent={MoreHorizOutlinedIcon}
+						userId={userId}
+					/>
 				</div>
 				<div className="sidebar__tweetButton">
 					<TweetButton withIcon clickFunction={modalHandler} />

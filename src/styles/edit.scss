@@ -1,0 +1,16 @@
+.edit {
+	display: flex;
+	height: 100vh;
+	.edit__container {
+		flex: 0.5;
+		height: 100%;
+		border-left: 1px solid $main-borderColor;
+		border-right: 1px solid $main-borderColor;
+		h3 {
+			line-height: 58px;
+			padding: 0 20px;
+			color: post-textColor;
+			border-bottom: 1px solid $main-borderColor;
+		}
+	}
+}
