@@ -14,3 +14,90 @@
 		}
 	}
 }
+
+.edit__account {
+	form {
+		width: 100%;
+	}
+	h2 {
+		font-family: $post-textFont;
+		margin-left: 20px;
+		margin-top: 10px;
+	}
+	.form__section {
+		height: 100px;
+		display: flex;
+		padding: 10px;
+		box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+			rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+		margin: 20px 0;
+		div {
+			width: 40%;
+			padding: 10px;
+		}
+		label {
+			float: right;
+			font-size: 20px;
+			font-family: $post-textFont;
+		}
+		input {
+			height: 40px;
+			width: 100%;
+			padding-left: 15px;
+			border-radius: 10px;
+			border: 1px solid $post-textColor;
+			&:focus {
+				outline: none;
+				border: 1px solid $main-blueColor;
+				box-shadow: $main-blueColor 0px 0px 5px 0px,
+					$main-blueColor 0px 0px 1px 0px;
+			}
+		}
+	}
+	.form__buttonContainer {
+		display: flex;
+		justify-content: center;
+		.changeInfo {
+			width: 100px;
+			height: 35px;
+			background-color: $main-blueColor;
+			border-radius: 10px;
+			border: none;
+			font-weight: bold;
+			color: white;
+			transition: all 250ms ease-in;
+			margin: 10px;
+			&:hover {
+				background-color: white;
+				color: $main-blueColor;
+				border: 1px solid $main-blueColor;
+			}
+			&:focus {
+				outline: none;
+			}
+		}
+	}
+	.deleteContainer {
+		display: flex;
+		justify-content: center;
+		button {
+			width: 180px;
+			height: 35px;
+			background-color: rgb(233, 40, 88);
+			border-radius: 10px;
+			border: none;
+			font-weight: bold;
+			color: white;
+			transition: all 250ms ease-in;
+			margin: 10px;
+			&:hover {
+				background-color: white;
+				color: rgb(233, 40, 88);
+				border: 1px solid rgb(233, 40, 88);
+			}
+			&:focus {
+				outline: none;
+			}
+		}
+	}
+}
