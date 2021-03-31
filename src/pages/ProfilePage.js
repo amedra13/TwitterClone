@@ -106,7 +106,7 @@ const ProfilePage = ({
 								</div>
 								<div>
 									<LinkOutlinedIcon />
-									<p>{'location'}</p>
+									<p>Website</p>
 								</div>
 								<div>
 									<EventNoteOutlinedIcon />

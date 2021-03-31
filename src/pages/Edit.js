@@ -1,22 +1,43 @@
 import React, { useState } from 'react';
 import Sidebar from '../components/mainPage/Sidebar';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import Trend from '../components/mainPage/Trend';
 import axios from 'axios';
 
 const Edit = ({ user }) => {
+	const history = useHistory();
 	const [name, setName] = useState('');
-	const [username, setUsername] = useState('');
+	// const [username, setUsername] = useState('');
 	const [aboutMe, setAboutMe] = useState('');
 	const [location, setLocation] = useState('');
-	const updateUser = (e) => {
+	const [error, setError] = useState(null);
+	const [errMessage, setErrMessage] = useState(null);
+
+	const updateUser = async (e) => {
 		e.preventDefault();
-		axios.post(`http://localhost:8080/updateUser/${user?._id}`, {
-			name: name,
-			username: username,
-			aboutMe: aboutMe,
-			location: location,
-		});
+		try {
+			const response = await axios.post(
+				`http://localhost:8080/updateUser/${user?._id}`,
+				{
+					name: name,
+					// username: username,
+					aboutMe: aboutMe,
+					location: location,
+				}
+			);
+			const { errors, errField } = response.data;
+			if (errField) {
+				console.log(errors, errField);
+				setError(errField);
+				setErrMessage(errors);
+			} else {
+				console.log(response.data.message);
+				history.push(`/home/${user._id}`);
+			}
+		} catch (err) {
+			console.log(err);
+		}
 	};
 	return (
 		<div className="edit">
@@ -38,9 +59,12 @@ const Edit = ({ user }) => {
 									value={name}
 									onChange={(e) => setName(e.target.value)}
 								/>
+								{error === 'name' && (
+									<p style={{ color: 'red', margin: '5px' }}>{errMessage}</p>
+								)}
 							</div>
 						</div>
-						<div className="form__section">
+						{/* <div className="form__section">
 							<div>
 								<label htmlFor="username">Current Username</label>
 							</div>
@@ -52,8 +76,11 @@ const Edit = ({ user }) => {
 									value={username}
 									onChange={(e) => setUsername(e.target.value)}
 								/>
+								{error === 'username' && (
+									<p style={{ color: 'red', margin: '5px' }}>{errMessage}</p>
+								)}
 							</div>
-						</div>
+						</div> */}
 						<div className="form__section">
 							<div>
 								<label htmlFor="aboutMe">Current Info</label>
@@ -66,6 +93,9 @@ const Edit = ({ user }) => {
 									value={aboutMe}
 									onChange={(e) => setAboutMe(e.target.value)}
 								/>
+								{error === 'aboutMe' && (
+									<p style={{ color: 'red', margin: '5px' }}>{errMessage}</p>
+								)}
 							</div>
 						</div>
 						<div className="form__section">
@@ -80,10 +110,20 @@ const Edit = ({ user }) => {
 									value={location}
 									onChange={(e) => setLocation(e.target.value)}
 								/>
+								{error === 'location' && (
+									<p style={{ color: 'red', margin: '5px' }}>{errMessage}</p>
+								)}
 							</div>
 						</div>
 						<div className="form__buttonContainer">
-							<button className="changeInfo" type="submit">
+							<button
+								className="changeInfo"
+								type="submit"
+								// onClick={(e) => {
+								// 	e.preventDefault();
+								// 	console.log(name, username, aboutMe, location);
+								// }}
+							>
 								Change Info
 							</button>
 						</div>
