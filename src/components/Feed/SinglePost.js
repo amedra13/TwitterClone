@@ -9,24 +9,18 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
 import Comments from '../Comments';
 import { connect } from 'react-redux';
-import { likeHandler, bookmarkHandler  } from '../../util/helperFunctions';
+import { likeHandler, bookmarkHandler } from '../../util/helperFunctions';
 
-const SinglePost = ({
-	user,
-	post,
-	timePosted,
-	delay,
-	updateFeed,
-}) => {
+const SinglePost = ({ user, post, timePosted, delay, updateFeed }) => {
 	const [showComments, setShowComments] = useState(false);
 	const [retweets, setRetweets] = useState(post.retweets);
 	const history = useHistory();
 
 	const srcImage = post.user.username === '@doradadestroya' ? Dora : StockPhoto;
 	const userLikes = post.favorite.includes(user.userName);
-	const userSaved = post.saved.includes(user._id)
+	const userSaved = post.saved.includes(user._id);
 	const favorited = userLikes ? '#ff99ac' : 'rgba(136, 145, 150, 0.658)';
-	const saved = userSaved ? '#38b000' : 'rgba(136, 145, 150, 0.658)'
+	const saved = userSaved ? '#38b000' : 'rgba(136, 145, 150, 0.658)';
 
 	return (
 		<div className="singlePost" style={{ animationDelay: `${delay * 75}ms` }}>
@@ -41,7 +35,7 @@ const SinglePost = ({
 					</Link>
 					{/* <h4 className="textColor">{post.user.username}</h4>{' '} */}
 					<span>&#183;</span>
-					<h4 className="textColor">{timePosted + 'm'}</h4>
+					<h4 className="textColor">{timePosted}</h4>
 				</div>
 				<div
 					className="singlePost__message"
@@ -92,7 +86,7 @@ const SinglePost = ({
 							style={{ margin: ' 0 10px', color: `${saved}` }}
 							onClick={async () => {
 								await bookmarkHandler(post._id, user?._id);
-								updateFeed()
+								updateFeed();
 							}}
 						/>{' '}
 						{post?.saved.length}

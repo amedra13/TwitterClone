@@ -2,7 +2,7 @@ import React from 'react';
 import FeedHeader from '../Feed/FeedHeader';
 import SinglePost from '../Feed/SinglePost';
 import LoadingPost from '../Feed/LoadingPosts';
-import { getTime } from '../../util/helperFunctions';
+import moment from 'moment';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
@@ -36,7 +36,7 @@ const Feed = ({ posts, userId, onUpdateFeedPosts }) => {
 						<SinglePost
 							key={singlePost._id}
 							post={singlePost}
-							timePosted={getTime(singlePost.createdAt)}
+							timePosted={moment(singlePost.createdAt).fromNow()}
 							delay={i}
 							updateFeed={updateFeed}
 							bookmarkHandler={bookmarkHandler}

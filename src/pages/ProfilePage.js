@@ -12,7 +12,7 @@ import LinkOutlinedIcon from '@material-ui/icons/LinkOutlined';
 import EventNoteOutlinedIcon from '@material-ui/icons/EventNoteOutlined';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import { connect } from 'react-redux';
-import { getTime } from '../util/helperFunctions';
+import moment from 'moment';
 import * as actions from '../store/actions/index';
 import FollowButton from '../components/Buttons/FollowButton';
 
@@ -45,7 +45,13 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const ProfilePage = ({ user, profileUser, profilePosts, onSetProfile, onUpdateFeed }) => {
+const ProfilePage = ({
+	user,
+	profileUser,
+	profilePosts,
+	onSetProfile,
+	onUpdateFeed,
+}) => {
 	const { username } = useParams();
 	const classes = useStyles();
 
@@ -61,12 +67,13 @@ const ProfilePage = ({ user, profileUser, profilePosts, onSetProfile, onUpdateFe
 		getProfileUser();
 	}, [username, onSetProfile]);
 
-	const updateFeed = async() => {
-		const response = await axios.get(`http://localhost:8080/profile/updateComments/${username}`)
+	const updateFeed = async () => {
+		const response = await axios.get(
+			`http://localhost:8080/profile/updateComments/${username}`
+		);
 
-		onUpdateFeed(response.data.updatedPosts)
-	}
-
+		onUpdateFeed(response.data.updatedPosts);
+	};
 
 	return (
 		<div className="profilePage">
@@ -116,7 +123,7 @@ const ProfilePage = ({ user, profileUser, profilePosts, onSetProfile, onUpdateFe
 								<SinglePost
 									key={singlePost._id}
 									post={singlePost}
-									timePosted={getTime(singlePost.createdAt)}
+									timePosted={moment(singlePost.createdAt).fromNow()}
 									delay={i}
 									updateFeed={updateFeed}
 								/>
@@ -143,7 +150,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onSetProfile: (user, posts) => dispatch(actions.setProfile(user, posts)),
-		onUpdateFeed: (posts) => dispatch(actions.updateProfilePosts(posts))
+		onUpdateFeed: (posts) => dispatch(actions.updateProfilePosts(posts)),
 	};
 };
 
