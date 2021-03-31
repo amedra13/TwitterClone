@@ -6,9 +6,10 @@
 	flex: 0.5;
 	border-right: 2px solid $main-borderColor;
 	border-left: 2px solid $main-borderColor;
-	h1 {
-		padding: 8px;
-		padding-left: 15px;
+	.bookmarks__title {
+		line-height: 59px;
+		padding: 0 20px;
+		color: post-textColor;
 		border-bottom: 1px solid $main-borderColor;
 	}
 }

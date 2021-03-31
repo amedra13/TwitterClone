@@ -42,7 +42,7 @@ const Bookmarks = ({ user, bookmarks, onLoadBookmarks, onUpdateBookmarks }) => {
 		<div className="bookmarks">
 			<SideBar username={user?.userName} userId={user?._id} />
 			<div className="bookmarks__posts">
-				<h1>Saved Posts from users</h1>
+				<h3 className="bookmarks__title">Saved Posts from users</h3>
 				{bookmarks ? (
 					bookmarks.map((post, i) => (
 						<SinglePost

@@ -46,7 +46,7 @@ const Lists = ({
 			<div className="lists__container">
 				<div className="lists__links">
 					<h3
-						className={`${active === 'following' && 'active'}`}
+						className={`${active === 'following' && 'listActive'}`}
 						onClick={() => {
 							reloadFollowing();
 							setActive('following');
@@ -55,7 +55,7 @@ const Lists = ({
 						Following
 					</h3>
 					<h3
-						className={`${active === 'followers' && 'active'}`}
+						className={`${active === 'followers' && 'listActive'}`}
 						onClick={() => {
 							reloadFollowers();
 							setActive('followers');
