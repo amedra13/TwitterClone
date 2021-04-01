@@ -45,6 +45,7 @@
 			width: 100%;
 			padding-left: 15px;
 			border-radius: 10px;
+			color: #5396a3;
 			border: 1px solid $post-textColor;
 			&:focus {
 				outline: none;
@@ -52,6 +53,9 @@
 				box-shadow: $main-blueColor 0px 0px 5px 0px,
 					$main-blueColor 0px 0px 1px 0px;
 			}
+		}
+		input::placeholder {
+			color: #65929ba1;
 		}
 	}
 	.form__buttonContainer {

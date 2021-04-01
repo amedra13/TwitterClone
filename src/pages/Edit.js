@@ -8,7 +8,7 @@ import axios from 'axios';
 const Edit = ({ user }) => {
 	const history = useHistory();
 	const [name, setName] = useState('');
-	// const [username, setUsername] = useState('');
+	const [username, setUsername] = useState('');
 	const [aboutMe, setAboutMe] = useState('');
 	const [location, setLocation] = useState('');
 	const [error, setError] = useState(null);
@@ -21,7 +21,8 @@ const Edit = ({ user }) => {
 				`http://localhost:8080/updateUser/${user?._id}`,
 				{
 					name: name,
-					// username: username,
+					oldUsername: user.userName,
+					newUsername: username,
 					aboutMe: aboutMe,
 					location: location,
 				}
@@ -64,7 +65,7 @@ const Edit = ({ user }) => {
 								)}
 							</div>
 						</div>
-						{/* <div className="form__section">
+						<div className="form__section">
 							<div>
 								<label htmlFor="username">Current Username</label>
 							</div>
@@ -80,7 +81,7 @@ const Edit = ({ user }) => {
 									<p style={{ color: 'red', margin: '5px' }}>{errMessage}</p>
 								)}
 							</div>
-						</div> */}
+						</div>
 						<div className="form__section">
 							<div>
 								<label htmlFor="aboutMe">Current Info</label>
@@ -116,14 +117,7 @@ const Edit = ({ user }) => {
 							</div>
 						</div>
 						<div className="form__buttonContainer">
-							<button
-								className="changeInfo"
-								type="submit"
-								// onClick={(e) => {
-								// 	e.preventDefault();
-								// 	console.log(name, username, aboutMe, location);
-								// }}
-							>
+							<button className="changeInfo" type="submit">
 								Change Info
 							</button>
 						</div>
