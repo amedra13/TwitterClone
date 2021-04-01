@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Sidebar from '../components/mainPage/Sidebar';
 import Trends from '../components/mainPage/Trend';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import Comments from '../components/Comments';
 import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
@@ -52,7 +53,9 @@ const TweetStatus = ({ user, tweet, comments, onSetStatus, onSetComments }) => {
 					<div className="message">
 						<p>{tweet?.message}</p>
 					</div>
-					<p className="time">{tweet?.createdAt}</p>
+					<p className="time">
+						{moment(tweet?.createdAt).format('dddd, MMMM Do YYYY, h:mm:ss a')}
+					</p>
 					<div className="tweet__headerActivity">
 						<p>{tweet?.retweets} Retweets</p>
 						<p>{tweet?.favorite.length} Likes</p>
