@@ -77,7 +77,7 @@ const Edit = ({ user }) => {
 									value={username}
 									onChange={(e) => setUsername(e.target.value)}
 								/>
-								{error === 'username' && (
+								{error === 'newUsername' && (
 									<p style={{ color: 'red', margin: '5px' }}>{errMessage}</p>
 								)}
 							</div>
