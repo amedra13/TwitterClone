@@ -12,7 +12,7 @@ const ListItem = ({ userId, person, delay, animation, following, update }) => {
 		const response = await axios.post(
 			`http://localhost:8080/loadLists/${toggleAction}`,
 			{
-				otherUsername: person.userName,
+				otherId: person._id,
 				userId: userId,
 			}
 		);

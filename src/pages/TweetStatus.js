@@ -32,7 +32,7 @@ const TweetStatus = ({ user, tweet, comments, onSetStatus, onSetComments }) => {
 		onSetComments(response.data.tweetComments);
 	};
 
-	const userLikes = tweet?.favorite.includes(user.userName);
+	const userLikes = tweet?.favorite.includes(user._id);
 	const userSaved = tweet?.saved.includes(user._id);
 	const favorited = userLikes ? '#ff99ac' : 'rgba(136, 145, 150, 0.658)';
 	const saved = userSaved ? '#38b000' : 'rgba(136, 145, 150, 0.658)';
@@ -45,8 +45,8 @@ const TweetStatus = ({ user, tweet, comments, onSetStatus, onSetComments }) => {
 					<div className="tweet__headerInfo">
 						<Avatar>JT</Avatar>
 						<div>
-							<p>{tweet?.user.name}</p>
-							<p>{tweet?.user.username}</p>
+							<p>{tweet?.creator.name}</p>
+							<p>{tweet?.creator.username}</p>
 						</div>
 					</div>
 					<div className="message">

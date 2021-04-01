@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import SideBar from '../components/mainPage/Sidebar';
 import SinglePost from '../components/Feed/SinglePost';
 import Trend from '../components/mainPage/Trend';
-import { getTime } from '../util/helperFunctions';
+import moment from 'moment';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import * as actions from '../store/actions/index';
@@ -48,8 +48,7 @@ const Bookmarks = ({ user, bookmarks, onLoadBookmarks, onUpdateBookmarks }) => {
 						<SinglePost
 							key={post._id}
 							post={post}
-							timePosted={getTime(post.createdAt)}
-							// increaseLike={likeHandler}
+							timePosted={moment(post.createdAt).fromNow()}
 							delay={i}
 							updateFeed={updateBookmarks}
 							bookmarkHandler={bookmarkHandler}

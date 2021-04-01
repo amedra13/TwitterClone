@@ -16,8 +16,9 @@ const SinglePost = ({ user, post, timePosted, delay, updateFeed }) => {
 	const [retweets, setRetweets] = useState(post.retweets);
 	const history = useHistory();
 
-	const srcImage = post.user.username === '@doradadestroya' ? Dora : StockPhoto;
-	const userLikes = post.favorite.includes(user.userName);
+	const srcImage =
+		post?.creator.username === '@doradadestroya' ? Dora : StockPhoto;
+	const userLikes = post.favorite.includes(user._id);
 	const userSaved = post.saved.includes(user._id);
 	const favorited = userLikes ? '#ff99ac' : 'rgba(136, 145, 150, 0.658)';
 	const saved = userSaved ? '#38b000' : 'rgba(136, 145, 150, 0.658)';
@@ -29,9 +30,12 @@ const SinglePost = ({ user, post, timePosted, delay, updateFeed }) => {
 			</div>
 			<div className="singlePost__content">
 				<div className="singlePost__userInfo">
-					<h4>{post.user.name}</h4>
-					<Link className="link" to={`/profile/${post.user.username.slice(1)}`}>
-						{post.user.username}
+					<h4>{post.creator.name}</h4>
+					<Link
+						className="link"
+						to={`/profile/${post.creator.username.slice(1)}`}
+					>
+						{post.creator.username}
 					</Link>
 					{/* <h4 className="textColor">{post.user.username}</h4>{' '} */}
 					<span>&#183;</span>
@@ -74,7 +78,7 @@ const SinglePost = ({ user, post, timePosted, delay, updateFeed }) => {
 							}}
 							onClick={async () => {
 								// increaseLike(post._id, 'favorite');
-								await likeHandler(post._id, user?.userName);
+								await likeHandler(post._id, user?._id);
 								updateFeed();
 							}}
 						/>{' '}
