@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import SingleTrend from '../Trends/SingleTrend';
 import SearchIcon from '@material-ui/icons/Search';
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 import { makeStyles } from '@material-ui/core/styles';
+import Popover from '@material-ui/core/Popover';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
 	searchTwitter: {
@@ -17,7 +19,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Trend = () => {
+	const [search, setSearch] = useState('');
+	const [searchResults, setSearchResults] = useState(null);
+	const [anchorEl, setAnchorEl] = useState(null);
+
 	const classes = useStyles();
+
+	useEffect(() => {
+		const searchUser = setTimeout(() => {
+			if (search !== '') {
+				const inputField = document.getElementById('searchbar');
+				// console.log(input);
+				console.log(`Looking for ${search}`);
+				setAnchorEl(inputField);
+				setSearchResults(search);
+			}
+		}, 800);
+		return () => clearTimeout(searchUser);
+	}, [search]);
 
 	const fakeTrend = {
 		section: 'worldwide',
@@ -42,16 +61,41 @@ const Trend = () => {
 			<div className="trendContainer">
 				<div className="trend__searchbar">
 					<Input
+						id="searchbar"
 						className={classes.searchTwitter}
 						placeholder="Seach Twitter"
 						disableUnderline
 						fullWidth
+						value={search}
+						autoFocus
+						onChange={(e) => {
+							setSearch(e.target.value);
+						}}
 						startAdornment={
 							<InputAdornment position="start">
 								<SearchIcon />
 							</InputAdornment>
 						}
 					/>
+
+					<Popover
+						open={Boolean(anchorEl)}
+						anchorEl={anchorEl}
+						onClose={() => setAnchorEl(null)}
+						anchorOrigin={{
+							vertical: 'bottom',
+							horizontal: 'right',
+						}}
+						transformOrigin={{
+							vertical: 'top',
+							horizontal: 'right',
+						}}
+						style={{ border: '2px solid green' }}
+					>
+						<div style={{ borderColor: 'red', width: '320px', height: '50px' }}>
+							<p style={{ width: '200px' }}>Looking for {search}</p>
+						</div>
+					</Popover>
 				</div>
 
 				<div className="trend__sections">
