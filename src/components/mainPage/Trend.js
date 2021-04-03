@@ -5,8 +5,9 @@ import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
 import Popover from '@material-ui/core/Popover';
-import Typography from '@material-ui/core/Typography';
+import SearchResults from '../Trends/SearchResult';
 
 const useStyles = makeStyles((theme) => ({
 	searchTwitter: {
@@ -26,13 +27,15 @@ const Trend = () => {
 	const classes = useStyles();
 
 	useEffect(() => {
-		const searchUser = setTimeout(() => {
+		const searchUser = setTimeout(async () => {
 			if (search !== '') {
 				const inputField = document.getElementById('searchbar');
-				// console.log(input);
-				console.log(`Looking for ${search}`);
 				setAnchorEl(inputField);
-				setSearchResults(search);
+				const response = await axios.get(
+					`http://localhost:8080/searchFriends/${search}`
+				);
+				console.log(response.data);
+				setSearchResults(response.data.result);
 			}
 		}, 800);
 		return () => clearTimeout(searchUser);
@@ -84,16 +87,40 @@ const Trend = () => {
 						onClose={() => setAnchorEl(null)}
 						anchorOrigin={{
 							vertical: 'bottom',
-							horizontal: 'right',
+							horizontal: 'center',
 						}}
 						transformOrigin={{
 							vertical: 'top',
-							horizontal: 'right',
+							horizontal: 'center',
 						}}
-						style={{ border: '2px solid green' }}
 					>
-						<div style={{ borderColor: 'red', width: '320px', height: '50px' }}>
-							<p style={{ width: '200px' }}>Looking for {search}</p>
+						<div className="popover">
+							<div className="popover__header">
+								<p>Search Results .....</p>
+							</div>
+							{searchResults && (
+								<SearchResults name={searchResults} username={searchResults} />
+							)}
+							<SearchResults
+								name="Andres Medrano"
+								username="@doradasdestroya"
+							/>
+							<SearchResults
+								name="Andres Medrano"
+								username="@doradasdestroya"
+							/>
+							<SearchResults
+								name="Andres Medrano"
+								username="@doradasdestroya"
+							/>
+							<SearchResults
+								name="Andres Medrano"
+								username="@doradasdestroya"
+							/>
+							<SearchResults
+								name="Andres Medrano"
+								username="@doradasdestroya"
+							/>
 						</div>
 					</Popover>
 				</div>

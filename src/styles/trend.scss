@@ -47,3 +47,34 @@
 	font-family: $post-textFont;
 	margin: 3px 0;
 }
+
+.popover {
+	width: 300px;
+	.popover__header {
+		border-bottom: 1px solid $main-borderColor;
+		padding-left: 10px;
+		height: 35px;
+		display: flex;
+		align-items: center;
+		font-family: $post-textFont;
+		font-weight: bold;
+	}
+	.searchResult {
+		display: flex;
+		align-items: center;
+		transition: all 200ms ease-in;
+		p {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			color: $post-textColor;
+		}
+		span {
+			font-weight: bold;
+			color: black;
+		}
+		&:hover {
+			background-color: $main-borderColor;
+		}
+	}
+}
