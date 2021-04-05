@@ -30,12 +30,16 @@ const Trend = () => {
 		const searchUser = setTimeout(async () => {
 			if (search !== '') {
 				const inputField = document.getElementById('searchbar');
-				setAnchorEl(inputField);
 				const response = await axios.get(
 					`http://localhost:8080/searchFriends/${search}`
 				);
 				console.log(response.data.result);
-				setSearchResults(response.data.result);
+				if (response.data.result.length === 0) {
+					setSearchResults(null);
+				} else {
+					setSearchResults(response.data.result);
+				}
+				setAnchorEl(inputField);
 			}
 		}, 800);
 		return () => clearTimeout(searchUser);
@@ -98,29 +102,13 @@ const Trend = () => {
 							<div className="popover__header">
 								<p>Search Results .....</p>
 							</div>
-							{searchResults?.map((person) => (
-								<SearchResults key={person._id} person={person} />
-							))}
-							{/* <SearchResults
-								person={
-									name: 'Andres Medrano',
-
-								}
-								name="Andres Medrano"
-								username="@doradasdestroya"
-							/>
-							<SearchResults
-								name="Andres Medrano"
-								username="@doradasdestroya"
-							/>
-							<SearchResults
-								name="Andres Medrano"
-								username="@doradasdestroya"
-							/>
-							<SearchResults
-								name="Andres Medrano"
-								username="@doradasdestroya"
-							/> */}
+							{searchResults === null ? (
+								<SearchResults person={null} />
+							) : (
+								searchResults?.map((person) => (
+									<SearchResults key={person._id} person={person} />
+								))
+							)}
 						</div>
 					</Popover>
 				</div>
