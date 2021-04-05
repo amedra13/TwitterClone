@@ -1,10 +1,10 @@
 import React from 'react';
 import HashLoader from 'react-spinners/HashLoader';
 
-const LoadingPosts = () => {
+const LoadingPosts = ({ name }) => {
 	return (
 		<div className="loadingPosts">
-			<h2>Loading Tweets...</h2>
+			<h2>Loading {name}...</h2>
 			<HashLoader color="#00b4d8" />
 		</div>
 	);

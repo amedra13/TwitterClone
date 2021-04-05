@@ -3,6 +3,7 @@ import SideBar from '../components/mainPage/Sidebar';
 import SinglePost from '../components/Feed/SinglePost';
 import Trend from '../components/mainPage/Trend';
 import moment from 'moment';
+import SaveOutlinedIcon from '@material-ui/icons/SaveOutlined';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import * as actions from '../store/actions/index';
@@ -42,7 +43,7 @@ const Bookmarks = ({ user, bookmarks, onLoadBookmarks, onUpdateBookmarks }) => {
 		<div className="bookmarks">
 			<SideBar username={user?.userName} userId={user?._id} />
 			<div className="bookmarks__posts">
-				<h3 className="bookmarks__title">Saved Posts from users</h3>
+				<h3 className="bookmarks__title">Saved Posts from Users</h3>
 				{bookmarks ? (
 					bookmarks.map((post, i) => (
 						<SinglePost
@@ -55,7 +56,16 @@ const Bookmarks = ({ user, bookmarks, onLoadBookmarks, onUpdateBookmarks }) => {
 						/>
 					))
 				) : (
-					<LoadingPosts />
+					<LoadingPosts name="Bookmarks" />
+				)}
+				{bookmarks && bookmarks.length === 0 && (
+					<div className="bookmarks__empty">
+						<h2>No Bookmarks Saved</h2>
+						<SaveOutlinedIcon
+							fontSize="large"
+							style={{ color: '#00b4d8', margin: ' 0 10px' }}
+						/>
+					</div>
 				)}
 			</div>
 			<Trend />

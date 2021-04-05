@@ -3,6 +3,7 @@ import Sidebar from '../components/mainPage/Sidebar';
 import Trend from '../components/mainPage/Trend';
 import ListItem from '../components/lists/ListItem';
 import { connect } from 'react-redux';
+import PeopleIcon from '@material-ui/icons/People';
 import axios from 'axios';
 import * as actions from '../store/actions/index';
 
@@ -77,11 +78,17 @@ const Lists = ({
 								update={reloadFollowing}
 							/>
 						))}
+					{active === 'following' && following.length === 0 && (
+						<div className="list__empty">
+							<h2>Not Following anyone yet..</h2>
+							<PeopleIcon
+								fontSize="large"
+								style={{ color: '#00b4d8', margin: ' 0 10px' }}
+							/>
+						</div>
+					)}
 				</div>
-				<div
-					className="lists__followers"
-					onClick={() => console.log('Following List => ', following)}
-				>
+				<div className="lists__followers">
 					{active === 'followers' &&
 						followers?.map((person, i) => (
 							<ListItem
@@ -96,6 +103,15 @@ const Lists = ({
 								update={reloadFollowing}
 							/>
 						))}
+					{active === 'followers' && followers.length === 0 && (
+						<div className="list__empty">
+							<h2>No Followers yet..</h2>
+							<PeopleIcon
+								fontSize="large"
+								style={{ color: '#00b4d8', margin: ' 0 10px' }}
+							/>
+						</div>
+					)}
 				</div>
 			</div>
 			<Trend />

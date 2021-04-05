@@ -112,6 +112,15 @@
 		}
 	}
 }
+.list__empty {
+	height: 300px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	h2 {
+		color: $post-textColor;
+	}
+}
 .slidein {
 	animation: topIn 400ms ease-in-out forwards;
 }

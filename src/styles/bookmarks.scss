@@ -12,4 +12,13 @@
 		color: post-textColor;
 		border-bottom: 1px solid $main-borderColor;
 	}
+	.bookmarks__empty {
+		height: 300px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		h2 {
+			color: $post-textColor;
+		}
+	}
 }

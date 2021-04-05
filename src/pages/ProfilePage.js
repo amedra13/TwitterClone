@@ -130,7 +130,7 @@ const ProfilePage = ({
 							);
 						})
 					) : (
-						<LoadingPost />
+						<LoadingPost name="Tweets" />
 					)}
 				</div>
 			</div>
