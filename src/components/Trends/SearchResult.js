@@ -1,17 +1,23 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-const SearchResult = ({ name, username }) => {
+import { Link } from 'react-router-dom';
+const SearchResult = ({ person }) => {
 	return (
 		<div className="searchResult">
-			<Avatar
-				style={{ width: 40, height: 40, margin: '10px' }}
-				variant="rounded"
+			<Link
+				className="search__link"
+				to={`/profile/${person?.userName.slice(1)}`}
 			>
-				AM
-			</Avatar>
-			<p>
-				<span>{name}</span> {username}
-			</p>
+				<Avatar
+					style={{ width: 40, height: 40, margin: '10px' }}
+					variant="rounded"
+				>
+					AM
+				</Avatar>
+				<p>
+					<span>{person.name}</span> {person.userName}
+				</p>
+			</Link>
 		</div>
 	);
 };

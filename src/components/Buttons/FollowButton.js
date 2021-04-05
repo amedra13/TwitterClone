@@ -37,16 +37,17 @@ const FollowButton = ({
 	const classes = useStyles();
 
 	useEffect(() => {
-		const isFollowing = user?.following?.indexOf(profileUser?.userName) !== -1;
+		const isFollowing = user?.following?.indexOf(profileUser?._id) !== -1;
 		const isUser = user?.userName === profileUser?.userName;
 		onFollowStatus(isUser, isFollowing);
 	});
 
 	const toggleFollow = async () => {
+		console.log(profileUser);
 		try {
 			const followingList = await axios.post('http://localhost:8080/follow', {
 				isFollowing: isFollowing,
-				username: profileUser?.userName,
+				profileId: profileUser?._id,
 				currentUserId: user._id,
 			});
 			console.log(followingList.data.updatedFollow);
@@ -71,7 +72,7 @@ const FollowButton = ({
 const mapStateToProps = (state) => {
 	return {
 		user: state.main.user,
-		profileUser: state.main.profileUser,
+		profileUser: state.profile.profileUser,
 		isUser: state.main.isUser,
 		isFollowing: state.main.isFollowing,
 	};

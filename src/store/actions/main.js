@@ -7,7 +7,6 @@ export const loadUser = (user, feedPosts) => {
 };
 
 export const updateFollow = (list) => {
-	console.log('updated List ==>>', list);
 	return {
 		type: 'UPDATE_FOLLOW',
 		updatedList: list,

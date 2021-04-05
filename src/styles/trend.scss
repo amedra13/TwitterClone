@@ -59,10 +59,11 @@
 		font-family: $post-textFont;
 		font-weight: bold;
 	}
-	.searchResult {
+	.search__link {
 		display: flex;
 		align-items: center;
 		transition: all 200ms ease-in;
+		text-decoration: none;
 		p {
 			white-space: nowrap;
 			overflow: hidden;

@@ -34,7 +34,7 @@ const Trend = () => {
 				const response = await axios.get(
 					`http://localhost:8080/searchFriends/${search}`
 				);
-				console.log(response.data);
+				console.log(response.data.result);
 				setSearchResults(response.data.result);
 			}
 		}, 800);
@@ -98,10 +98,14 @@ const Trend = () => {
 							<div className="popover__header">
 								<p>Search Results .....</p>
 							</div>
-							{searchResults && (
-								<SearchResults name={searchResults} username={searchResults} />
-							)}
-							<SearchResults
+							{searchResults?.map((person) => (
+								<SearchResults key={person._id} person={person} />
+							))}
+							{/* <SearchResults
+								person={
+									name: 'Andres Medrano',
+
+								}
 								name="Andres Medrano"
 								username="@doradasdestroya"
 							/>
@@ -116,11 +120,7 @@ const Trend = () => {
 							<SearchResults
 								name="Andres Medrano"
 								username="@doradasdestroya"
-							/>
-							<SearchResults
-								name="Andres Medrano"
-								username="@doradasdestroya"
-							/>
+							/> */}
 						</div>
 					</Popover>
 				</div>
