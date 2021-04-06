@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import IconButton from '@material-ui/core/IconButton';
 import PostAddIcon from '@material-ui/icons/PostAdd';
@@ -8,7 +8,25 @@ import Conversation from '../components/message/Conversation';
 import axios from 'axios';
 import * as actions from '../store/actions/index';
 
-const Messages = ({ user, messages, onLoadConversation }) => {
+const Messages = ({
+	user,
+	messages,
+	chatIds,
+	activeChat,
+	onLoadConversation,
+	onLoadList,
+}) => {
+	useEffect(() => {
+		const getList = async () => {
+			const response = await axios.get(
+				`http://localhost:8080/allChats/${user?._id}`
+			);
+			console.log(response.data.message);
+			onLoadList(response.data.list);
+		};
+		getList();
+	}, [user, onLoadList]);
+
 	const createRoom = async () => {
 		const response = await axios.post('http://localhost:8080/createRoom', {
 			userId: user._id,
@@ -16,12 +34,11 @@ const Messages = ({ user, messages, onLoadConversation }) => {
 		console.log(response.data.message);
 	};
 
-	const loadConversation = async (id) => {
+	const loadConversation = async (chatId) => {
 		const response = await axios.get(
-			`http://localhost:8080/loadConversation/${id}`
+			`http://localhost:8080/loadConversation/${chatId}`
 		);
-		console.log(response.data.messsages);
-		onLoadConversation(response.data.messages);
+		onLoadConversation(response.data.messages, chatId);
 	};
 	return (
 		<div className="messages">
@@ -34,17 +51,19 @@ const Messages = ({ user, messages, onLoadConversation }) => {
 							<PostAddIcon fontSize="large" style={{ color: '#00b4d8' }} />
 						</IconButton>
 					</div>
-					<MessageContainer
-						clickFunction={() => loadConversation('606bb10960227f419cc65224')}
-					/>
-					<MessageContainer />
-					<MessageContainer />
-					<MessageContainer />
-					<MessageContainer />
-					<MessageContainer />
+					{chatIds?.map((chat) => (
+						<MessageContainer
+							key={chat._id}
+							clickFunction={() => loadConversation(chat._id)}
+						/>
+					))}
 				</div>
 				<div className="messages__conversations">
-					<Conversation messages={messages} />
+					<Conversation
+						messages={messages}
+						chatId={activeChat}
+						updateMessages={loadConversation}
+					/>
 					{/* <div className="messages__empty">
 						<h2>You Don't Have a Message Selected</h2>
 						<p>Choose from Existing messages or start a new one</p>
@@ -59,13 +78,16 @@ const mapStateToProps = (state) => {
 	return {
 		user: state.main.user,
 		messages: state.messages.messages,
+		chatIds: state.messages.chatIds,
+		activeChat: state.messages.activeChat,
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onLoadConversation: (messages) =>
-			dispatch(actions.loadConversation(messages)),
+		onLoadConversation: (messages, id) =>
+			dispatch(actions.loadConversation(messages, id)),
+		onLoadList: (list) => dispatch(actions.loadChatLists(list)),
 	};
 };
 

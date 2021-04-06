@@ -65,6 +65,26 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	.covsersation__messages {
+		display: flex;
+		flex-direction: column;
+		.message {
+		border: 1px solid green;
+		padding: 5px 20px;
+		margin: 8px 5px;
+		font-size: 14px;
+		border-radius: 20px;
+		span{
+		display: block;
+		color: $post-textColor;
+		font-size: 12px;
+	}
+	
+}
+		.userMessage{
+		color: red;
+	}
+	}
 	form {
 		height: 100px;
 		display: flex;
@@ -90,3 +110,5 @@
 		}
 	}
 }
+
+
