@@ -10,9 +10,9 @@ import * as actions from '../store/actions/index';
 
 const Messages = ({
 	user,
-	messages,
 	chatIds,
-	activeChat,
+	chatRoom,
+	friend,
 	onLoadConversation,
 	onLoadList,
 }) => {
@@ -21,7 +21,7 @@ const Messages = ({
 			const response = await axios.get(
 				`http://localhost:8080/allChats/${user?._id}`
 			);
-			console.log(response.data.message);
+			console.log(response.data.list);
 			onLoadList(response.data.list);
 		};
 		getList();
@@ -34,11 +34,12 @@ const Messages = ({
 		console.log(response.data.message);
 	};
 
-	const loadConversation = async (chatId) => {
+	const loadConversation = async (chatId, friend) => {
+		console.log('clicked Container');
 		const response = await axios.get(
 			`http://localhost:8080/loadConversation/${chatId}`
 		);
-		onLoadConversation(response.data.messages, chatId);
+		onLoadConversation(response.data.chatRoom, friend);
 	};
 	return (
 		<div className="messages">
@@ -54,20 +55,26 @@ const Messages = ({
 					{chatIds?.map((chat) => (
 						<MessageContainer
 							key={chat._id}
-							clickFunction={() => loadConversation(chat._id)}
+							chatId={chat._id}
+							otherUser={chat.users[0]}
+							clickFunction={loadConversation}
 						/>
 					))}
 				</div>
 				<div className="messages__conversations">
-					<Conversation
-						messages={messages}
-						chatId={activeChat}
-						updateMessages={loadConversation}
-					/>
-					{/* <div className="messages__empty">
-						<h2>You Don't Have a Message Selected</h2>
-						<p>Choose from Existing messages or start a new one</p>
-					</div> */}
+					{chatRoom ? (
+						<Conversation
+							messages={chatRoom?.messages}
+							chatId={chatRoom?._id}
+							friend={friend}
+							updateMessages={loadConversation}
+						/>
+					) : (
+						<div className="messages__empty">
+							<h2>You Don't Have a Message Selected</h2>
+							<p>Choose from Existing messages or start a new one</p>
+						</div>
+					)}
 				</div>
 			</div>
 		</div>
@@ -77,16 +84,16 @@ const Messages = ({
 const mapStateToProps = (state) => {
 	return {
 		user: state.main.user,
-		messages: state.messages.messages,
 		chatIds: state.messages.chatIds,
-		activeChat: state.messages.activeChat,
+		chatRoom: state.messages.activeChatRoom,
+		friend: state.messages.activeFriend,
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onLoadConversation: (messages, id) =>
-			dispatch(actions.loadConversation(messages, id)),
+		onLoadConversation: (room, friend) =>
+			dispatch(actions.loadConversation(room, friend)),
 		onLoadList: (list) => dispatch(actions.loadChatLists(list)),
 	};
 };

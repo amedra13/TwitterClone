@@ -65,25 +65,36 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	.covsersation__messages {
+	.conversation__messages {
 		display: flex;
 		flex-direction: column;
+		.conversation__title {
+			border-bottom: 1px solid $main-borderColor;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 59px;
+		}
+		.conversation__otherUser {
+			p {
+				font-family: $post-textFont;
+				color: rgba(129, 148, 173, 0.651);
+			}
+		}
 		.message {
-		border: 1px solid green;
-		padding: 5px 20px;
-		margin: 8px 5px;
-		font-size: 14px;
-		border-radius: 20px;
-		span{
-		display: block;
-		color: $post-textColor;
-		font-size: 12px;
-	}
-	
-}
-		.userMessage{
-		color: red;
-	}
+			padding: 8px 15px;
+			margin: 8px 5px;
+			font-size: 16px;
+			border-radius: 20px;
+			display: inline-block;
+			background: #eee;
+			align-self: flex-start;
+		}
+		.userMessage {
+			background: linear-gradient(to bottom, $main-blueColor 0%, #0085d1 100%);
+			color: white;
+			align-self: flex-end;
+		}
 	}
 	form {
 		height: 100px;
@@ -110,5 +121,3 @@
 		}
 	}
 }
-
-

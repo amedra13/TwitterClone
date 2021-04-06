@@ -1,7 +1,7 @@
 const initialState = {
 	chatIds: null,
-	activeChat: null,
-	messages: null,
+	activeChatRoom: null,
+	activeFriend: null,
 };
 
 const messagesReducer = (state = initialState, action) => {
@@ -9,8 +9,8 @@ const messagesReducer = (state = initialState, action) => {
 		case 'LOAD_CONVERSATION':
 			return {
 				...state,
-				messages: action.messageList,
-				activeChat: action.chatId,
+				activeChatRoom: action.chatRoom,
+				activeFriend: action.friend,
 			};
 		case 'LOAD_ALL_CHATS':
 			return { ...state, chatIds: action.chatList };

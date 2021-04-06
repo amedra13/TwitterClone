@@ -1,8 +1,8 @@
-export const loadConversation = (messages, id) => {
+export const loadConversation = (room, friend) => {
 	return {
 		type: 'LOAD_CONVERSATION',
-		messageList: messages,
-		chatId: id,
+		chatRoom: room,
+		friend: friend,
 	};
 };
 

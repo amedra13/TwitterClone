@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
+import axios from 'axios';
 
-const MessageContainer = ({ clickFunction }) => {
+const MessageContainer = ({ chatId, otherUser, clickFunction }) => {
+	const [friend, setFriend] = useState(null);
+	useEffect(() => {
+		const loadOtherUser = async () => {
+			const response = await axios.get(
+				`http://localhost:8080/otherUser/${otherUser}`
+			);
+			setFriend(response.data.friend);
+		};
+		loadOtherUser();
+	}, [otherUser]);
 	return (
-		<div className="messageContainer" onClick={clickFunction}>
+		<div
+			className="messageContainer"
+			onClick={() => clickFunction(chatId, friend)}
+		>
 			<Avatar
 				style={{
 					margin: '10px',
@@ -14,7 +28,7 @@ const MessageContainer = ({ clickFunction }) => {
 			/>
 			<div className="messageContainer__content">
 				<p>
-					<span className="bold">Card Collector</span> @amsportscards
+					<span className="bold">{friend?.name}</span> {friend?.userName}
 				</p>
 				<p>Messagin sneek preview</p>
 			</div>
