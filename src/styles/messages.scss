@@ -1,0 +1,61 @@
+.messages {
+	display: flex;
+	height: 100vh;
+}
+.messages__container {
+	flex: 0.75;
+	display: flex;
+	.messages__title {
+		line-height: 59px;
+		padding: 0 20px;
+		color: post-textColor;
+		border-bottom: 1px solid $main-borderColor;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.messages__list {
+		border-left: 1px solid $main-borderColor;
+		border-right: 1px solid $main-borderColor;
+		width: 35%;
+	}
+	.messages__conversations {
+		// border: 1px solid green;
+		width: 65%;
+	}
+	.messages__empty {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+		p {
+			font-family: $post-textFont;
+			color: $post-textColor;
+		}
+	}
+}
+.messageContainer {
+	border-bottom: 1px solid $main-borderColor;
+	height: 100px;
+	display: flex;
+
+	p {
+		color: rgba(129, 148, 173, 0.651);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		margin: 10px 0;
+	}
+	.messageContainer__content {
+		flex: 1;
+		overflow: hidden;
+	}
+	.bold {
+		font-weight: bold;
+		color: black;
+	}
+	&:hover {
+		background-color: rgba(230, 230, 230, 0.295);
+	}
+}

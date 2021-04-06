@@ -9,6 +9,7 @@ import TweetStatus from './pages/TweetStatus';
 import Bookmarks from './pages/Bookmarks';
 import Lists from './pages/Lists';
 import Edit from './pages/Edit';
+import Messages from './pages/Messages';
 
 import {
 	BrowserRouter as Router,
@@ -37,6 +38,7 @@ function App() {
 					<Route exact path="/bookmarks/:userId" component={Bookmarks} />
 					<Route exact path="/lists/:userId" component={Lists} />
 					<Route exact path="/editAccount/:userId" component={Edit} />
+					<Route exact path="/messages/:userId" component={Messages} />
 					<Redirect to="/" />
 				</Switch>
 			</Router>

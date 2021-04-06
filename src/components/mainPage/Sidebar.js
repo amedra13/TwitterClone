@@ -4,7 +4,7 @@ import ListButton from '../Buttons/ListButton';
 import TweetButton from '../Buttons/TweetButton';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import HomeIcon from '@material-ui/icons/Home';
-import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneOutlined';
+// import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneOutlined';
 import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
 import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
 import ListAltOutlinedIcon from '@material-ui/icons/ListAltOutlined';
@@ -12,7 +12,7 @@ import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined'
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 import TweetModal from '../Modals/TweetModal';
 
-const Sidebar = ({ username, userId, user }) => {
+const Sidebar = ({ username, userId }) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const modalHandler = () => {
@@ -33,10 +33,10 @@ const Sidebar = ({ username, userId, user }) => {
 						IconComponent={HomeIcon}
 						userId={userId}
 					/>
-					<ListButton
+					{/* <ListButton
 						listItem="Notifications"
 						IconComponent={NotificationsNoneOutlinedIcon}
-					/>
+					/> */}
 					<ListButton listItem="Messages" IconComponent={MailOutlinedIcon} />
 					<ListButton
 						listItem="BookMarks"

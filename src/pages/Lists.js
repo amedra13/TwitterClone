@@ -78,7 +78,7 @@ const Lists = ({
 								update={reloadFollowing}
 							/>
 						))}
-					{active === 'following' && following.length === 0 && (
+					{active === 'following' && following?.length === 0 && (
 						<div className="list__empty">
 							<h2>Not Following anyone yet..</h2>
 							<PeopleIcon
@@ -103,7 +103,7 @@ const Lists = ({
 								update={reloadFollowing}
 							/>
 						))}
-					{active === 'followers' && followers.length === 0 && (
+					{active === 'followers' && followers?.length === 0 && (
 						<div className="list__empty">
 							<h2>No Followers yet..</h2>
 							<PeopleIcon
