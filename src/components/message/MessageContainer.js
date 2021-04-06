@@ -1,9 +1,9 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 
-const MessageContainer = () => {
+const MessageContainer = ({ clickFunction }) => {
 	return (
-		<div className="messageContainer">
+		<div className="messageContainer" onClick={clickFunction}>
 			<Avatar
 				style={{
 					margin: '10px',
