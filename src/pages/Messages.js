@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import IconButton from '@material-ui/core/IconButton';
 import PostAddIcon from '@material-ui/icons/PostAdd';
@@ -6,6 +6,7 @@ import Sidebar from '../components/mainPage/Sidebar';
 import MessageContainer from '../components/message/MessageContainer';
 import Conversation from '../components/message/Conversation';
 import axios from 'axios';
+import MessageModal from '../components/Modals/MessageModal';
 import * as actions from '../store/actions/index';
 
 const Messages = ({
@@ -16,6 +17,11 @@ const Messages = ({
 	onLoadConversation,
 	onLoadList,
 }) => {
+	const [isOpen, setIsOpen] = useState(false);
+	const modalHandler = () => {
+		setIsOpen(!isOpen);
+	};
+
 	useEffect(() => {
 		const getList = async () => {
 			const response = await axios.get(
@@ -46,7 +52,7 @@ const Messages = ({
 				<div className="messages__list">
 					<div className="messages__title">
 						<h3>Messages</h3>
-						<IconButton onClick={createRoom}>
+						<IconButton onClick={modalHandler}>
 							<PostAddIcon fontSize="large" style={{ color: '#00b4d8' }} />
 						</IconButton>
 					</div>
@@ -75,6 +81,12 @@ const Messages = ({
 					)}
 				</div>
 			</div>
+			<MessageModal
+				isOpen={isOpen}
+				modalHandler={modalHandler}
+				// username={username}
+				userId={user?._id}
+			/>
 		</div>
 	);
 };
