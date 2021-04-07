@@ -38,6 +38,13 @@ const Messages = ({
 		);
 		onLoadConversation(response.data.chatRoom, friend);
 	};
+
+	const loadAllChats = async () => {
+		const response = await axios.get(
+			`http://localhost:8080/allChats/${user?._id}`
+		);
+		onLoadList(response.data.list);
+	};
 	return (
 		<div className="messages">
 			<Sidebar userId={user?._id} username={user?.userName} />
@@ -77,7 +84,7 @@ const Messages = ({
 			<MessageModal
 				isOpen={isOpen}
 				modalHandler={modalHandler}
-				// username={username}
+				reloadAllChats={loadAllChats}
 				userId={user?._id}
 			/>
 		</div>

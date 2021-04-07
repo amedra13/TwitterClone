@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const MessageModal = ({ isOpen, modalHandler, userId }) => {
+const MessageModal = ({ isOpen, modalHandler, reloadAllChats, userId }) => {
 	const [friendsList, setFriendsList] = useState(null);
 	const classes = useStyles();
 
@@ -51,6 +51,7 @@ const MessageModal = ({ isOpen, modalHandler, userId }) => {
 			usersList: [userId, otherId],
 		});
 		console.log(response.data.message);
+		reloadAllChats();
 		modalHandler();
 	};
 
