@@ -1,3 +1,28 @@
+@-webkit-keyframes scale-in-center {
+	0% {
+		-webkit-transform: scale(0);
+		transform: scale(0);
+		opacity: 1;
+	}
+	100% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+@keyframes scale-in-center {
+	0% {
+		-webkit-transform: scale(0);
+		transform: scale(0);
+		opacity: 1;
+	}
+	100% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
 .messages {
 	display: flex;
 	height: 100vh;
@@ -65,22 +90,24 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	.conversation__messages {
+	.conversation__title {
+		border-bottom: 1px solid $main-borderColor;
 		display: flex;
-		flex-direction: column;
-		.conversation__title {
-			border-bottom: 1px solid $main-borderColor;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 59px;
-		}
+		justify-content: center;
+		align-items: center;
+		height: 6%;
 		.conversation__otherUser {
 			p {
 				font-family: $post-textFont;
 				color: rgba(129, 148, 173, 0.651);
 			}
 		}
+	}
+	.conversation__messages {
+		display: flex;
+		flex-direction: column;
+		height: 84%;
+		overflow: hidden;
 		.message {
 			padding: 8px 15px;
 			margin: 8px 5px;
@@ -89,15 +116,21 @@
 			display: inline-block;
 			background: #eee;
 			align-self: flex-start;
+			margin-left: 25px;
+			max-width: 60%;
+			animation: scale-in-center 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+				forwards;
 		}
 		.userMessage {
 			background: linear-gradient(to bottom, $main-blueColor 0%, #0085d1 100%);
 			color: white;
 			align-self: flex-end;
+			margin-right: 35px;
 		}
 	}
+
 	form {
-		height: 100px;
+		height: 10%;
 		display: flex;
 		align-items: center;
 		border-top: 1px solid $main-borderColor;

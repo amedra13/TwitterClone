@@ -3,6 +3,7 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
 import axios from 'axios';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
 
 const Conversation = ({ user, messages, chatId, friend, updateMessages }) => {
@@ -18,22 +19,19 @@ const Conversation = ({ user, messages, chatId, friend, updateMessages }) => {
 	};
 	return (
 		<div className="conversation">
-			<div className="conversation__messages">
-				<div className="conversation__title">
-					<Avatar style={{ margin: '0 10px' }} />
-					<div className="conversation__otherUser">
-						<h4>{friend?.name}</h4>
-						<p>{friend?.userName}</p>
-					</div>
+			<div className="conversation__title">
+				<Avatar style={{ margin: '0 10px' }} />
+				<div className="conversation__otherUser">
+					<h4>{friend?.name}</h4>
+					<p>{friend?.userName}</p>
 				</div>
+			</div>
+			<div className="conversation__messages">
 				{messages?.map((singleMessage) => {
 					let isUser = singleMessage.username === user?.userName;
 
 					return (
-						<div
-							className={`message ${isUser && 'userMessage'}`}
-							key={singleMessage._id}
-						>
+						<div className={`message ${isUser && 'userMessage'}`}>
 							{/* <span> {singleMessage.username}</span> */}
 							{singleMessage.content}
 						</div>
