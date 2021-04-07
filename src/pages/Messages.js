@@ -32,13 +32,6 @@ const Messages = ({
 		getList();
 	}, [user, onLoadList]);
 
-	const createRoom = async () => {
-		const response = await axios.post('http://localhost:8080/createRoom', {
-			userId: user._id,
-		});
-		console.log(response.data.message);
-	};
-
 	const loadConversation = async (chatId, friend) => {
 		const response = await axios.get(
 			`http://localhost:8080/loadConversation/${chatId}`

@@ -154,3 +154,28 @@
 		}
 	}
 }
+
+.friendsList {
+	border: 3px solid $main-borderColor;
+	height: 85%;
+	overflow-y: scroll;
+
+	.friendSearch {
+		border-bottom: 1px solid rgb(182, 177, 177);
+		display: flex;
+		align-items: center;
+		height: 60px;
+		transition: all 150ms ease-in;
+		.name {
+			font-weight: bold;
+			margin: 0 10px;
+		}
+		.username {
+			font-family: $post-textFont;
+			color: $post-textColor;
+		}
+		&:hover {
+			background-color: $main-borderColor;
+		}
+	}
+}

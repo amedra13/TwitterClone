@@ -30,7 +30,10 @@ const Conversation = ({ user, messages, chatId, friend, updateMessages }) => {
 					let isUser = singleMessage.username === user?.userName;
 
 					return (
-						<div className={`message ${isUser && 'userMessage'}`}>
+						<div
+							key={singleMessage._id}
+							className={`message ${isUser && 'userMessage'}`}
+						>
 							{/* <span> {singleMessage.username}</span> */}
 							{singleMessage.content}
 						</div>

@@ -46,6 +46,14 @@ const MessageModal = ({ isOpen, modalHandler, userId }) => {
 		}
 	}, [userId, isOpen]);
 
+	const createRoom = async (otherId) => {
+		const response = await axios.post('http://localhost:8080/createRoom', {
+			usersList: [userId, otherId],
+		});
+		console.log(response.data.message);
+		modalHandler();
+	};
+
 	return (
 		<Modal
 			aria-labelledby="transition-modal-title"
@@ -61,10 +69,16 @@ const MessageModal = ({ isOpen, modalHandler, userId }) => {
 		>
 			<Zoom in={isOpen}>
 				<div className={classes.paper}>
-					<h3>Pick one of your friends to message.</h3>
-					{friendsList?.map((friend) => (
-						<FriendSearch person={friend} />
-					))}
+					<h3>Pick one of your Followers to message.</h3>
+					<div className="friendsList">
+						{friendsList?.map((friend) => (
+							<FriendSearch
+								key={friend._id}
+								person={friend}
+								clickFunction={createRoom}
+							/>
+						))}
+					</div>
 				</div>
 			</Zoom>
 		</Modal>
