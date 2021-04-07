@@ -21,7 +21,6 @@ const Messages = ({
 			const response = await axios.get(
 				`http://localhost:8080/allChats/${user?._id}`
 			);
-			console.log(response.data.list);
 			onLoadList(response.data.list);
 		};
 		getList();
@@ -35,7 +34,6 @@ const Messages = ({
 	};
 
 	const loadConversation = async (chatId, friend) => {
-		console.log('clicked Container');
 		const response = await axios.get(
 			`http://localhost:8080/loadConversation/${chatId}`
 		);

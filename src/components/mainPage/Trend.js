@@ -33,7 +33,6 @@ const Trend = () => {
 				const response = await axios.get(
 					`http://localhost:8080/searchFriends/${search}`
 				);
-				console.log(response.data.result);
 				if (response.data.result.length === 0) {
 					setSearchResults(null);
 				} else {

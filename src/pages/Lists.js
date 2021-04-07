@@ -37,7 +37,6 @@ const Lists = ({
 		const response = await axios.get(
 			`http://localhost:8080/reloadFollowers/${user?._id}`
 		);
-		console.log(response.data.list);
 		onReloadFollowers(response.data.list);
 	};
 

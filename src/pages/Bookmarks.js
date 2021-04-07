@@ -15,7 +15,6 @@ const Bookmarks = ({ user, bookmarks, onLoadBookmarks, onUpdateBookmarks }) => {
 			const results = await axios.get(
 				`http://localhost:8080/bookmarks/${user._id}`
 			);
-			console.log(results.data.posts);
 			onLoadBookmarks(results.data.posts);
 		};
 		getBookmarks();
@@ -29,13 +28,9 @@ const Bookmarks = ({ user, bookmarks, onLoadBookmarks, onUpdateBookmarks }) => {
 	};
 
 	const bookmarkHandler = async (postId, id) => {
-		const response = await axios.post(
-			`http://localhost:8080/bookmarks/${postId}`,
-			{
-				userId: id,
-			}
-		);
-		console.log(response.data.message);
+		await axios.post(`http://localhost:8080/bookmarks/${postId}`, {
+			userId: id,
+		});
 		updateBookmarks();
 	};
 

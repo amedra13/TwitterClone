@@ -29,11 +29,9 @@ const Edit = ({ user }) => {
 			);
 			const { errors, errField } = response.data;
 			if (errField) {
-				console.log(errors, errField);
 				setError(errField);
 				setErrMessage(errors);
 			} else {
-				console.log(response.data.message);
 				history.push(`/home/${user._id}`);
 			}
 		} catch (err) {

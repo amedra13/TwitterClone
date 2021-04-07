@@ -59,7 +59,6 @@ const CreateAccount = () => {
 				} else {
 					history.push(`/home/${userId}`);
 				}
-				console.log(result.data);
 			})
 			.catch((err) => console.log(err));
 	};
