@@ -3,7 +3,6 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
 import axios from 'axios';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
 
 const Conversation = ({ user, messages, chatId, friend, updateMessages }) => {

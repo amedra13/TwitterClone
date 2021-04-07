@@ -51,6 +51,8 @@ const ProfilePage = ({
 	profilePosts,
 	onSetProfile,
 	onUpdateFeed,
+	onReloadFollowing,
+	following,
 }) => {
 	const { username } = useParams();
 	const classes = useStyles();
@@ -60,12 +62,24 @@ const ProfilePage = ({
 			const result = await axios.get(
 				`http://localhost:8080/profile/${username}`
 			);
+			const response = await axios.get(
+				`http://localhost:8080/reloadFollowing/${user?._id}`
+			);
+			onReloadFollowing(response.data.list);
 
 			onSetProfile(result.data.profile, result.data.posts);
 		};
-
+		const loadFollowing = async () => {};
+		loadFollowing();
 		getProfileUser();
-	}, [username, onSetProfile]);
+	}, [user, username, onSetProfile, onReloadFollowing]);
+
+	const reloadFollowing = async () => {
+		const response = await axios.get(
+			`http://localhost:8080/reloadFollowing/${user?._id}`
+		);
+		onReloadFollowing(response.data.list);
+	};
 
 	const updateFeed = async () => {
 		const response = await axios.get(
@@ -86,7 +100,10 @@ const ProfilePage = ({
 					<div className="profile__bottom">
 						<div className="profile__user">
 							<Avatar className={classes.avatar}>AM</Avatar>
-							<FollowButton />
+							<FollowButton
+								followingList={following}
+								updateFollow={reloadFollowing}
+							/>
 						</div>
 						<div className="profile__content">
 							<div>
@@ -144,6 +161,7 @@ const mapStateToProps = (state) => {
 		user: state.main.user,
 		profileUser: state.profile.profileUser,
 		profilePosts: state.profile.profilePosts,
+		following: state.lists.following,
 	};
 };
 
@@ -151,6 +169,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		onSetProfile: (user, posts) => dispatch(actions.setProfile(user, posts)),
 		onUpdateFeed: (posts) => dispatch(actions.updateProfilePosts(posts)),
+		onReloadFollowing: (list) => dispatch(actions.reloadFollowing(list)),
 	};
 };
 

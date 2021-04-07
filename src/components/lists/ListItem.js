@@ -9,14 +9,10 @@ const ListItem = ({ userId, person, delay, animation, following, update }) => {
 	const toggleFollow = async () => {
 		let toggleAction = isFollowing ? 'removeFollow' : 'addFollow';
 		setIsFollowing(!isFollowing);
-		const response = await axios.post(
-			`http://localhost:8080/loadLists/${toggleAction}`,
-			{
-				otherId: person._id,
-				userId: userId,
-			}
-		);
-		console.log(response.data.message);
+		await axios.post(`http://localhost:8080/loadLists/${toggleAction}`, {
+			otherId: person._id,
+			userId: userId,
+		});
 	};
 
 	return (

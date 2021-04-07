@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions/index';
 
 const useStyles = makeStyles((theme) => ({
 	button: {
@@ -26,32 +25,27 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const FollowButton = ({
-	user,
-	profileUser,
-	isUser,
-	isFollowing,
-	onFollowStatus,
-	onUpdateFollow,
-}) => {
+const FollowButton = ({ user, profileUser, followingList, updateFollow }) => {
 	const classes = useStyles();
+	const [following, setFollowing] = useState(false);
+	const [isUser, setIsUser] = useState(false);
 
 	useEffect(() => {
-		const isFollowing = user?.following?.indexOf(profileUser?._id) !== -1;
-		const isUser = user?.userName === profileUser?.userName;
-		onFollowStatus(isUser, isFollowing);
-	});
+		const listOfIds = followingList?.map((person) => person._id);
+		const isFollowing = listOfIds?.includes(profileUser?._id);
+		const sameUser = user?.userName === profileUser?.userName;
+		setFollowing(isFollowing);
+		setIsUser(sameUser);
+	}, [followingList, user, profileUser]);
 
 	const toggleFollow = async () => {
-		console.log(profileUser);
 		try {
-			const followingList = await axios.post('http://localhost:8080/follow', {
-				isFollowing: isFollowing,
-				profileId: profileUser?._id,
-				currentUserId: user._id,
+			let toggleAction = following ? 'removeFollow' : 'addFollow';
+			await axios.post(`http://localhost:8080/loadLists/${toggleAction}`, {
+				otherId: profileUser?._id,
+				userId: user?._id,
 			});
-			console.log(followingList.data.updatedFollow);
-			onUpdateFollow(followingList.data.updatedFollow);
+			setFollowing(!following);
 		} catch (err) {
 			console.log(err);
 		}
@@ -59,12 +53,15 @@ const FollowButton = ({
 
 	return (
 		<Button
-			onClick={() => toggleFollow()}
+			onClick={() => {
+				toggleFollow();
+				updateFollow();
+			}}
 			className={`${classes.button} ${isUser && classes.hidden} ${
-				isFollowing && classes.isFollowing
+				following && classes.isFollowing
 			}`}
 		>
-			{isFollowing ? 'Following' : 'Follow'}
+			{following ? 'Following' : 'Follow'}
 		</Button>
 	);
 };
@@ -73,17 +70,7 @@ const mapStateToProps = (state) => {
 	return {
 		user: state.main.user,
 		profileUser: state.profile.profileUser,
-		isUser: state.main.isUser,
-		isFollowing: state.main.isFollowing,
 	};
 };
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		onFollowStatus: (isUser, following) =>
-			dispatch(actions.followStatus(isUser, following)),
-		onUpdateFollow: (list) => dispatch(actions.updateFollow(list)),
-	};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(FollowButton);
+export default connect(mapStateToProps)(FollowButton);
