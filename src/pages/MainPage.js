@@ -9,7 +9,6 @@ const MainPage = ({ onLoadUser, user, feedPosts }) => {
 	const userId = localStorage.getItem('userId');
 
 	useEffect(() => {
-		console.log(userId);
 		const getUserAndFeed = async () => {
 			try {
 				const profile = await axios.get(`http://localhost:8080/home/${userId}`);

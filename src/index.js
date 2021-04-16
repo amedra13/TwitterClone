@@ -3,12 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
+import { persistStore, persistReducer } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
+import storage from 'redux-persist/lib/storage';
+
 import mainReducer from './store/reducers/mainReducer';
 import tweetReducer from './store/reducers/tweetReducer';
 import profileReducer from './store/reducers/profileReducer';
 import bookmarkReducer from './store/reducers/bookmarkReducer';
 import listsReducer from './store/reducers/listsReducer';
 import messagesReducer from './store/reducers/messagesReducer';
+
 import App from './App';
 
 const rootReducer = combineReducers({
@@ -20,11 +25,21 @@ const rootReducer = combineReducers({
 	messages: messagesReducer,
 });
 
-const store = createStore(rootReducer);
+const persistConfig = {
+	key: 'root',
+	storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const store = createStore(persistedReducer);
+const persistor = persistStore(store);
 
 ReactDOM.render(
 	<Provider store={store}>
-		<App />
+		<PersistGate loading={null} persistor={persistor}>
+			<App />
+		</PersistGate>
 	</Provider>,
 	document.getElementById('root')
 );
