@@ -19,6 +19,8 @@ import {
 } from 'react-router-dom';
 
 function App() {
+	const userId = localStorage.getItem('userId');
+	console.log('USER ID =>>', userId);
 	return (
 		<div className="App">
 			<Router>
@@ -30,15 +32,15 @@ function App() {
 						component={CreateAccount}
 					/>
 					<Route exact path="/login" component={Login} />
-					<Route exact path="/home/:userId">
+					<Route exact path="/home">
 						<MainPage />
 					</Route>
 					<Route exact path="/profile/:username" component={ProfilePage} />
 					<Route exact path="/status/:postId" component={TweetStatus} />
-					<Route exact path="/bookmarks/:userId" component={Bookmarks} />
-					<Route exact path="/lists/:userId" component={Lists} />
-					<Route exact path="/editAccount/:userId" component={Edit} />
-					<Route exact path="/messages/:userId" component={Messages} />
+					<Route exact path="/bookmarks" component={Bookmarks} />
+					<Route exact path="/lists" component={Lists} />
+					<Route exact path="/editAccount" component={Edit} />
+					<Route exact path="/messages" component={Messages} />
 					<Redirect to="/" />
 				</Switch>
 			</Router>

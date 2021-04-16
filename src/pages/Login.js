@@ -51,7 +51,8 @@ const Login = () => {
 					setErrorMsg(errors);
 					setErrField(errField);
 				} else {
-					history.push(`/home/${res.data.user._id}`);
+					localStorage.setItem('userId', res.data.user._id);
+					history.push(`/home`);
 				}
 			})
 			.catch((err) => console.log(err));

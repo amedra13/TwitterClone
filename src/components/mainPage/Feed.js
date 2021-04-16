@@ -17,13 +17,9 @@ const Feed = ({ posts, userId, onUpdateFeedPosts }) => {
 	};
 
 	const bookmarkHandler = async (postId, id) => {
-		const response = await axios.post(
-			`http://localhost:8080/bookmarks/${postId}`,
-			{
-				userId: id,
-			}
-		);
-		console.log(response.data.message);
+		await axios.post(`http://localhost:8080/bookmarks/${postId}`, {
+			userId: id,
+		});
 		updateFeed();
 	};
 

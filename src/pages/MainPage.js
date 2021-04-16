@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import SideBar from '../components/mainPage/Sidebar';
 import Feed from '../components/mainPage/Feed';
 import Trend from '../components/mainPage/Trend';
@@ -7,12 +6,17 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/index';
 const MainPage = ({ onLoadUser, user, feedPosts }) => {
-	const { userId } = useParams();
+	const userId = localStorage.getItem('userId');
 
 	useEffect(() => {
+		console.log(userId);
 		const getUserAndFeed = async () => {
-			const profile = await axios.get(`http://localhost:8080/home/${userId}`);
-			onLoadUser(profile.data.user, profile.data.allPosts);
+			try {
+				const profile = await axios.get(`http://localhost:8080/home/${userId}`);
+				onLoadUser(profile.data.user, profile.data.allPosts);
+			} catch (err) {
+				console.log(err);
+			}
 		};
 
 		getUserAndFeed();
