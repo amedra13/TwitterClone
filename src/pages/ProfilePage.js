@@ -91,7 +91,7 @@ const ProfilePage = ({
 
 	return (
 		<div className="profilePage">
-			<Sidebar username={user?.userName} userId={user?._id} />
+			<Sidebar />
 			<div className="profile">
 				<div className="profile__info">
 					<div className="profile__img">

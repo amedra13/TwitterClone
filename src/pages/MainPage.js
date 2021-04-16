@@ -6,7 +6,6 @@ import Trend from '../components/mainPage/Trend';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/index';
-
 const MainPage = ({ onLoadUser, user, feedPosts }) => {
 	const { userId } = useParams();
 
@@ -21,7 +20,7 @@ const MainPage = ({ onLoadUser, user, feedPosts }) => {
 
 	return (
 		<div className="mainPage">
-			<SideBar username={user?.userName} userId={userId} />
+			<SideBar />
 			<Feed userId={user?._id} posts={feedPosts} />
 			<Trend />
 		</div>

@@ -42,7 +42,7 @@ const Lists = ({
 
 	return (
 		<div className="lists">
-			<Sidebar username={user?.userName} userId={user?._id} />
+			<Sidebar />
 			<div className="lists__container">
 				<div className="lists__links">
 					<h3

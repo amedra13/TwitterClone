@@ -40,7 +40,7 @@ const Edit = ({ user }) => {
 	};
 	return (
 		<div className="edit">
-			<Sidebar username={user?.userName} userId={user?._id} />
+			<Sidebar />
 			<div className="edit__container">
 				<h3>{user?.name}'s settings</h3>
 				<div className="edit__account">

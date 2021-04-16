@@ -47,7 +47,7 @@ const Messages = ({
 	};
 	return (
 		<div className="messages">
-			<Sidebar userId={user?._id} username={user?.userName} />
+			<Sidebar />
 			<div className="messages__container">
 				<div className="messages__list">
 					<div className="messages__title">

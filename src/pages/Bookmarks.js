@@ -36,7 +36,7 @@ const Bookmarks = ({ user, bookmarks, onLoadBookmarks, onUpdateBookmarks }) => {
 
 	return (
 		<div className="bookmarks">
-			<SideBar username={user?.userName} userId={user?._id} />
+			<SideBar />
 			<div className="bookmarks__posts">
 				<h3 className="bookmarks__title">Saved Posts from Users</h3>
 				{bookmarks ? (

@@ -40,7 +40,7 @@ const TweetStatus = ({ user, tweet, comments, onSetStatus, onSetComments }) => {
 
 	return (
 		<div className="tweetStatus">
-			<Sidebar username={user?.userName} userId={user?._id} />
+			<Sidebar />
 			<div className="tweet">
 				<div className="tweet__header">
 					<div className="tweet__headerInfo">
