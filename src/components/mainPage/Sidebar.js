@@ -40,7 +40,7 @@ const Sidebar = ({ user }) => {
 	);
 
 	return (
-		<div className="sidebar">
+		<div className={`sidebar ${menuOpen && 'activeMenu'}`}>
 			<div className="sidebarContainer">
 				<div className="sidebar__logo">{sidebarHeader}</div>
 				<div className="sidebar__list">

@@ -12,10 +12,10 @@ const useStyles = makeStyles((theme) => ({
 			boxShadow: 'none',
 		},
 		boxShadow: 'none',
-		width: '75%',
+		width: '90%',
 		borderRadius: '28px',
 		fontSize: '12px',
-		margin: '15px auto',
+		margin: '15px 0',
 	},
 }));
 
@@ -28,7 +28,7 @@ const TweetButton = ({ withIcon, withQuery, clickFunction }) => {
 			className={classes.tweet}
 			variant="contained"
 			color="primary"
-			size="large"
+			// size="large"
 			type="submit"
 		>
 			{withIcon && <SendIcon />}

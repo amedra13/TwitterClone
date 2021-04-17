@@ -34,7 +34,6 @@ const Conversation = ({ user, messages, chatId, friend, updateMessages }) => {
 							key={singleMessage._id}
 							className={`message ${isUser && 'userMessage'}`}
 						>
-							{/* <span> {singleMessage.username}</span> */}
 							{singleMessage.content}
 						</div>
 					);

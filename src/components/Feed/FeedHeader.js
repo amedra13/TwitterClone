@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TweetButton from '../Buttons/TweetButton';
 import TweetLoader from '../Modals/TweetLoader';
 import { connect } from 'react-redux';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import FlareIcon from '@material-ui/icons/Flare';
 import Avatar from '@material-ui/core/Avatar';
 import CropOriginalOutlinedIcon from '@material-ui/icons/CropOriginalOutlined';
@@ -24,6 +25,7 @@ const FeedHeader = ({ userId, onUpdateFeedPosts }) => {
 	const classes = useStyles();
 	const [newTweet, setNewTweet] = useState('');
 	const [loading, setIsLoading] = useState(false);
+	const matches = useMediaQuery('(min-width:700px)');
 
 	const onSubmitHandler = async (e) => {
 		e.preventDefault();
@@ -79,7 +81,7 @@ const FeedHeader = ({ userId, onUpdateFeedPosts }) => {
 							</div>
 						</div>
 						<div className="tweetContainer">
-							<TweetButton />
+							<TweetButton withIcon withQuery={matches} />
 						</div>
 					</form>
 				)}
