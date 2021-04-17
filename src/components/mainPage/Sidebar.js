@@ -4,6 +4,8 @@ import ListButton from '../Buttons/ListButton';
 import TweetButton from '../Buttons/TweetButton';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import HomeIcon from '@material-ui/icons/Home';
+import MenuIcon from '@material-ui/icons/Menu';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { connect } from 'react-redux';
 import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
 import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
@@ -14,19 +16,33 @@ import TweetModal from '../Modals/TweetModal';
 
 const Sidebar = ({ user }) => {
 	const [isOpen, setIsOpen] = useState(false);
+	const [menuOpen, setMenuOpen] = useState(false);
+	const matches = useMediaQuery('(min-width:1100px)');
 
 	const modalHandler = () => {
 		setIsOpen(!isOpen);
 	};
+
+	const sidebarHeader = matches ? (
+		<div>
+			<IconButton style={{ color: '#00b4d8' }}>
+				<TwitterIcon fontSize="large" />
+			</IconButton>
+			{user?.userName}
+		</div>
+	) : (
+		<IconButton
+			onClick={() => setMenuOpen(!menuOpen)}
+			style={{ color: '#00b4d8' }}
+		>
+			<MenuIcon fontSize="large" />
+		</IconButton>
+	);
+
 	return (
 		<div className="sidebar">
 			<div className="sidebarContainer">
-				<div className="sidebar__logo">
-					<IconButton style={{ color: '#00b4d8' }}>
-						<TwitterIcon fontSize="large" />
-					</IconButton>
-					{user?.userName}
-				</div>
+				<div className="sidebar__logo">{sidebarHeader}</div>
 				<div className="sidebar__list">
 					<ListButton
 						listItem="Home"
@@ -61,7 +77,11 @@ const Sidebar = ({ user }) => {
 					/>
 				</div>
 				<div className="sidebar__tweetButton">
-					<TweetButton withIcon clickFunction={modalHandler} />
+					<TweetButton
+						withIcon
+						withQuery={matches}
+						clickFunction={modalHandler}
+					/>
 				</div>
 				<TweetModal
 					isOpen={isOpen}

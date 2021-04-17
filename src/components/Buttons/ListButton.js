@@ -14,8 +14,14 @@ const ListButton = ({ IconComponent, listItem, username, userId }) => {
 	return (
 		<div className="listButton">
 			<NavLink to={linkTo} activeClassName="active">
-				<IconComponent style={{ color: 'inherit', margin: '0 10px' }} />
-				{listItem}
+				<IconComponent
+					style={{
+						color: 'inherit',
+						margin: '10',
+					}}
+					fontSize="large"
+				/>
+				<p style={{ margin: '0' }}>{listItem}</p>
 			</NavLink>
 		</div>
 	);

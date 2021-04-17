@@ -19,8 +19,9 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const TweetButton = ({ withIcon, clickFunction }) => {
+const TweetButton = ({ withIcon, withQuery, clickFunction }) => {
 	const classes = useStyles();
+	console.log(withQuery);
 
 	return (
 		<Button

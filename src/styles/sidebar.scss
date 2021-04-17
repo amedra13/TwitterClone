@@ -1,7 +1,9 @@
-$sidebar-leftPadding: 60px;
+$sidebar-leftPadding: 17%;
+$sidebar-minmizedPadding: 0px;
 
 .sidebar {
-	flex: 0.25;
+	width: 20%;
+	transition: all 200ms ease-in;
 	.sidebarContainer {
 		position: sticky;
 		top: 0;
@@ -10,6 +12,7 @@ $sidebar-leftPadding: 60px;
 	.sidebar__list {
 		display: flex;
 		flex-direction: column;
+		align-items: center;
 		padding-left: $sidebar-leftPadding;
 		a {
 			color: initial;
@@ -24,6 +27,8 @@ $sidebar-leftPadding: 60px;
 	}
 	.sidebar__tweetButton {
 		padding-left: $sidebar-leftPadding;
+		width: 100%;
+		border: 1px solid purple;
 	}
 	.sidebar__logo {
 		padding-left: $sidebar-leftPadding;
@@ -43,11 +48,39 @@ $sidebar-leftPadding: 60px;
 	padding: 10px 0;
 	&:hover {
 		color: #00b4d8;
-		background-color: rgba(243, 241, 241, 0.836);
 		box-shadow: none;
 	}
 	a {
 		display: flex;
 		align-items: center;
+	}
+}
+
+@media only screen and (max-width: 1100px) {
+	.sidebar {
+		flex: none;
+		width: 100px;
+		.sidebar__logo {
+			display: flex;
+			justify-content: center;
+		}
+		.sidebar__list {
+			padding-left: $sidebar-minmizedPadding;
+		}
+
+		.sidebar__tweetButton {
+			padding-left: $sidebar-minmizedPadding;
+		}
+
+		.sidebar__logo {
+			padding-left: $sidebar-minmizedPadding;
+		}
+	}
+	.listButton {
+		padding: 0;
+		width: auto;
+		p {
+			display: none;
+		}
 	}
 }
