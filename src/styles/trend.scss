@@ -88,8 +88,15 @@
 	}
 }
 
-@media only screen and (max-width: 900px) {
-	.trend {
-		display: none;
-	}
+.slideout-exit {
+	opacity: 1;
+	transform: translateX(0);
+}
+.slideout-exit-active {
+	opacity: 0;
+	transform: translateX(100px);
+	transition: opacity 300ms, transform 300ms;
+}
+.slideout-exit-done {
+	opacity: 0;
 }

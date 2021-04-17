@@ -8,6 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import Popover from '@material-ui/core/Popover';
 import SearchResults from '../Trends/SearchResult';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { CSSTransition } from 'react-transition-group';
 
 const useStyles = makeStyles((theme) => ({
 	searchTwitter: {
@@ -23,6 +25,7 @@ const Trend = () => {
 	const [search, setSearch] = useState('');
 	const [searchResults, setSearchResults] = useState(null);
 	const [anchorEl, setAnchorEl] = useState(null);
+	const matches = useMediaQuery('(min-width:1000px)');
 
 	const classes = useStyles();
 
@@ -63,73 +66,80 @@ const Trend = () => {
 		numberOfPeople: 53245,
 	};
 	return (
-		<div className="trend">
-			<div className="trendContainer">
-				<div className="trend__searchbar">
-					<Input
-						id="searchbar"
-						className={classes.searchTwitter}
-						placeholder="Seach Twitter"
-						disableUnderline
-						fullWidth
-						value={search}
-						autoFocus
-						onChange={(e) => {
-							setSearch(e.target.value);
-						}}
-						startAdornment={
-							<InputAdornment position="start">
-								<SearchIcon />
-							</InputAdornment>
-						}
-					/>
+		<CSSTransition
+			in={matches}
+			timeout={300}
+			classNames="slideout"
+			unmountOnExit
+		>
+			<div className="trend">
+				<div className="trendContainer">
+					<div className="trend__searchbar">
+						<Input
+							id="searchbar"
+							className={classes.searchTwitter}
+							placeholder="Seach Twitter"
+							disableUnderline
+							fullWidth
+							value={search}
+							autoFocus
+							onChange={(e) => {
+								setSearch(e.target.value);
+							}}
+							startAdornment={
+								<InputAdornment position="start">
+									<SearchIcon />
+								</InputAdornment>
+							}
+						/>
 
-					<Popover
-						open={Boolean(anchorEl)}
-						anchorEl={anchorEl}
-						onClose={() => setAnchorEl(null)}
-						anchorOrigin={{
-							vertical: 'bottom',
-							horizontal: 'center',
-						}}
-						transformOrigin={{
-							vertical: 'top',
-							horizontal: 'center',
-						}}
-					>
-						<div className="popover">
-							<div className="popover__header">
-								<p>Search Results .....</p>
+						<Popover
+							open={Boolean(anchorEl)}
+							anchorEl={anchorEl}
+							onClose={() => setAnchorEl(null)}
+							anchorOrigin={{
+								vertical: 'bottom',
+								horizontal: 'center',
+							}}
+							transformOrigin={{
+								vertical: 'top',
+								horizontal: 'center',
+							}}
+						>
+							<div className="popover">
+								<div className="popover__header">
+									<p>Search Results .....</p>
+								</div>
+								{searchResults === null ? (
+									<SearchResults person={null} />
+								) : (
+									searchResults?.map((person) => (
+										<SearchResults key={person._id} person={person} />
+									))
+								)}
 							</div>
-							{searchResults === null ? (
-								<SearchResults person={null} />
-							) : (
-								searchResults?.map((person) => (
-									<SearchResults key={person._id} person={person} />
-								))
-							)}
-						</div>
-					</Popover>
-				</div>
-
-				<div className="trend__sections">
-					<div className="trend__title">
-						<h2>Trends for you</h2>
-						<SettingsOutlinedIcon style={{ color: '#00b4d8' }} />
+						</Popover>
 					</div>
 
-					<SingleTrend trend={fakeTrend} />
-					<SingleTrend trend={fakeTrend3} />
-					<SingleTrend trend={fakeTrend2} />
-					<SingleTrend trend={fakeTrend} />
-					<SingleTrend trend={fakeTrend3} />
+					<div className="trend__sections">
+						<div className="trend__title">
+							<h2>Trends for you</h2>
+							<SettingsOutlinedIcon style={{ color: '#00b4d8' }} />
+						</div>
 
-					<div className="trend__showMore">
-						<h5>Show More</h5>
+						<SingleTrend trend={fakeTrend} />
+						<SingleTrend trend={fakeTrend3} />
+						<SingleTrend trend={fakeTrend2} />
+						<SingleTrend trend={fakeTrend} />
+						<SingleTrend trend={fakeTrend3} />
+
+						<div className="trend__showMore">
+							<h5>Show More</h5>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</CSSTransition>
 	);
 };
 
