@@ -14,14 +14,13 @@ const useStyles = makeStyles((theme) => ({
 		boxShadow: 'none',
 		width: '75%',
 		borderRadius: '28px',
-		margin: '15px 0',
 		fontSize: '12px',
+		margin: '15px auto',
 	},
 }));
 
 const TweetButton = ({ withIcon, withQuery, clickFunction }) => {
 	const classes = useStyles();
-	console.log(withQuery);
 
 	return (
 		<Button
@@ -31,9 +30,9 @@ const TweetButton = ({ withIcon, withQuery, clickFunction }) => {
 			color="primary"
 			size="large"
 			type="submit"
-			startIcon={withIcon && <SendIcon />}
 		>
-			Tweet
+			{withIcon && <SendIcon />}
+			{withQuery && 'tweet'}
 		</Button>
 	);
 };

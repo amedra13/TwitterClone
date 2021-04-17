@@ -17,7 +17,7 @@ const ListButton = ({ IconComponent, listItem, username, userId }) => {
 				<IconComponent
 					style={{
 						color: 'inherit',
-						margin: '10',
+						// marginRight: '10',
 					}}
 					fontSize="large"
 				/>
