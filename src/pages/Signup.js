@@ -42,7 +42,8 @@ const Signup = () => {
 					setErrorMsg(errors);
 					setErrors(true);
 				} else {
-					history.push(`/createAccount/${res.data.userId}`);
+					localStorage.setItem('userId', res.data.userId);
+					history.push('/createAccount');
 				}
 			})
 			.catch((err) => console.log(err));

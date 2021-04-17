@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import TextField from '@material-ui/core/TextField';
@@ -38,14 +38,17 @@ const CreateAccount = () => {
 	const [location, setLocation] = useState('');
 	const [errorMsg, setErrorMsg] = useState(null);
 	const [errorField, setErrorField] = useState(null);
-	const { userId } = useParams();
 	const history = useHistory();
 	const classes = useStyles();
 
 	const createAccount = (e) => {
 		e.preventDefault();
+		const id = localStorage.getItem('userId');
+		if (!id) {
+			return;
+		}
 		axios
-			.post(`http://localhost:8080/createAccount/${userId}`, {
+			.post(`http://localhost:8080/createAccount/${id}`, {
 				name: name,
 				username: username,
 				aboutMe: aboutMe,
@@ -57,7 +60,7 @@ const CreateAccount = () => {
 					setErrorMsg(errors);
 					setErrorField(errField);
 				} else {
-					history.push(`/home/${userId}`);
+					history.push('/home');
 				}
 			})
 			.catch((err) => console.log(err));
