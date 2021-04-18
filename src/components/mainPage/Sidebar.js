@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import ListButton from '../Buttons/ListButton';
 import TweetButton from '../Buttons/TweetButton';
+import LogoutButton from '../Buttons/LogoutButton';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -82,6 +83,9 @@ const Sidebar = ({ user }) => {
 						withQuery={matches}
 						clickFunction={modalHandler}
 					/>
+				</div>
+				<div className="sidebar__logoutButton">
+					<LogoutButton minimize={matches} />
 				</div>
 				<TweetModal
 					isOpen={isOpen}

@@ -25,10 +25,11 @@ $sidebar-minmizedPadding: 0px;
 			color: $main-blueColor;
 		}
 	}
-	.sidebar__tweetButton {
+	.sidebar__tweetButton,
+	.sidebar__logoutButton {
 		padding-left: $sidebar-leftPadding;
-		width: 100%;
 	}
+
 	.sidebar__logo {
 		display: flex;
 		justify-content: center;
@@ -67,7 +68,8 @@ $sidebar-minmizedPadding: 0px;
 			padding-left: $sidebar-minmizedPadding;
 		}
 
-		.sidebar__tweetButton {
+		.sidebar__tweetButton,
+		.sidebar__logoutButton {
 			padding-left: $sidebar-minmizedPadding;
 			display: flex;
 			justify-content: center;

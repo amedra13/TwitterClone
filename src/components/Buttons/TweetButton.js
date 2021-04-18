@@ -28,7 +28,6 @@ const TweetButton = ({ withIcon, withQuery, clickFunction }) => {
 			className={classes.tweet}
 			variant="contained"
 			color="primary"
-			// size="large"
 			type="submit"
 		>
 			{withIcon && <SendIcon />}
