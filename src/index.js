@@ -16,7 +16,7 @@ import messagesReducer from './store/reducers/messagesReducer';
 
 import App from './App';
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
 	main: mainReducer,
 	tweet: tweetReducer,
 	profile: profileReducer,
@@ -28,6 +28,13 @@ const rootReducer = combineReducers({
 const persistConfig = {
 	key: 'root',
 	storage,
+};
+const rootReducer = (state, action) => {
+	if (action.type === 'USER_LOGGED_OUT') {
+		storage.removeItem('persist:root');
+		state = undefined;
+	}
+	return appReducer(state, action);
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

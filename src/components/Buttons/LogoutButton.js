@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
 	tweet: {
@@ -21,13 +20,14 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const LogoutButton = ({ minimize }) => {
-	const logout = () => {
-		console.log('Logging out!');
-	};
+const LogoutButton = ({ minimize, clickFunction }) => {
 	const classes = useStyles();
 	return (
-		<Button onClick={logout} className={classes.tweet} variant="contained">
+		<Button
+			onClick={() => clickFunction()}
+			className={classes.tweet}
+			variant="contained"
+		>
 			{!minimize ? <ExitToAppIcon /> : 'Logout'}
 		</Button>
 	);

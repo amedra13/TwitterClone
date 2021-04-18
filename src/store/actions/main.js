@@ -26,3 +26,10 @@ export const updateFeedPosts = (updatedPosts) => {
 		updatedPosts: updatedPosts,
 	};
 };
+
+export const logout = () => {
+	console.log('Logout Clicked');
+	return {
+		type: 'USER_LOGGED_OUT',
+	};
+};

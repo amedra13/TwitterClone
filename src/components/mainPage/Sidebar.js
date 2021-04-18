@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import ListButton from '../Buttons/ListButton';
 import TweetButton from '../Buttons/TweetButton';
@@ -14,14 +15,21 @@ import ListAltOutlinedIcon from '@material-ui/icons/ListAltOutlined';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 import TweetModal from '../Modals/TweetModal';
+import * as actions from '../../store/actions/index';
 
-const Sidebar = ({ user }) => {
+const Sidebar = ({ user, onLogout }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false);
 	const matches = useMediaQuery('(min-width:1100px)');
+	const history = useHistory();
 
 	const modalHandler = () => {
 		setIsOpen(!isOpen);
+	};
+	const logoutHandler = () => {
+		onLogout();
+		localStorage.removeItem('userId');
+		history.push('/');
 	};
 
 	const sidebarHeader = matches ? (
@@ -85,7 +93,7 @@ const Sidebar = ({ user }) => {
 					/>
 				</div>
 				<div className="sidebar__logoutButton">
-					<LogoutButton minimize={matches} />
+					<LogoutButton minimize={matches} clickFunction={logoutHandler} />
 				</div>
 				<TweetModal
 					isOpen={isOpen}
@@ -103,5 +111,9 @@ const mapStateToProps = (state) => {
 		user: state.main.user,
 	};
 };
-
-export default connect(mapStateToProps)(Sidebar);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onLogout: () => dispatch(actions.logout()),
+	};
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
