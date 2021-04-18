@@ -32,21 +32,27 @@
 	display: flex;
 	.messages__title {
 		line-height: 59px;
-		padding: 0 20px;
+		// padding: 0 20px;
 		color: post-textColor;
 		border-bottom: 1px solid $main-borderColor;
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		justify-content: center;
 	}
 	.messages__list {
 		border-left: 1px solid $main-borderColor;
 		border-right: 1px solid $main-borderColor;
 		width: 35%;
+		transition: width 250ms ease-in;
+		display: flex;
+		flex-direction: column;
+	}
+	.minimize {
+		width: 100px;
 	}
 	.messages__conversations {
 		// border: 1px solid green;
-		width: 65%;
+		flex: 1;
 	}
 	.messages__empty {
 		display: flex;
@@ -64,7 +70,7 @@
 	border-bottom: 1px solid $main-borderColor;
 	height: 100px;
 	display: flex;
-
+	justify-content: center;
 	p {
 		color: rgba(129, 148, 173, 0.651);
 		white-space: nowrap;
@@ -95,7 +101,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		height: 6%;
+		height: 60px;
 		.conversation__otherUser {
 			p {
 				font-family: $post-textFont;

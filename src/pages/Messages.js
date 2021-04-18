@@ -7,6 +7,7 @@ import MessageContainer from '../components/message/MessageContainer';
 import Conversation from '../components/message/Conversation';
 import axios from 'axios';
 import MessageModal from '../components/Modals/MessageModal';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import * as actions from '../store/actions/index';
 
 const Messages = ({
@@ -18,6 +19,8 @@ const Messages = ({
 	onLoadList,
 }) => {
 	const [isOpen, setIsOpen] = useState(false);
+	const matches = useMediaQuery('(max-width:900px)');
+
 	const modalHandler = () => {
 		setIsOpen(!isOpen);
 	};
@@ -49,21 +52,29 @@ const Messages = ({
 		<div className="messages">
 			<Sidebar />
 			<div className="messages__container">
-				<div className="messages__list">
+				<div className={`messages__list ${matches && 'minimize'}`}>
 					<div className="messages__title">
 						<h3>Messages</h3>
-						<IconButton onClick={modalHandler}>
-							<PostAddIcon fontSize="large" style={{ color: '#00b4d8' }} />
-						</IconButton>
+						{!matches && (
+							<IconButton onClick={modalHandler}>
+								<PostAddIcon fontSize="large" style={{ color: '#00b4d8' }} />
+							</IconButton>
+						)}
 					</div>
 					{chatIds?.map((chat) => (
 						<MessageContainer
 							key={chat._id}
 							chatId={chat._id}
 							otherUser={chat.users[0]}
+							minimize={!matches}
 							clickFunction={loadConversation}
 						/>
 					))}
+					{matches && (
+						<IconButton onClick={modalHandler}>
+							<PostAddIcon fontSize="large" style={{ color: '#00b4d8' }} />
+						</IconButton>
+					)}
 				</div>
 				<div className="messages__conversations">
 					{chatRoom ? (
@@ -71,6 +82,7 @@ const Messages = ({
 							messages={chatRoom?.messages}
 							chatId={chatRoom?._id}
 							friend={friend}
+							minimize={!matches}
 							updateMessages={loadConversation}
 						/>
 					) : (
