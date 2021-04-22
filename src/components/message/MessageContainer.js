@@ -38,6 +38,7 @@ const MessageContainer = ({ chatId, otherUser, minimize, clickFunction }) => {
 					width: '60px',
 					height: '60px',
 				}}
+				src={`http://localhost:8080/${friend?.profileImage}`}
 			/>
 			{messageSection}
 		</div>

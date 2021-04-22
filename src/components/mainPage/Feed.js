@@ -7,7 +7,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 
-const Feed = ({ posts, userId, onUpdateFeedPosts }) => {
+const Feed = ({ posts, userId, profileImage, onUpdateFeedPosts }) => {
 	const updateFeed = async () => {
 		const feedResponse = await axios.get(
 			`http://localhost:8080/updateFeed/${userId}`
@@ -25,7 +25,7 @@ const Feed = ({ posts, userId, onUpdateFeedPosts }) => {
 
 	return (
 		<div className="feed">
-			<FeedHeader userId={userId} />
+			<FeedHeader userId={userId} profileImage={profileImage} />
 			{posts ? (
 				posts.map((singlePost, i) => {
 					return (

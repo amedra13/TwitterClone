@@ -19,7 +19,10 @@ const Conversation = ({ user, messages, chatId, friend, updateMessages }) => {
 	return (
 		<div className="conversation">
 			<div className="conversation__title">
-				<Avatar style={{ margin: '0 10px' }} />
+				<Avatar
+					style={{ margin: '0 10px' }}
+					src={`http://localhost:8080/${friend?.profileImage}`}
+				/>
 				<div className="conversation__otherUser">
 					<h4>{friend?.name}</h4>
 					<p>{friend?.userName}</p>

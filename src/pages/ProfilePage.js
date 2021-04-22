@@ -69,8 +69,6 @@ const ProfilePage = ({
 
 			onSetProfile(result.data.profile, result.data.posts);
 		};
-		const loadFollowing = async () => {};
-		loadFollowing();
 		getProfileUser();
 	}, [user, username, onSetProfile, onReloadFollowing]);
 
@@ -99,7 +97,12 @@ const ProfilePage = ({
 					</div>
 					<div className="profile__bottom">
 						<div className="profile__user">
-							<Avatar className={classes.avatar}>AM</Avatar>
+							<Avatar
+								className={classes.avatar}
+								src={`http://localhost:8080/${profileUser?.profileImage}`}
+							>
+								AM
+							</Avatar>
 							<FollowButton
 								followingList={following}
 								updateFollow={reloadFollowing}

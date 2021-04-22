@@ -20,7 +20,10 @@ const ListItem = ({ userId, person, delay, animation, following, update }) => {
 			className={`listItem ${animation}`}
 			style={{ animationDelay: `${delay * 75}ms` }}
 		>
-			<Avatar style={{ margin: '0 10px' }} />
+			<Avatar
+				style={{ margin: '0 10px' }}
+				src={`http://localhost:8080/${person?.profileImage}`}
+			/>
 			<div className="listItem__userInfo">
 				<div className="listItem__name">
 					<h4>{person?.name}</h4>

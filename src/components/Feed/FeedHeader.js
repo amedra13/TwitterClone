@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const FeedHeader = ({ userId, onUpdateFeedPosts }) => {
+const FeedHeader = ({ userId, profileImage, onUpdateFeedPosts }) => {
 	const classes = useStyles();
 	const [newTweet, setNewTweet] = useState('');
 	const [loading, setIsLoading] = useState(false);
@@ -60,7 +60,7 @@ const FeedHeader = ({ userId, onUpdateFeedPosts }) => {
 			</div>
 			<div className="feedHeader__form">
 				<div className="avatarContainer">
-					<Avatar>AM</Avatar>
+					<Avatar src={`http://localhost:8080/${profileImage}`}>AM</Avatar>
 				</div>
 				{loading ? (
 					<TweetLoader />

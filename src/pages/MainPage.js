@@ -24,7 +24,11 @@ const MainPage = ({ onLoadUser, user, feedPosts }) => {
 	return (
 		<div className="mainPage">
 			<SideBar />
-			<Feed userId={user?._id} posts={feedPosts} />
+			<Feed
+				userId={user?._id}
+				profileImage={user?.profileImage}
+				posts={feedPosts}
+			/>
 			<Trend />
 		</div>
 	);

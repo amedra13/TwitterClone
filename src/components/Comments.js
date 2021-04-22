@@ -19,6 +19,7 @@ const Comments = ({
 		await axios.post(`http://localhost:8080/comment/${postId}`, {
 			comment: message,
 			username: user.userName,
+			image: user.profileImage,
 		});
 
 		updateComments();
@@ -31,6 +32,7 @@ const Comments = ({
 					<div key={i} className="comment__container">
 						<Avatar
 							style={{ width: '25px', height: '25px', margin: '0 10px' }}
+							src={`http://localhost:8080/${comment.image}`}
 						/>
 						<Link
 							to={`/profile/${comment.username?.slice(1)}`}

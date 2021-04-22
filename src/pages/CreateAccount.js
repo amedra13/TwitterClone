@@ -36,6 +36,7 @@ const CreateAccount = () => {
 	const [username, setUsername] = useState('');
 	const [aboutMe, setAboutMe] = useState('');
 	const [location, setLocation] = useState('');
+	const [imgFile, setImageFile] = useState('');
 	const [errorMsg, setErrorMsg] = useState(null);
 	const [errorField, setErrorField] = useState(null);
 	const history = useHistory();
@@ -47,23 +48,45 @@ const CreateAccount = () => {
 		if (!id) {
 			return;
 		}
+
+		const formData = new FormData();
+		formData.append('name', name);
+		formData.append('username', username);
+		formData.append('aboutMe', aboutMe);
+		formData.append('location', location);
+		formData.append('image', imgFile);
+
+		const config = {
+			headers: {
+				'content-type': 'multipart/form-data',
+			},
+		};
 		axios
-			.post(`http://localhost:8080/createAccount/${id}`, {
-				name: name,
-				username: username,
-				aboutMe: aboutMe,
-				location: location,
-			})
+			.post(`http://localhost:8080/createAccount/${id}`, formData, config)
 			.then((result) => {
 				const { errors, errField } = result.data;
 				if (errors) {
 					setErrorMsg(errors);
 					setErrorField(errField);
 				} else {
+					console.log('Submited w/ File!');
 					history.push('/home');
 				}
 			})
 			.catch((err) => console.log(err));
+	};
+
+	const readFile = (imageFile) => {
+		console.log('UPLOAD IMG', imageFile);
+		const reader = new FileReader();
+		const promise = new Promise((resolve, reject) => {
+			reader.onload = (e) => resolve(e.target.result);
+			reader.onerror = (err) => reject(err);
+		});
+
+		reader.readAsDataURL(imageFile);
+		setImageFile(imageFile);
+		return promise;
 	};
 	return (
 		<div className="createAccount">
@@ -143,6 +166,30 @@ const CreateAccount = () => {
 							onChange={(e) => setLocation(e.target.value)}
 						/>
 					</div>
+					<div className="formDiv">
+						{errorField === 'image' && (
+							<h4 style={{ color: 'red' }}>{errorMsg}</h4>
+						)}
+						<h5>Twitter community is all over the world!</h5>
+						<input
+							type="file"
+							name="image"
+							id="image"
+							onChange={(e) => {
+								readFile(e.target.files[0]).then((result) =>
+									console.log('REsult =>>', result)
+								);
+							}}
+						/>
+					</div>
+					<button
+						onClick={(e) => {
+							e.preventDefault();
+							console.log(imgFile);
+						}}
+					>
+						Test
+					</button>
 
 					<Button type="submit" variant="outlined" className={classes.button}>
 						Go to Account
