@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
 	button: {
 		backgroundColor: '#00b4d8',
 		color: 'white',
+		marginTop: '10px',
 	},
 	icon: {
 		color: '#00b4d8',
@@ -170,26 +171,24 @@ const CreateAccount = () => {
 						{errorField === 'image' && (
 							<h4 style={{ color: 'red' }}>{errorMsg}</h4>
 						)}
-						<h5>Twitter community is all over the world!</h5>
+						<h5>Chose a profile picture to show the world!</h5>
 						<input
+							style={{ display: 'none' }}
+							id="imgfile"
+							multiple
 							type="file"
-							name="image"
-							id="image"
 							onChange={(e) => {
 								readFile(e.target.files[0]).then((result) =>
 									console.log('REsult =>>', result)
 								);
 							}}
 						/>
+						<label htmlFor="imgfile">
+							<Button component="span" className={classes.button}>
+								{imgFile ? imgFile.name : 'Upload'}
+							</Button>
+						</label>
 					</div>
-					<button
-						onClick={(e) => {
-							e.preventDefault();
-							console.log(imgFile);
-						}}
-					>
-						Test
-					</button>
 
 					<Button type="submit" variant="outlined" className={classes.button}>
 						Go to Account
