@@ -93,13 +93,16 @@ const ProfilePage = ({
 			<div className="profile">
 				<div className="profile__info">
 					<div className="profile__img">
-						<img src={profileUser?.profileImage} alt="" />
+						<img src={profileUser?.backgroundImage} alt="" />
 					</div>
 					<div className="profile__bottom">
 						<div className="profile__user">
 							<Avatar
 								className={classes.avatar}
-								src={`http://localhost:8080/${profileUser?.profileImage}`}
+								src={
+									profileUser &&
+									`http://localhost:8080/${profileUser.profileImage}`
+								}
 							>
 								AM
 							</Avatar>

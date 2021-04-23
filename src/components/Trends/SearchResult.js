@@ -16,6 +16,7 @@ const SearchResult = ({ person }) => {
 					<Avatar
 						style={{ width: 40, height: 40, margin: '10px' }}
 						variant="rounded"
+						src={`http://localhost:8080/${person.profileImage}`}
 					>
 						AM
 					</Avatar>

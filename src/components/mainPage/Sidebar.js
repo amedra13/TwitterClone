@@ -26,8 +26,8 @@ const Sidebar = ({ user, onLogout }) => {
 	const modalHandler = () => {
 		setIsOpen(!isOpen);
 	};
-	const logoutHandler = () => {
-		onLogout();
+	const logoutHandler = async () => {
+		await onLogout();
 		localStorage.removeItem('userId');
 		history.push('/');
 	};

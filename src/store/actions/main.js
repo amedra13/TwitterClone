@@ -28,7 +28,6 @@ export const updateFeedPosts = (updatedPosts) => {
 };
 
 export const logout = () => {
-	console.log('Logout Clicked');
 	return {
 		type: 'USER_LOGGED_OUT',
 	};

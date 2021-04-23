@@ -60,7 +60,9 @@ const FeedHeader = ({ userId, profileImage, onUpdateFeedPosts }) => {
 			</div>
 			<div className="feedHeader__form">
 				<div className="avatarContainer">
-					<Avatar src={`http://localhost:8080/${profileImage}`}>AM</Avatar>
+					<Avatar
+						src={profileImage && `http://localhost:8080/${profileImage}`}
+					/>
 				</div>
 				{loading ? (
 					<TweetLoader />
