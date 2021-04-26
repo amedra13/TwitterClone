@@ -93,7 +93,10 @@ const ProfilePage = ({
 			<div className="profile">
 				<div className="profile__info">
 					<div className="profile__img">
-						<img src={profileUser?.backgroundImage} alt="" />
+						<img
+							src={`http://localhost:8080/${profileUser?.backgroundImage}`}
+							alt=""
+						/>
 					</div>
 					<div className="profile__bottom">
 						<div className="profile__user">

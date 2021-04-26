@@ -38,6 +38,7 @@ const CreateAccount = () => {
 	const [aboutMe, setAboutMe] = useState('');
 	const [location, setLocation] = useState('');
 	const [imgFile, setImageFile] = useState('');
+	const [bgImageFile, setBgImage] = useState('');
 	const [errorMsg, setErrorMsg] = useState(null);
 	const [errorField, setErrorField] = useState(null);
 	const history = useHistory();
@@ -56,6 +57,7 @@ const CreateAccount = () => {
 		formData.append('aboutMe', aboutMe);
 		formData.append('location', location);
 		formData.append('image', imgFile);
+		formData.append('bgImage', bgImageFile);
 
 		const config = {
 			headers: {
@@ -77,18 +79,6 @@ const CreateAccount = () => {
 			.catch((err) => console.log(err));
 	};
 
-	const readFile = (imageFile) => {
-		console.log('UPLOAD IMG', imageFile);
-		const reader = new FileReader();
-		const promise = new Promise((resolve, reject) => {
-			reader.onload = (e) => resolve(e.target.result);
-			reader.onerror = (err) => reject(err);
-		});
-
-		reader.readAsDataURL(imageFile);
-		setImageFile(imageFile);
-		return promise;
-	};
 	return (
 		<div className="createAccount">
 			<div className="createAccount__container">
@@ -175,17 +165,29 @@ const CreateAccount = () => {
 						<input
 							style={{ display: 'none' }}
 							id="imgfile"
-							multiple
 							type="file"
-							onChange={(e) => {
-								readFile(e.target.files[0]).then((result) =>
-									console.log('REsult =>>', result)
-								);
-							}}
+							onChange={(e) => setImageFile(e.target.files[0])}
 						/>
 						<label htmlFor="imgfile">
 							<Button component="span" className={classes.button}>
-								{imgFile ? imgFile.name : 'Upload'}
+								{imgFile ? imgFile.name : 'Profile Image'}
+							</Button>
+						</label>
+					</div>
+					<div className="formDiv">
+						{errorField === 'bgImage' && (
+							<h4 style={{ color: 'red' }}>{errorMsg}</h4>
+						)}
+						<h5>Chose a profile picture to show the world!</h5>
+						<input
+							style={{ display: 'none' }}
+							id="bgImagefile"
+							type="file"
+							onChange={(e) => setBgImage(e.target.files[0])}
+						/>
+						<label htmlFor="bgImagefile">
+							<Button component="span" className={classes.button}>
+								{bgImageFile ? bgImageFile.name : 'Background Image'}
 							</Button>
 						</label>
 					</div>
