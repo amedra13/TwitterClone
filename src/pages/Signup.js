@@ -42,7 +42,7 @@ const Signup = () => {
 					setErrorMsg(errors);
 					setErrors(true);
 				} else {
-					localStorage.setItem('userId', res.data.userId);
+					localStorage.setItem('token', res.data.token);
 					history.push('/createAccount');
 				}
 			})

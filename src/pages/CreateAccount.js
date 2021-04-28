@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+import jwtdecode from 'jwt-decode';
 
 const useStyles = makeStyles((theme) => ({
 	button: {
@@ -44,10 +45,10 @@ const CreateAccount = () => {
 	const history = useHistory();
 	const classes = useStyles();
 
-	const createAccount = (e) => {
+	const createAccount = async (e) => {
 		e.preventDefault();
-		const id = localStorage.getItem('userId');
-		if (!id) {
+		const token = localStorage.getItem('token');
+		if (!token) {
 			return;
 		}
 
@@ -64,15 +65,19 @@ const CreateAccount = () => {
 				'content-type': 'multipart/form-data',
 			},
 		};
+		const newToken = await jwtdecode(token);
 		axios
-			.post(`http://localhost:8080/createAccount/${id}`, formData, config)
+			.post(
+				`http://localhost:8080/createAccount/${newToken.userId}`,
+				formData,
+				config
+			)
 			.then((result) => {
 				const { errors, errField } = result.data;
 				if (errors) {
 					setErrorMsg(errors);
 					setErrorField(errField);
 				} else {
-					console.log('Submited w/ File!');
 					history.push('/home');
 				}
 			})
