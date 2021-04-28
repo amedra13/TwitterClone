@@ -5,13 +5,17 @@ import Trend from '../components/mainPage/Trend';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/index';
-const MainPage = ({ onLoadUser, user, feedPosts }) => {
-	const userId = localStorage.getItem('userId');
+import jwtdecode from 'jwt-decode';
 
+const MainPage = ({ onLoadUser, user, feedPosts }) => {
 	useEffect(() => {
 		const getUserAndFeed = async () => {
 			try {
-				const profile = await axios.get(`http://localhost:8080/home/${userId}`);
+				const token = localStorage.getItem('token');
+				const decodedToken = jwtdecode(token);
+				const profile = await axios.get(
+					`http://localhost:8080/home/${decodedToken.userId}`
+				);
 				onLoadUser(profile.data.user, profile.data.allPosts);
 			} catch (err) {
 				console.log(err);
@@ -19,7 +23,7 @@ const MainPage = ({ onLoadUser, user, feedPosts }) => {
 		};
 
 		getUserAndFeed();
-	}, [userId, onLoadUser]);
+	}, [onLoadUser]);
 
 	return (
 		<div className="mainPage">

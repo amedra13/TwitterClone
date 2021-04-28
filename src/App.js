@@ -10,6 +10,7 @@ import Bookmarks from './pages/Bookmarks';
 import Lists from './pages/Lists';
 import Edit from './pages/Edit';
 import Messages from './pages/Messages';
+import ProtectedRoutes from './ProtectedRoutes';
 
 import {
 	BrowserRouter as Router,
@@ -26,15 +27,21 @@ function App() {
 					<Route exact path="/" component={Signup} />
 					<Route exact path="/createAccount" component={CreateAccount} />
 					<Route exact path="/login" component={Login} />
-					<Route exact path="/home">
-						<MainPage />
-					</Route>
-					<Route exact path="/profile/:username" component={ProfilePage} />
-					<Route exact path="/status/:postId" component={TweetStatus} />
-					<Route exact path="/bookmarks" component={Bookmarks} />
-					<Route exact path="/lists" component={Lists} />
-					<Route exact path="/editAccount" component={Edit} />
-					<Route exact path="/messages" component={Messages} />
+					<ProtectedRoutes exact path="/home" component={MainPage} />
+					<ProtectedRoutes
+						exact
+						path="/profile/:username"
+						component={ProfilePage}
+					/>
+					<ProtectedRoutes
+						exact
+						path="/status/:postId"
+						component={TweetStatus}
+					/>
+					<ProtectedRoutes exact path="/bookmarks" component={Bookmarks} />
+					<ProtectedRoutes exact path="/lists" component={Lists} />
+					<ProtectedRoutes exact path="/editAccount" component={Edit} />
+					<ProtectedRoutes exact path="/messages" component={Messages} />
 					<Redirect to="/" />
 				</Switch>
 			</Router>

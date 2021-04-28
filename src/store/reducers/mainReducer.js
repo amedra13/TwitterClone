@@ -1,5 +1,5 @@
 const initialState = {
-	user: 'THIS IS ANDRES DUUUUUU',
+	user: null,
 	feedPosts: null,
 	isLoggedIn: false,
 	isUser: false,
