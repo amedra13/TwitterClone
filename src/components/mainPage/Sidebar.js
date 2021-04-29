@@ -28,7 +28,6 @@ const Sidebar = ({ user, onLogout }) => {
 	};
 	const logoutHandler = async () => {
 		await onLogout();
-		localStorage.removeItem('token');
 		history.push('/');
 	};
 

@@ -32,6 +32,7 @@ const persistConfig = {
 const rootReducer = (state, action) => {
 	if (action.type === 'USER_LOGGED_OUT') {
 		storage.removeItem('persist:root');
+		localStorage.removeItem('token');
 		state = undefined;
 	}
 	return appReducer(state, action);

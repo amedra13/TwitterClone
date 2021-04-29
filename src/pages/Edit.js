@@ -3,9 +3,11 @@ import Sidebar from '../components/mainPage/Sidebar';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Trend from '../components/mainPage/Trend';
+import DeleteModal from '../components/Modals/DeleteModal';
 import axios from 'axios';
+import * as actions from '../store/actions/index';
 
-const Edit = ({ user }) => {
+const Edit = ({ user, onLogout }) => {
 	const history = useHistory();
 	const [name, setName] = useState('');
 	const [username, setUsername] = useState('');
@@ -13,6 +15,7 @@ const Edit = ({ user }) => {
 	const [location, setLocation] = useState('');
 	const [error, setError] = useState(null);
 	const [errMessage, setErrMessage] = useState(null);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const updateUser = async (e) => {
 		e.preventDefault();
@@ -37,6 +40,18 @@ const Edit = ({ user }) => {
 		} catch (err) {
 			console.log(err);
 		}
+	};
+
+	const modalHandler = () => {
+		setIsModalOpen(!isModalOpen);
+	};
+	const deleteAccount = async () => {
+		await axios.post(`http://localhost:8080/deleteAccount`, {
+			id: user._id,
+			username: user.userName,
+		});
+		onLogout();
+		history.push('/');
 	};
 	return (
 		<div className="edit">
@@ -121,9 +136,16 @@ const Edit = ({ user }) => {
 						</div>
 					</form>
 					<div className="deleteContainer">
-						<button className="delete">DELETE ACCOUNT</button>
+						<button className="delete" onClick={() => setIsModalOpen(true)}>
+							DELETE ACCOUNT
+						</button>
 					</div>
 				</div>
+				<DeleteModal
+					isOpen={isModalOpen}
+					modalHandler={modalHandler}
+					deleteFunction={deleteAccount}
+				/>
 			</div>
 			<Trend />
 		</div>
@@ -135,5 +157,9 @@ const mapStateToProps = (state) => {
 		user: state.main.user,
 	};
 };
-
-export default connect(mapStateToProps)(Edit);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onLogout: () => dispatch(actions.logout()),
+	};
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Edit);
