@@ -8,8 +8,6 @@ import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
-import LinkOutlinedIcon from '@material-ui/icons/LinkOutlined';
-import EventNoteOutlinedIcon from '@material-ui/icons/EventNoteOutlined';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import { connect } from 'react-redux';
 import moment from 'moment';
@@ -132,14 +130,6 @@ const ProfilePage = ({
 								<div>
 									<LocationOnOutlinedIcon />
 									<p>{profileUser?.location}</p>
-								</div>
-								<div>
-									<LinkOutlinedIcon />
-									<p>Website</p>
-								</div>
-								<div>
-									<EventNoteOutlinedIcon />
-									<p>{'10/10/20'}</p>
 								</div>
 							</div>
 						</div>

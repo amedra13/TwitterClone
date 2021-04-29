@@ -93,6 +93,7 @@ const Signup = () => {
 								className={classes.inputField}
 								variant="outlined"
 								placeholder="Password"
+								type="password"
 								size="small"
 								error={errors}
 								value={password}

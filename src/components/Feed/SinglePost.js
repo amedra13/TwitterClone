@@ -18,7 +18,6 @@ const SinglePost = ({
 	updateFeed,
 }) => {
 	const [showComments, setShowComments] = useState(false);
-	const [retweets, setRetweets] = useState(post.retweets);
 	const history = useHistory();
 
 	const userLikes = post.favorite.includes(user._id);
@@ -64,11 +63,8 @@ const SinglePost = ({
 						<RepeatOutlinedIcon
 							fontSize="small"
 							style={{ margin: ' 0 10px' }}
-							onClick={() => {
-								setRetweets((prevState) => prevState + 1);
-							}}
 						/>{' '}
-						{retweets}
+						0
 					</div>
 					<div>
 						<FavoriteIcon
