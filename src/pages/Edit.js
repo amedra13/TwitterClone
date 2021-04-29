@@ -46,10 +46,11 @@ const Edit = ({ user, onLogout }) => {
 		setIsModalOpen(!isModalOpen);
 	};
 	const deleteAccount = async () => {
-		await axios.post(`http://localhost:8080/deleteAccount`, {
+		const res = await axios.post(`http://localhost:8080/deleteAccount`, {
 			id: user._id,
 			username: user.userName,
 		});
+		console.log(res.data.message);
 		onLogout();
 		history.push('/');
 	};
