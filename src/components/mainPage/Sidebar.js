@@ -31,26 +31,26 @@ const Sidebar = ({ user, onLogout }) => {
 		history.push('/');
 	};
 
-	const sidebarHeader = matches ? (
-		<div>
-			<IconButton style={{ color: '#00b4d8' }}>
-				<TwitterIcon fontSize="large" />
-			</IconButton>
-			{user?.userName}
-		</div>
-	) : (
-		<IconButton
-			onClick={() => setMenuOpen(!menuOpen)}
-			style={{ color: '#00b4d8' }}
-		>
-			<MenuIcon fontSize="large" />
-		</IconButton>
-	);
-
 	return (
 		<div className={`sidebar ${menuOpen && 'activeMenu'}`}>
 			<div className="sidebarContainer">
-				<div className="sidebar__logo">{sidebarHeader}</div>
+				<div className="sidebar__logo">
+					{matches ? (
+						<div>
+							<IconButton style={{ color: '#00b4d8' }}>
+								<TwitterIcon fontSize="large" />
+							</IconButton>
+							{user?.userName}
+						</div>
+					) : (
+						<IconButton
+							onClick={() => setMenuOpen(!menuOpen)}
+							style={{ color: '#00b4d8' }}
+						>
+							<MenuIcon fontSize="large" />
+						</IconButton>
+					)}
+				</div>
 				<div className="sidebar__list">
 					<ListButton
 						listItem="Home"
