@@ -27,6 +27,28 @@ const useStyles = makeStyles((theme) => ({
 	closeIcon: {
 		color: '#00b4d8',
 	},
+	button: {
+		width: '100px',
+		height: '50px',
+		margin: '0 40px',
+		color: 'white',
+	},
+	delete: {
+		backgroundColor: 'rgb(233, 40, 88)',
+		'&:hover': {
+			backgroundColor: 'white',
+			color: 'rgb(233, 40, 88)',
+			border: '1px solid rgb(233, 40, 88)',
+		},
+	},
+	cancel: {
+		backgroundColor: '#00b4d8',
+		'&:hover': {
+			backgroundColor: 'white',
+			color: '#00b4d8',
+			border: '1px solid #00b4d8',
+		},
+	},
 }));
 
 const DeleteModal = ({ isOpen, modalHandler, deleteFunction }) => {
@@ -61,8 +83,18 @@ const DeleteModal = ({ isOpen, modalHandler, deleteFunction }) => {
 						<TweetLoader />
 					) : (
 						<div className="deleteModal__body">
-							<Button onClick={() => deletingAccount()}>Yes</Button>
-							<Button>No</Button>
+							<Button
+								onClick={() => deletingAccount()}
+								className={`${classes.button} ${classes.delete}`}
+							>
+								Yes
+							</Button>
+							<Button
+								onClick={() => modalHandler()}
+								className={`${classes.button} ${classes.cancel}`}
+							>
+								No
+							</Button>
 						</div>
 					)}
 				</div>
