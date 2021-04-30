@@ -64,7 +64,7 @@ const Edit = ({ user, onLogout }) => {
 					<form onSubmit={updateUser}>
 						<div className="form__section">
 							<div>
-								<label htmlFor="name">Current Name</label>
+								<label htmlFor="name">New Name</label>
 							</div>
 							<div>
 								<input
@@ -81,7 +81,7 @@ const Edit = ({ user, onLogout }) => {
 						</div>
 						<div className="form__section">
 							<div>
-								<label htmlFor="username">Current Username</label>
+								<label htmlFor="username">New Username</label>
 							</div>
 							<div>
 								<input
@@ -98,7 +98,7 @@ const Edit = ({ user, onLogout }) => {
 						</div>
 						<div className="form__section">
 							<div>
-								<label htmlFor="aboutMe">Current Info</label>
+								<label htmlFor="aboutMe">New Info</label>
 							</div>
 							<div>
 								<input
@@ -115,7 +115,7 @@ const Edit = ({ user, onLogout }) => {
 						</div>
 						<div className="form__section">
 							<div>
-								<label htmlFor="location">Current Location</label>
+								<label htmlFor="location">New Location</label>
 							</div>
 							<div>
 								<input

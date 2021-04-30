@@ -107,9 +107,8 @@ const ProfilePage = ({
 									profileUser &&
 									`http://localhost:8080/${profileUser.profileImage}`
 								}
-							>
-								AM
-							</Avatar>
+							/>
+
 							<FollowButton
 								followingList={following}
 								updateFollow={reloadFollowing}

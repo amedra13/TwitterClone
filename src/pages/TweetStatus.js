@@ -44,7 +44,9 @@ const TweetStatus = ({ user, tweet, comments, onSetStatus, onSetComments }) => {
 			<div className="tweet">
 				<div className="tweet__header">
 					<div className="tweet__headerInfo">
-						<Avatar>JT</Avatar>
+						<Avatar
+							src={tweet && `http://localhost:8080/${tweet.creator.img}`}
+						/>
 						<div>
 							<p>{tweet?.creator.name}</p>
 							<p>{tweet?.creator.username}</p>
