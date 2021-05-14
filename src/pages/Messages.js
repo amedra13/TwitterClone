@@ -5,6 +5,7 @@ import PostAddIcon from '@material-ui/icons/PostAdd';
 import Sidebar from '../components/mainPage/Sidebar';
 import MessageContainer from '../components/message/MessageContainer';
 import Conversation from '../components/message/Conversation';
+import moment from 'moment';
 import axios from 'axios';
 import MessageModal from '../components/Modals/MessageModal';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -66,6 +67,8 @@ const Messages = ({
 							key={chat._id}
 							chatId={chat._id}
 							otherUser={chat.users[0]}
+							lastUpdate={moment(chat.updatedAt).fromNow()}
+							chat={chat}
 							minimize={!matches}
 							clickFunction={loadConversation}
 						/>

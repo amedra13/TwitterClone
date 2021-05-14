@@ -115,7 +115,7 @@ const TweetModal = ({
 										/>
 									</div>
 									<div className="tweetModal__button">
-										<TweetButton clickFunction={tweetButton} />
+										<TweetButton clickFunction={tweetButton} withQuery />
 									</div>
 								</div>
 							</form>

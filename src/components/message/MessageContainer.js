@@ -2,7 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import axios from 'axios';
 
-const MessageContainer = ({ chatId, otherUser, minimize, clickFunction }) => {
+const MessageContainer = ({
+	chatId,
+	otherUser,
+	lastUpdate,
+	chat,
+	minimize,
+	clickFunction,
+}) => {
 	const [friend, setFriend] = useState(null);
 	useEffect(() => {
 		const loadOtherUser = async () => {
@@ -20,16 +27,22 @@ const MessageContainer = ({ chatId, otherUser, minimize, clickFunction }) => {
 				<p>
 					<span className="bold">{friend?.name}</span> {friend?.userName}
 				</p>
-				<p>Messagin sneek preview</p>
+				<p style={{ margin: '10px', fontSize: '12px' }}>{lastUpdate}</p>
 			</div>
-			<p style={{ margin: '10px' }}>Time</p>
 		</>
 	) : null;
+
+	const print = () => {
+		console.log(chat);
+	};
 
 	return (
 		<div
 			className="messageContainer"
-			onClick={() => clickFunction(chatId, friend)}
+			onClick={() => {
+				print();
+				return clickFunction(chatId, friend);
+			}}
 		>
 			<Avatar
 				style={{
