@@ -18,6 +18,10 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: '#00b4d8',
 		color: 'white',
 	},
+	icon:{
+		width: '2vw',
+		height: '2vw'
+	}
 }));
 
 const Signup = () => {
@@ -57,15 +61,15 @@ const Signup = () => {
 			<div className="signup__left">
 				<div className="signup__leftContainer">
 					<div className="signup__desc">
-						<SearchIcon fontSize="large" />
+						<SearchIcon className={classes.icon} />
 						<h3>Follow your Interests</h3>
 					</div>
 					<div className="signup__desc">
-						<PeopleOutlineIcon fontSize="large" />
+						<PeopleOutlineIcon className={classes.icon} />
 						<h3>Hear what people are talking about</h3>
 					</div>
 					<div className="signup__desc">
-						<ModeCommentOutlinedIcon fontSize="large" />
+						<ModeCommentOutlinedIcon className={classes.icon} />
 						<h3>Join the Conversation</h3>
 					</div>
 				</div>
@@ -74,7 +78,7 @@ const Signup = () => {
 				<div className="signup__rightContainer">
 					<div className="signup__rightHeader">
 						<TwitterIcon style={{ color: '#00b4d8' }} fontSize="large" />
-						<h2>See what is happening in the world right now</h2>
+						<h3>See what is happening in the world right now</h3>
 						<h5>Join Twitter today.</h5>
 					</div>
 					<div className="signup__rightForm">
@@ -85,7 +89,7 @@ const Signup = () => {
 								variant="outlined"
 								placeholder="Email"
 								error={errors}
-								size="small"
+								// size="small"
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
 							/>
@@ -94,7 +98,7 @@ const Signup = () => {
 								variant="outlined"
 								placeholder="Password"
 								type="password"
-								size="small"
+								// size="small"
 								error={errors}
 								value={password}
 								onChange={(e) => setPassword(e.target.value)}

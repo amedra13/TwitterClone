@@ -1,7 +1,8 @@
 .signup {
 	width: 100vw;
 	height: 100vh;
-	display: flex;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
 }
 .error {
 	color: rgb(248, 101, 101);
@@ -30,6 +31,7 @@
 		align-items: center;
 		h3 {
 			margin: 0 30px;
+			font-size: $signup-header-medium;
 		}
 	}
 }
@@ -44,9 +46,13 @@
 	width: 50%;
 }
 .signup__rightHeader {
+	h3 {
+		font-size: $signup-header-medium;
+	}
 	h5 {
 		margin: 15px 0;
 		font-family: $post-textFont;
+		font-size: $signup-text-medium;
 	}
 }
 .signup__rightForm {
@@ -59,6 +65,11 @@
 			align-items: center;
 			margin: 10px 0;
 			font-family: $post-textFont;
+			font-size: 1vw ;
+			button{
+				font-size: .9vw;
+			}
+
 		}
 		a {
 			color: #00b4d8;
@@ -95,7 +106,7 @@
 		flex-direction: column;
 		justify-content: space-evenly;
 		align-items: flex-start;
-		h4 {
+		h2 {
 			font-family: $post-textFont;
 		}
 		.formDiv {
@@ -117,5 +128,30 @@
 		flex-direction: column;
 		justify-content: space-evenly;
 		align-items: flex-start;
+	}
+}
+
+@media only screen and (max-width: 960px) {
+	.signup {
+		grid-template-columns: 1fr;
+	}
+	.signup__left {
+		display: none;
+	}
+	.signup__rightHeader {
+		h3 {
+			font-size: $signup-header-small;
+		}
+		h5 {
+			font-size: $signup-text-small;
+		}
+	}
+	.signup__rightForm {
+			.formBottom {
+				font-size: 2.1vw !important;
+			}
+			button{
+				font-size: 1.8vw !important;
+			}
 	}
 }
