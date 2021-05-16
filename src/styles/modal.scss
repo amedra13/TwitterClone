@@ -4,6 +4,15 @@
 	align-items: center;
 	border-bottom: 2px solid $main-borderColor;
 	color: $main-blueColor;
+	color: red;
+	font-size: 1.1vw;
+	svg {
+		color: $main-blueColor;
+		width: 2vw;
+		height: 2vw;
+		min-width: 30px;
+		min-height: 30px;
+	}
 }
 .tweetLoader__container {
 	height: 150px;
@@ -22,11 +31,22 @@
 		outline: none;
 		border: none;
 		flex: 1;
+		font-size: 1vw;
+		padding-left: 0.8vw;
 	}
 	.tweetModal__bottomContainer {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		svg {
+			width: 1.5vw;
+			height: 1.5vw;
+		}
+	}
+	.tweetModal__button {
+		button {
+			font-size: 0.8vw;
+		}
 	}
 }
 .tweetLoader {
@@ -44,4 +64,27 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+@media only screen and (max-width: 1100px) {
+	.tweetModal__header {
+		font-size: 15px;
+	}
+
+	.tweetModal__body {
+		input {
+			font-size: 14px;
+		}
+	}
+	.tweetModal__bottomContainer {
+		svg {
+			width: 22px !important;
+			height: 22px !important;
+		}
+	}
+	.tweetModal__button {
+		button {
+			font-size: 10px !important;
+		}
+	}
 }
