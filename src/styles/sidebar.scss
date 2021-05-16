@@ -48,6 +48,11 @@ $sidebar-minmizedPadding: 0px;
 			align-items: center;
 			font-size: 1.1vw;
 		}
+		svg {
+			color: $main-blueColor;
+			width: 2.5vw;
+			height: 2.5vw;
+		}
 	}
 }
 .listButton {
@@ -83,6 +88,11 @@ $sidebar-minmizedPadding: 0px;
 		.sidebar__logo {
 			display: flex;
 			justify-content: center;
+			svg {
+				color: $main-blueColor;
+				width: 25px;
+				height: 25px;
+			}
 		}
 		.sidebar__list {
 			padding-left: $sidebar-minmizedPadding;

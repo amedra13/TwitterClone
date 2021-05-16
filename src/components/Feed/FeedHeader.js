@@ -54,8 +54,8 @@ const FeedHeader = ({ userId, profileImage, onUpdateFeedPosts }) => {
 		<div className="feedHeader">
 			<div className="feedHeader__title">
 				<h4>Home</h4>
-				<IconButton style={{ color: '#00b4d8' }}>
-					<FlareIcon fontSize="large" />
+				<IconButton >
+					<FlareIcon  />
 				</IconButton>
 			</div>
 			<div className="feedHeader__form">

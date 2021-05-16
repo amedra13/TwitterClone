@@ -37,17 +37,14 @@ const Sidebar = ({ user, onLogout }) => {
 				<div className="sidebar__logo">
 					{matches ? (
 						<div>
-							<IconButton style={{ color: '#00b4d8' }}>
-								<TwitterIcon fontSize="large" />
+							<IconButton>
+								<TwitterIcon />
 							</IconButton>
 							{user?.userName}
 						</div>
 					) : (
-						<IconButton
-							onClick={() => setMenuOpen(!menuOpen)}
-							style={{ color: '#00b4d8' }}
-						>
-							<MenuIcon fontSize="large" />
+						<IconButton onClick={() => setMenuOpen(!menuOpen)}>
+							<MenuIcon />
 						</IconButton>
 					)}
 				</div>
