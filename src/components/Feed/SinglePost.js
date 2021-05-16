@@ -39,8 +39,7 @@ const SinglePost = ({
 					>
 						{post.creator.username}
 					</Link>
-					<span>&#183;</span>
-					<h4 className="textColor">{timePosted}</h4>
+					<h5 className="textColor"> &#183; {timePosted}</h5>
 				</div>
 				<div
 					className="singlePost__message"
