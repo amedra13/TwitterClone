@@ -17,9 +17,7 @@ const ListButton = ({ IconComponent, listItem, username, userId }) => {
 				<IconComponent
 					style={{
 						color: 'inherit',
-						// marginRight: '10',
 					}}
-					fontSize="large"
 				/>
 				<p style={{ margin: '0' }}>{listItem}</p>
 			</NavLink>

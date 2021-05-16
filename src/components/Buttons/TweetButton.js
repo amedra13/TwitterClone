@@ -30,8 +30,7 @@ const TweetButton = ({ withIcon, withQuery, clickFunction }) => {
 			color="primary"
 			type="submit"
 		>
-			{withIcon && <SendIcon />}
-			{withQuery && 'tweet'}
+			{!withQuery ? <SendIcon /> : 'tweet'}
 		</Button>
 	);
 };

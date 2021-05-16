@@ -25,9 +25,14 @@ $sidebar-minmizedPadding: 0px;
 			color: $main-blueColor;
 		}
 	}
+
 	.sidebar__tweetButton,
 	.sidebar__logoutButton {
 		padding-left: $sidebar-leftPadding;
+		button {
+			font-size: 0.8vw;
+			font-weight: bold;
+		}
 	}
 
 	.sidebar__logo {
@@ -36,12 +41,19 @@ $sidebar-minmizedPadding: 0px;
 		color: #00b4d8;
 		font-weight: 600;
 		border-bottom: 1px solid $main-borderColor;
+		div {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 1.1vw;
+		}
 	}
 }
 .listButton {
 	font-family: 'Raleway', sans-serif;
 	background-color: white;
-	margin: 10px 0;
+	margin: 1.3vh 0;
 	width: 75%;
 	border-radius: 28px;
 	transition: all 250ms ease-in-out;
@@ -53,6 +65,14 @@ $sidebar-minmizedPadding: 0px;
 	a {
 		display: flex;
 		align-items: center;
+		svg {
+			width: 2vw;
+			height: 2vw;
+		}
+		p {
+			font-size: 1.3vw;
+			padding-left: 10px;
+		}
 	}
 }
 
@@ -80,8 +100,14 @@ $sidebar-minmizedPadding: 0px;
 		}
 	}
 	.listButton {
-		width: 40%;
-
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		svg {
+			width: 30px !important;
+			height: 30px !important;
+		}
 		p {
 			display: none;
 		}
@@ -94,8 +120,11 @@ $sidebar-minmizedPadding: 0px;
 			align-items: center;
 		}
 		.listButton {
+			justify-content: flex-start;
+			padding-left: 40px;
 			p {
 				display: initial;
+				font-size: 16px;
 			}
 		}
 	}

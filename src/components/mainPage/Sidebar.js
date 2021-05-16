@@ -85,11 +85,7 @@ const Sidebar = ({ user, onLogout }) => {
 					/>
 				</div>
 				<div className="sidebar__tweetButton">
-					<TweetButton
-						withIcon
-						withQuery={matches}
-						clickFunction={modalHandler}
-					/>
+					<TweetButton withQuery={matches} clickFunction={modalHandler} />
 				</div>
 				<div className="sidebar__logoutButton">
 					<LogoutButton minimize={matches} clickFunction={logoutHandler} />
