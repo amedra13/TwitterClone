@@ -59,17 +59,19 @@
 	form {
 		display: flex;
 		flex-direction: column;
+		input {
+			font-size: 1vw;
+		}
 		.formBottom {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
 			margin: 10px 0;
 			font-family: $post-textFont;
-			font-size: 1vw ;
-			button{
-				font-size: .9vw;
+			font-size: 1vw;
+			button {
+				font-size: 0.9vw;
 			}
-
 		}
 		a {
 			color: #00b4d8;
@@ -120,14 +122,21 @@
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	border-radius: 15px;
 	padding: 30px;
-	height: 45%;
-	width: 50%;
+	// height: 45%;
+	width: 40%;
+	min-width: 400px;
+	h2 {
+		font-size: 1.5vw;
+	}
 	form {
 		height: 85%;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-evenly;
-		align-items: flex-start;
+		input {
+			height: 2.5vh;
+			font-size: 1vw;
+		}
+		button {
+			font-size: 0.8vw;
+		}
 	}
 }
 
@@ -147,11 +156,27 @@
 		}
 	}
 	.signup__rightForm {
-			.formBottom {
-				font-size: 2.1vw !important;
+		input {
+			font-size: 2.3vw !important;
+		}
+		.formBottom {
+			font-size: 2.1vw !important;
+		}
+		button {
+			font-size: 1.8vw !important;
+		}
+	}
+	.login__container {
+		h2 {
+			font-size: 23px;
+		}
+		form {
+			input {
+				font-size: 15px;
 			}
-			button{
-				font-size: 1.8vw !important;
+			button {
+				font-size: 13px;
 			}
+		}
 	}
 }
