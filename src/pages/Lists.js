@@ -4,6 +4,7 @@ import Trend from '../components/mainPage/Trend';
 import ListItem from '../components/lists/ListItem';
 import { connect } from 'react-redux';
 import PeopleIcon from '@material-ui/icons/People';
+import IconButton from '@material-ui/core/IconButton';
 import axios from 'axios';
 import * as actions from '../store/actions/index';
 
@@ -63,6 +64,9 @@ const Lists = ({
 					>
 						Followers
 					</h3>
+					<IconButton>
+						<PeopleIcon />
+					</IconButton>
 				</div>
 				<div className="lists__following">
 					{active === 'following' &&

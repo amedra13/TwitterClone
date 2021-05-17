@@ -39,36 +39,58 @@
 	border-left: 1px solid $main-borderColor;
 	.lists__links {
 		width: 100%;
-		height: 60px;
 		display: flex;
 		align-items: center;
 		border-bottom: 1px solid $main-borderColor;
+		padding: 0;
 		h3 {
-			line-height: 60px;
+			display: inline;
+			font-size: 1.4vw;
+			margin: 0;
 			padding: 0 20px;
 			color: post-textColor;
+		}
+		button {
+			visibility: hidden;
+		}
+		svg {
+			width: 2.5vw;
+			height: 2.5vw;
 		}
 	}
 }
 
 .listActive {
-	border-bottom: 2px solid $main-blueColor;
 	color: $main-blueColor;
 }
 
 .listItem {
 	opacity: 0;
-	height: 75px;
+	// height: 75px;
+	padding: 2vh 0;
+	min-height: 80px;
+	max-height: 150px;
 	display: flex;
 	align-items: center;
 	border-bottom: 1px solid $main-borderColor;
 	transition: all 200ms ease-in;
+	.MuiAvatar-root {
+		width: 2.5vw;
+		height: 2.5vw;
+		max-width: 50px;
+		max-height: 50px;
+	}
 
 	&:hover {
 		background-color: rgba(230, 230, 230, 0.295);
 	}
 	.listItem__userInfo {
 		flex: 1;
+		h4,
+		a,
+		p {
+			font-size: 1vw;
+		}
 	}
 	.listItem__name {
 		display: flex;
@@ -86,12 +108,15 @@
 	}
 	.listItem__buttonContainer {
 		button {
-			height: 40px;
-			width: 100px;
+			height: 3.5vh;
+			min-height: 30px;
+			width: 8vw;
+			min-width: 100px;
 			border-radius: 12px;
 			border: none;
 			margin: 0 10px;
 			font-weight: bold;
+			font-size: 0.9vw;
 			transition: all 150ms ease-in-out;
 			color: white;
 			&:focus {
@@ -129,4 +154,36 @@
 }
 .slideLeft {
 	animation: slideLeft 400ms ease-in-out forwards;
+}
+
+@media only screen and (max-width: 1100px) {
+	.lists__links {
+		h3 {
+			font-size: 18px !important;
+		}
+		svg {
+			width: 25px !important;
+			height: 25px !important;
+		}
+	}
+	.listItem {
+		.MuiAvatar-root {
+			width: 40px;
+			height: 40px;
+		}
+		.listItem__userInfo {
+			flex: 1;
+			h4,
+			a,
+			p {
+				font-size: 14px;
+			}
+		}
+	}
+
+	.listItem__buttonContainer {
+		button {
+			font-size: 12px !important;
+		}
+	}
 }
