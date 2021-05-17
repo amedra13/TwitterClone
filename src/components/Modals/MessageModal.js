@@ -15,16 +15,15 @@ const useStyles = makeStyles((theme) => ({
 	paper: {
 		backgroundColor: theme.palette.background.paper,
 		height: '250px',
-		width: '600px',
+		width: '45vw',
+		maxWidth: '800px',
+		minWidth: '480px',
 		outline: 'none',
 		borderRadius: '10px',
 		padding: theme.spacing(2, 4, 3),
 	},
 	feedIcon: {
 		margin: '0 3px',
-		color: '#00b4d8',
-	},
-	closeIcon: {
 		color: '#00b4d8',
 	},
 }));
@@ -70,7 +69,9 @@ const MessageModal = ({ isOpen, modalHandler, reloadAllChats, userId }) => {
 		>
 			<Zoom in={isOpen}>
 				<div className={classes.paper}>
-					<h3>Pick one of your Followers to message.</h3>
+					<div className="messageModal__header">
+						<h3>Pick one of your Followers to message.</h3>
+					</div>
 					<div className="friendsList">
 						{friendsList?.map((friend) => (
 							<FriendSearch

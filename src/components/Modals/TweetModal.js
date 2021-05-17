@@ -35,9 +35,6 @@ const useStyles = makeStyles((theme) => ({
 		margin: '0 3px',
 		color: '#00b4d8',
 	},
-	// closeIcon: {
-	// 	color: '#00b4d8',
-	// },
 }));
 
 const TweetModal = ({

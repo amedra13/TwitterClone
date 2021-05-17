@@ -222,6 +222,11 @@
 		align-items: center;
 		height: 60px;
 		transition: all 150ms ease-in;
+		font-size: 1vw;
+		.MuiAvatar-root {
+			width: 2vw;
+			height: 2vw;
+		}
 		.name {
 			font-weight: bold;
 			margin: 0 10px;
@@ -293,6 +298,14 @@
 				width: 25px !important;
 				height: 25px !important;
 			}
+		}
+	}
+
+	.friendSearch {
+		font-size: 15px !important;
+		.MuiAvatar-root {
+			width: 35px !important;
+			height: 35px !important;
 		}
 	}
 }
