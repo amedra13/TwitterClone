@@ -27,7 +27,7 @@ const MessageContainer = ({
 				<p>
 					<span className="bold">{friend?.name}</span> {friend?.userName}
 				</p>
-				<p style={{ margin: '10px', fontSize: '12px' }}>{lastUpdate}</p>
+				<p>{lastUpdate}</p>
 			</div>
 		</>
 	) : null;
@@ -44,15 +44,7 @@ const MessageContainer = ({
 				return clickFunction(chatId, friend);
 			}}
 		>
-			<Avatar
-				style={{
-					margin: '10px',
-					alignSelf: 'center',
-					width: '60px',
-					height: '60px',
-				}}
-				src={friend && `http://localhost:8080/${friend.profileImage}`}
-			/>
+			<Avatar src={friend && `http://localhost:8080/${friend.profileImage}`} />
 			{messageSection}
 		</div>
 	);

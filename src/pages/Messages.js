@@ -58,7 +58,7 @@ const Messages = ({
 						<h3>Messages</h3>
 						{!matches && (
 							<IconButton onClick={modalHandler}>
-								<PostAddIcon fontSize="large" style={{ color: '#00b4d8' }} />
+								<PostAddIcon />
 							</IconButton>
 						)}
 					</div>
