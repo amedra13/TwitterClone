@@ -34,6 +34,9 @@
 	position: relative;
 	display: flex;
 	justify-content: flex-end;
+	button {
+		font-size: 0.9vw;
+	}
 }
 .profile__content {
 	margin: 0 15px;
@@ -42,6 +45,16 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	h2 {
+		font-size: 1.5vw;
+	}
+	p {
+		font-size: 1vw;
+	}
+	svg {
+		width: 1.7vw;
+		height: 1.7vw;
+	}
 }
 .profile__links {
 	display: flex;
@@ -60,4 +73,24 @@
 .flex {
 	display: flex;
 	align-items: center;
+}
+
+@media only screen and (max-width: 1100px) {
+	.profile__user {
+		button {
+			font-size: 10px;
+		}
+	}
+	.profile__content {
+		h2 {
+			font-size: 25px !important;
+		}
+		p {
+			font-size: 15px !important;
+		}
+		svg {
+			width: 25px !important;
+			height: 25px !important;
+		}
+	}
 }
