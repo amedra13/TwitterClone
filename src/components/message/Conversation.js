@@ -19,6 +19,9 @@ const Conversation = ({ user, messages, chatId, friend, updateMessages }) => {
 	return (
 		<div className="conversation">
 			<div className="conversation__title">
+				<IconButton>
+					<SendOutlinedIcon />
+				</IconButton>
 				<Avatar
 					style={{ margin: '0 10px' }}
 					src={`http://localhost:8080/${friend?.profileImage}`}

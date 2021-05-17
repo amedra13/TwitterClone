@@ -125,10 +125,30 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		height: 60px;
+		button {
+			visibility: hidden;
+		}
+		svg {
+			color: $main-blueColor;
+			width: 2.5vw;
+			height: 2.5vw;
+		}
+		.MuiAvatar-root {
+			margin: 1vw;
+			width: 2.5vw;
+			height: 2.5vw;
+			min-width: 35px;
+			min-height: 35px;
+			max-width: 70px;
+			max-height: 70px;
+		}
 		.conversation__otherUser {
+			h4 {
+				font-size: 1.1vw;
+			}
 			p {
 				font-family: $post-textFont;
+				font-size: 1vw;
 				color: rgba(129, 148, 173, 0.651);
 			}
 		}
@@ -148,6 +168,7 @@
 			align-self: flex-start;
 			margin-left: 25px;
 			max-width: 60%;
+			font-size: 1vw;
 			animation: scale-in-center 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94)
 				forwards;
 		}
@@ -167,11 +188,12 @@
 		background-color: rgb(253, 253, 253);
 		input {
 			flex: 1;
-			height: 50px;
+			height: 55%;
 			border-radius: 15px;
+			font-size: 0.8vw;
 			border: none;
 			background-color: $main-borderColor;
-			padding-left: 20px;
+			padding: 0 20px;
 			margin: 0 20px;
 			font-family: $post-textFont;
 			&:focus {
@@ -181,6 +203,10 @@
 		.sendIcon {
 			color: $main-blueColor;
 			margin-right: 20px;
+			svg {
+				width: 2vw;
+				height: 2vw;
+			}
 		}
 	}
 }
@@ -234,6 +260,39 @@
 		}
 		p:last-child {
 			font-size: 12px !important;
+		}
+	}
+	.conversation__otherUser {
+		h4 {
+			font-size: 15px !important;
+		}
+		p {
+			font-size: 12px !important;
+		}
+	}
+
+	.conversation__messages {
+		.message {
+			font-size: 13px !important;
+		}
+	}
+	.conversation__title {
+		svg {
+			width: 25px !important;
+			height: 25px !important;
+		}
+	}
+
+	form {
+		input {
+			height: 65% !important;
+			font-size: 11px !important;
+		}
+		.sendIcon {
+			svg {
+				width: 25px !important;
+				height: 25px !important;
+			}
 		}
 	}
 }
