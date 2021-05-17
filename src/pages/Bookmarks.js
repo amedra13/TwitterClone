@@ -4,6 +4,7 @@ import SinglePost from '../components/Feed/SinglePost';
 import Trend from '../components/mainPage/Trend';
 import moment from 'moment';
 import SaveOutlinedIcon from '@material-ui/icons/SaveOutlined';
+import IconButton from '@material-ui/core/IconButton';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import * as actions from '../store/actions/index';
@@ -38,7 +39,12 @@ const Bookmarks = ({ user, bookmarks, onLoadBookmarks, onUpdateBookmarks }) => {
 		<div className="bookmarks">
 			<SideBar />
 			<div className="bookmarks__posts">
-				<h3 className="bookmarks__title">Saved Posts from Users</h3>
+				<div className="bookmarks__title">
+					<h3>Saved Posts from Users</h3>
+					<IconButton>
+						<SaveOutlinedIcon />
+					</IconButton>
+				</div>
 				{bookmarks ? (
 					bookmarks.map((post, i) => (
 						<SinglePost
