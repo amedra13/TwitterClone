@@ -14,8 +14,10 @@ const useStyles = makeStyles((theme) => ({
 	},
 	paper: {
 		backgroundColor: theme.palette.background.paper,
-		height: '250px',
-		width: '600px',
+		height: '300px',
+		width: '45vw',
+		maxWidth: '800px',
+		minWidth: '480px',
 		outline: 'none',
 		borderRadius: '10px',
 		padding: theme.spacing(2, 4, 3),
@@ -28,8 +30,8 @@ const useStyles = makeStyles((theme) => ({
 		color: '#00b4d8',
 	},
 	button: {
-		width: '100px',
-		height: '50px',
+		width: '5vw',
+		height: '5vh',
 		margin: '0 40px',
 		color: 'white',
 	},

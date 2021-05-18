@@ -55,7 +55,7 @@ const Trend = () => {
 	};
 	const fakeTrend2 = {
 		section: 'pets',
-		hashTag: '#CatAttack',
+		hashTag: '#VRGlasses',
 		numberOfTweets: '233k',
 		numberOfPeople: 3462,
 	};
@@ -130,8 +130,8 @@ const Trend = () => {
 						<SingleTrend trend={fakeTrend} />
 						<SingleTrend trend={fakeTrend3} />
 						<SingleTrend trend={fakeTrend2} />
-						<SingleTrend trend={fakeTrend} />
-						<SingleTrend trend={fakeTrend3} />
+						{/* <SingleTrend trend={fakeTrend} />
+						<SingleTrend trend={fakeTrend3} /> */}
 
 						<div className="trend__showMore">
 							<h5>Show More</h5>

@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Trend from '../components/mainPage/Trend';
 import DeleteModal from '../components/Modals/DeleteModal';
+import PeopleIcon from '@material-ui/icons/People';
+import IconButton from '@material-ui/core/IconButton';
+
 import axios from 'axios';
 import * as actions from '../store/actions/index';
 
@@ -58,7 +61,12 @@ const Edit = ({ user, onLogout }) => {
 		<div className="edit">
 			<Sidebar />
 			<div className="edit__container">
-				<h3>{user?.name}'s settings</h3>
+				<div className="edit__header">
+					<h3>{user?.name}'s settings</h3>
+					<IconButton>
+						<PeopleIcon />
+					</IconButton>
+				</div>
 				<div className="edit__account">
 					<h2>Change your account</h2>
 					<form onSubmit={updateUser}>

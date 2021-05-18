@@ -1,17 +1,28 @@
 .edit {
 	display: flex;
 	height: 100vh;
+	.edit__header {
+		display: flex;
+		align-items: center;
+		border-bottom: 1px solid $main-borderColor;
+		h3 {
+			padding: 0 20px;
+			font-size: 1.4vw;
+			color: post-textColor;
+		}
+		button {
+			visibility: hidden;
+		}
+		svg {
+			width: 2.5vw;
+			height: 2.5vw;
+		}
+	}
 	.edit__container {
 		flex: 1;
 		height: 100%;
 		border-left: 1px solid $main-borderColor;
 		border-right: 1px solid $main-borderColor;
-		h3 {
-			line-height: 58px;
-			padding: 0 20px;
-			color: post-textColor;
-			border-bottom: 1px solid $main-borderColor;
-		}
 	}
 }
 
@@ -23,10 +34,12 @@
 		font-family: $post-textFont;
 		margin-left: 20px;
 		margin-top: 10px;
+		font-size: 1.5vw;
 	}
 	.form__section {
 		height: 100px;
 		display: flex;
+		align-items: center;
 		padding: 10px;
 		box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
 			rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
@@ -37,16 +50,18 @@
 		}
 		label {
 			float: right;
-			font-size: 20px;
+			font-size: 1.2vw;
 			font-family: $post-textFont;
 		}
 		input {
-			height: 40px;
+			height: 4vh;
+			min-height: 35px;
 			width: 100%;
 			padding-left: 15px;
 			border-radius: 10px;
 			color: #5396a3;
 			border: 1px solid $post-textColor;
+			font-size: 0.8vw;
 			&:focus {
 				outline: none;
 				border: 1px solid $main-blueColor;
@@ -101,6 +116,31 @@
 			}
 			&:focus {
 				outline: none;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 1100px) {
+	.edit__header {
+		h3 {
+			font-size: 18px !important;
+		}
+		svg {
+			width: 25px !important;
+			height: 25px !important;
+		}
+	}
+	.edit__account {
+		h2 {
+			font-size: 20px !important;
+		}
+		.form__section {
+			input {
+				font-size: 12px !important;
+			}
+			label {
+				font-size: 18px;
 			}
 		}
 	}

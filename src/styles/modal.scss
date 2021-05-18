@@ -58,12 +58,16 @@
 }
 .deleteModal__header {
 	text-align: center;
+	font-size: 1.5vw;
 }
 .deleteModal__body {
 	height: 90%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	button {
+		font-size: 1.5vw;
+	}
 }
 
 .messageModal__header {
@@ -97,6 +101,20 @@
 	.messageModal__header {
 		h3 {
 			font-size: 15px;
+		}
+	}
+	.deleteModal__header {
+		font-size: 30px;
+	}
+	.deleteModal__body {
+		height: 90%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		button {
+			width: 70px;
+			height: 50px;
+			font-size: 25px;
 		}
 	}
 }
